@@ -24,7 +24,7 @@
         "prettier/prettier": [
           "error",
           {
-            "endOfLine": "off"
+            "endOfLine": "auto"
           }
         ],
         "@typescript-eslint/unbound-method": [
