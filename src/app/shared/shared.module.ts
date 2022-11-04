@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { PrimengModule } from './primeng/primeng.module';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [],
-  imports: [PrimengModule],
-  exports: [PrimengModule],
+  imports: [MaterialModule],
+  exports: [MaterialModule],
 })
 export class SharedModule {}
