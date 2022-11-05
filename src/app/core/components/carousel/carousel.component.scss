@@ -1,0 +1,91 @@
+.carousel {
+  margin: auto;
+  text-align: center;
+  width: 200px;
+  border-radius: 15px;
+
+  &__item {
+    position: relative;
+    img {
+      display: none;
+      border-radius: 15px;
+  
+      &.image-active {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  &__description {
+    display: none;
+
+    &.description-active {
+      display: block;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    background: 0 0;
+    border: 0;
+    cursor: pointer;
+
+    &-prev {
+      left: -40px;
+    }
+
+    &-next{
+      right: -40px;
+    }
+  }
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+::ng-deep {
+  .mat-icon {
+    color: black;
+    background-color: #E5E5E5;
+    border-radius: 100%;
+    transition: all 0.15s ease;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+
+  .mat-typography h3 {
+    font-weight: bold;
+  }
+
+  .mat-typography h4 {
+    margin: 0 0 7px;
+  }
+}

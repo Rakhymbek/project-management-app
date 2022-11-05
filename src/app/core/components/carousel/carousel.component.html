@@ -1,0 +1,25 @@
+<div *ngIf="team && team.length > 0" class="carousel">
+  <h2>{{title}}</h2>
+  <div class="carousel__item">
+    <img *ngFor="let person of team; let i = index" 
+    [src]="person.imageSrc"
+    [alt]="person.imageAlt"
+    [ngClass]="{ 'image-active': selectedIndex === i }"
+    class="fade mb-4"
+    />
+    <div class="carousel__button carousel__button-prev">
+      <mat-icon (click)="onPrevClick()">keyboard_arrow_left</mat-icon>
+    </div>
+    <div class="carousel__button carousel__button-next">
+      <mat-icon (click)="onNextClick()">keyboard_arrow_right</mat-icon>
+    </div>
+  </div>
+  <div class="carousel__description" 
+    *ngFor="let person of team; let i = index"
+    [ngClass]="{ 'description-active': selectedIndex === i }"
+    >
+    <h4>{{person.name}} - {{person.role}}</h4>
+    <span>{{person.activity}}</span>
+  </div>
+</div>
+
