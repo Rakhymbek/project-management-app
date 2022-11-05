@@ -1,53 +1,5 @@
-.carousel {
-  margin: auto;
-  text-align: center;
-  width: 200px;
-  border-radius: 15px;
-
-  &__item {
-    position: relative;
-    img {
-      display: none;
-      border-radius: 15px;
-  
-      &.image-active {
-        display: block;
-        width: 100%;
-      }
-    }
-  }
-
-  &__description {
-    display: none;
-
-    &.description-active {
-      display: block;
-    }
-  }
-
-  &__button {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 15%;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-    background: 0 0;
-    border: 0;
-    cursor: pointer;
-
-    &-prev {
-      left: -40px;
-    }
-
-    &-next{
-      right: -40px;
-    }
-  }
+.carousel-btn {
+  @apply absolute top-0 bottom-0 flex text-center justify-center items-center w-2/12 p-0 text-white border-0 cursor-pointer;
 }
 
 .fade {
