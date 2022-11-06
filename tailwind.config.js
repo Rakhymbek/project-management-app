@@ -1,16 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
-      colors: { //for background-color property
+      colors: {
+        //for background-color property
         card: {
           main: '#FFFFFF',
           epic: '#E9E6FD',
           red: '#DE350B',
-          label: '#D3D3D3'
+          label: '#D3D3D3',
         },
         checkbox: {
           main: '#E3FCEF',
@@ -30,10 +29,11 @@ module.exports = {
         teal: '#468189',
       },
       backgroundImage: {
-        mainGradient: 'linear-gradient(116.7deg, rgba(70, 129, 137, 0.1) 9.51%, rgba(7, 87, 98, 0.1) 95.18%)',
+        mainGradient:
+          'linear-gradient(116.7deg, rgba(70, 129, 137, 0.1) 9.51%, rgba(7, 87, 98, 0.1) 95.18%)',
         coverGradient: 'linear-gradient(116.7deg, #468189 9.51%, #075762 95.18%)',
       },
     },
   },
   plugins: [],
-}
+};
