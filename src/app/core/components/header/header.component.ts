@@ -6,7 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  showMenu = false;
+  showLanguagesDropdown = false;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  toggleNavbar() {
+    this.showMenu = !this.showMenu;
+  }
+
+  toggleLanguagesDropdown() {
+    this.showLanguagesDropdown = !this.showLanguagesDropdown;
+  }
 }

@@ -1,1 +1,94 @@
-<p>header works nicely!</p>
+<nav class="relative flex flex-wrap items-center justify-between mb-3 shadow-lg text-body">
+  <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+    <div
+      class="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start"
+    >
+      <a
+        class="flex text-2xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-teal hover:opacity-75"
+        href="#pablo"
+      >
+        <img src="./assets/icons/logo.svg" alt="Logo" class="mr-4" />
+        <p class="m-0 self-center">PMA</p>
+      </a>
+      <button
+        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+        type="button"
+        (click)="toggleNavbar()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div
+      [ngClass]="{ hidden: !showMenu, flex: showMenu, 'flex-col': showMenu }"
+      class="lg:flex lg:flex-grow items-center"
+    >
+      <div>
+        <ul class="flex flex-col lg:flex-row list-none ml-auto">
+          <li class="nav-item">
+            <button
+              class="px-3 py-2 m-0 text-base flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"
+              (click)="toggleLanguagesDropdown()"
+            >
+              en
+              <i class="material-icons" [ngClass]="{ hidden: showLanguagesDropdown }"
+                >keyboard_arrow_down</i
+              >
+              <i class="material-icons" [ngClass]="{ hidden: !showLanguagesDropdown }"
+                >keyboard_arrow_up</i
+              >
+            </button>
+            <div
+              class="absolute uppercase bg-white font-bold"
+              [ngClass]="{ hidden: !showLanguagesDropdown }"
+            >
+              <ul>
+                <li><a href="#selectEng">en</a></li>
+                <li><a href="#selectRus">ru</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a
+              class="px-3 py-2 text-base flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"
+              href="#pablo"
+            >
+              main
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="px-3 py-2 text-base flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"
+              href="#pablo"
+            >
+              boards
+            </a>
+          </li>
+        </ul>
+      </div>
+      <ul class="flex flex-col lg:flex-row list-none ml-auto">
+        <li class="nav-item">
+          <a
+            class="px-3 py-2 text-base flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"
+            href="#pablo"
+          >
+            sign up
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

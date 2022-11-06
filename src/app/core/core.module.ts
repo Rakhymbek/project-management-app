@@ -9,6 +9,6 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, WelcomePageComponent, NotFoundPageComponent],
   imports: [CommonModule, SharedModule],
-  exports: [WelcomePageComponent],
+  exports: [WelcomePageComponent, HeaderComponent],
 })
 export class CoreModule {}
