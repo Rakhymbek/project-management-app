@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 interface TeamMember {
   name: string;
@@ -13,6 +14,7 @@ interface TeamMember {
   styleUrls: ['./welcome-page.component.scss'],
 })
 export class WelcomePageComponent implements OnInit {
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   constructor() {}
 
   ngOnInit(): void {}
