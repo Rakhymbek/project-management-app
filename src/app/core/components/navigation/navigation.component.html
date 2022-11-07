@@ -1,0 +1,18 @@
+<ul class="flex flex-col lg:flex-row list-none max-lg:items-center max-lg:pt-5">
+  <li class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug">
+    <a routerLink="/welcome" (click)="onCloseNavigation()"> main </a>
+  </li>
+  <li class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug">
+    <a routerLink="/main" (click)="onCloseNavigation()"> boards </a>
+  </li>
+  <li
+    class="px-3 py-2 text-base uppercase font-bold flex items-center lg:ml-auto max-lg:order-last"
+  >
+    <p class="m-0">en</p>
+    <mat-slide-toggle class="language-switcher"></mat-slide-toggle>
+    <p class="m-0">ru</p>
+  </li>
+  <li class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug">
+    <a routerLink="/auth" (click)="onCloseNavigation()"> sign up </a>
+  </li>
+</ul>

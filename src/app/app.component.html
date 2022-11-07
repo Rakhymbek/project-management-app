@@ -1,5 +1,12 @@
-<app-header></app-header>
-<main class="main-wrapper">
-  <router-outlet></router-outlet>
-</main>
-<app-footer></app-footer>
+<mat-sidenav-container>
+  <mat-sidenav #navigation class="w-52"
+    ><app-navigation (closeNavigation)="navigation.close()"></app-navigation>
+  </mat-sidenav>
+  <mat-sidenav-container>
+    <app-header (navigationToggle)="navigation.toggle()"></app-header>
+    <div class="main-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </mat-sidenav-container>
+</mat-sidenav-container>

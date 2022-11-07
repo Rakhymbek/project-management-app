@@ -15,9 +15,13 @@ interface Person {
 })
 export class CarouselComponent implements OnInit {
   public title = 'Our team';
+
   public team: Person[];
+
   public selectedIndex = 0;
+
   @Input() autoplay = true;
+
   @Input() interval = 4000; // default interval - 4 seconds
 
   constructor() {

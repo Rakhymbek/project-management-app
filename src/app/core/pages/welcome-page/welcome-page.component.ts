@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface TeamMember {
   name: string;
   role: string;
@@ -15,7 +16,6 @@ interface TeamMember {
 })
 export class WelcomePageComponent implements OnInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  constructor() {}
 
   ngOnInit(): void {}
 }
