@@ -40,7 +40,8 @@ export class CarouselComponent implements OnInit {
         name: 'Yevgenii',
         role: 'Frontend Developer',
         activity: 'Lorem ipsum dolor sit amet',
-        imageSrc: 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
+        imageSrc:
+          'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
         imageAlt: 'Yevgenii',
       },
     ];
@@ -56,25 +57,25 @@ export class CarouselComponent implements OnInit {
     this.selectedIndex = index;
   }
 
-   public onPrevClick(): void {
-    if( this.selectedIndex === 0) {
+  public onPrevClick(): void {
+    if (this.selectedIndex === 0) {
       this.selectedIndex = this.team.length - 1;
     } else {
       this.selectedIndex--;
     }
-   }
+  }
 
-   public onNextClick(): void {
-    if( this.selectedIndex === this.team.length - 1) {
+  public onNextClick(): void {
+    if (this.selectedIndex === this.team.length - 1) {
       this.selectedIndex = 0;
     } else {
       this.selectedIndex++;
     }
-   }
+  }
 
-   private switchSlides(): void {
+  private switchSlides(): void {
     setInterval(() => {
       this.onNextClick();
     }, this.interval);
-   }
+  }
 }
