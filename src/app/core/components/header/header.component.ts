@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,24 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  showMenu = false;
-
-  showLanguagesDropdown = false;
+  @Output() public navigationToggle = new EventEmitter();
 
   ngOnInit(): void {}
 
-  toggleNavbar() {
-    this.showMenu = !this.showMenu;
-  }
-
-  toggleLanguagesDropdown() {
-    this.showLanguagesDropdown = !this.showLanguagesDropdown;
-  }
-
-  handleClickOutsideLanguageDropdown() {
-    console.log('click');
-    if (this.showLanguagesDropdown) {
-      this.showLanguagesDropdown = !this.showLanguagesDropdown;
-    }
+  onToggleNavigation() {
+    this.navigationToggle.emit();
   }
 }
