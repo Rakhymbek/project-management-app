@@ -19,6 +19,10 @@ const routes: Routes = [
   },
   {
     path: 'main',
+    loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
+  },
+  {
+    path: 'board/:id',
     loadChildren: () => import('./board/board.module').then((m) => m.BoardModule),
   },
   {

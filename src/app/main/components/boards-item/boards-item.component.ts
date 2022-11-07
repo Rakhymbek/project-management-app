@@ -14,6 +14,6 @@ export class BoardsItemComponent implements OnInit {
   ngOnInit(): void {}
 
   toBoard() {
-    this.router.navigate(['main', 'board', this.board.id]);
+    this.router.navigate(['board', this.board.id]);
   }
 }
