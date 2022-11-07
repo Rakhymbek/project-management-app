@@ -9,3 +9,35 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+// Switcher styles
+.mat-slide-toggle-thumb {
+  background-color: #468189;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #468189;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background-color: #46818999;
+}
+
+.mat-slide-toggle:not(.mat-checked) .mat-ripple-element {
+  background-color: black;
+  width: 0;
+}
+
+.mat-slide-toggle.mat-checked .mat-ripple-element {
+  background-color: #468189;
+  width: 0;
+}
+
+// Styles for sidenav
+.mat-drawer-container {
+  background-color: white;
+}
+
+.mat-sidenav-container {
+  height: 100%;
+}
