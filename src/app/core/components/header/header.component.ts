@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   showMenu = false;
-  showLanguagesDropdown = false;
 
-  constructor() {}
+  showLanguagesDropdown = false;
 
   ngOnInit(): void {}
 
@@ -19,5 +18,12 @@ export class HeaderComponent implements OnInit {
 
   toggleLanguagesDropdown() {
     this.showLanguagesDropdown = !this.showLanguagesDropdown;
+  }
+
+  handleClickOutsideLanguageDropdown() {
+    console.log('click');
+    if (this.showLanguagesDropdown) {
+      this.showLanguagesDropdown = !this.showLanguagesDropdown;
+    }
   }
 }

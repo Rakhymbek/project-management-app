@@ -42,6 +42,7 @@
             <button
               class="px-3 py-2 m-0 text-base flex items-center uppercase font-bold leading-snug hover:opacity-75"
               (click)="toggleLanguagesDropdown()"
+              (appClickOutside)="handleClickOutsideLanguageDropdown()"
             >
               en
               <i class="material-icons" [ngClass]="{ hidden: showLanguagesDropdown }"
@@ -52,12 +53,12 @@
               >
             </button>
             <div
-              class="absolute uppercase bg-white font-bold"
-              [ngClass]="{ hidden: !showLanguagesDropdown }"
+              class="absolute uppercase bg-white font-bold w-12 p-1 shadow-lg border-solid border-2"
+              [ngClass]="{ hidden: !showLanguagesDropdown, relative: showMenu }"
             >
               <ul>
-                <li><a href="#selectEng">en</a></li>
-                <li><a href="#selectRus">ru</a></li>
+                <li class="hover:bg-card-label"><a href="#selectEng">en</a></li>
+                <li class="hover:bg-card-label"><a href="#selectRus">ru</a></li>
               </ul>
             </div>
           </li>
