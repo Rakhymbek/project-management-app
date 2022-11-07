@@ -5,11 +5,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 import { RouterLinkWithHref } from '@angular/router';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, WelcomePageComponent, NotFoundPageComponent],
+  declarations: [HeaderComponent, FooterComponent, WelcomePageComponent, NotFoundPageComponent, CarouselComponent],
   imports: [CommonModule, SharedModule, RouterLinkWithHref],
-  exports: [HeaderComponent, FooterComponent],
+  exports: [HeaderComponent, WelcomePageComponent, FooterComponent],
 })
 export class CoreModule {}

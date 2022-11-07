@@ -1,0 +1,43 @@
+.carousel-btn {
+  @apply absolute top-0 bottom-0 flex text-center justify-center items-center w-2/12 p-0 text-white border-0 cursor-pointer;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+::ng-deep {
+  .mat-icon {
+    color: var(--teal-color);
+    background-color: var(--mercury-color);
+    border-radius: 100%;
+    transition: all 0.15s ease;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:active {
+      opacity: 0.5;
+    }
+  }
+
+  .mat-typography h3 {
+    font-weight: bold;
+  }
+
+  .mat-typography h4 {
+    margin: 0 0 7px;
+  }
+}
