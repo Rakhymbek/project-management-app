@@ -1,2 +1,7 @@
 <p>header works nicely!</p>
 <a routerLink="/auth">to auth</a>
+<div>
+  <mat-slide-toggle [(ngModel)]="isChecked" (change)="switchLanguage()">{{
+    currentLang | uppercase
+  }}</mat-slide-toggle>
+</div>

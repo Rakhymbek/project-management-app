@@ -7,10 +7,17 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { RouterLinkWithHref } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, WelcomePageComponent, NotFoundPageComponent, CarouselComponent],
-  imports: [CommonModule, SharedModule, RouterLinkWithHref],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    WelcomePageComponent,
+    NotFoundPageComponent,
+    CarouselComponent,
+  ],
+  imports: [CommonModule, SharedModule, RouterLinkWithHref, TranslateModule.forChild()],
   exports: [HeaderComponent, WelcomePageComponent, FooterComponent],
 })
 export class CoreModule {}

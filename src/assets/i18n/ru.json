@@ -1,0 +1,31 @@
+{
+  "welcome": {
+    "header": "the project management app",
+    "about": "Данное приложение помогает отслеживать ход выполнения задач и распределять нагрузку между сотрудниками",
+    "signUp": "Регистрация",
+    "features": {
+      "title": "Возможности приложение",
+      "boards": "Создание бордов",
+      "columns": "Создание колонок",
+      "tasks": "Создание и удаление задач",
+      "assignees": "Выбор исполнителя",
+      "search": "Поиск задачи по имени, номеру или исполнителю",
+      "dnd": "Перемещение задач и колонок при помощи drag-n-drop"
+    },
+    "sliderTitle": "Наша команда",
+    "names": {
+      "developer1": "Евгений",
+      "developer2": "Рамир",
+      "teamLead": "Рахымбек"
+    },
+    "roles": {
+      "developer": "frontend разработчик",
+      "teamLead": "team-lead, frontend разработчик"
+    },
+    "activity": {
+      "developer1": "Lorem ipsum dolor sit amet",
+      "developer2": "Lorem ipsum dolor sit amet",
+      "teamLead": "Lorem ipsum dolor sit amet"
+    }
+  }
+}
