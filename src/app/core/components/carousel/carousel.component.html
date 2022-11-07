@@ -1,5 +1,5 @@
-<div *ngIf="team && team.length > 0" class="carousel m-auto text-center w-52 rounded-2xl">
-  <h2>{{ title }}</h2>
+<div *ngIf="team && team.length > 0" class="carousel m-auto text-center w-60 rounded-2xl">
+  <h2 class="text-charcoal uppercase">{{ title }}</h2>
   <div class="carousel__item relative">
     <img
       *ngFor="let person of team; let i = index"
@@ -19,7 +19,10 @@
     *ngFor="let person of team; let i = index"
     class="{{ selectedIndex === i ? 'block' : 'hidden' }}"
   >
-    <h4>{{ person.name }} - {{ person.role }}</h4>
-    <span>{{ person.activity }}</span>
+    <h4 class="uppercase text-xl">
+      <span class="text-teal font-bold">{{ person.name }}</span> -
+      <span class="text-body font-bold">{{ person.role }}</span>
+    </h4>
+    <span class="text-body text-lg">{{ person.activity }}</span>
   </div>
 </div>

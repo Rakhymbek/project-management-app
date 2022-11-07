@@ -18,8 +18,8 @@
 
 ::ng-deep {
   .mat-icon {
-    color: black;
-    background-color: #e5e5e5;
+    color: var(--teal-color);
+    background-color: var(--mercury-color);
     border-radius: 100%;
     transition: all 0.15s ease;
     opacity: 0.5;
