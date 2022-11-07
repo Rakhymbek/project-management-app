@@ -1,2 +1,39 @@
-<p>welcome-page works!</p>
-<div class="w-24 h-24 bg-mainGradient"></div>
+<main class="max-w-4xl w-full my-0 mx-auto py-8">
+  <h1 class="text-center text-charcoal font-bold uppercase my-8">the project management app</h1>
+  <section class="flex mt-36 min-h-[25rem]">
+    <div class="max-w-2xl w-full my-0 mx-auto mb-10">
+      <p class="text-xl text-body">
+        This application helps to track the progress of tasks and distribute the workload among
+        employees
+      </p>
+      <div class="form flex flex-row gap-x-2.5">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            [formControl]="emailFormControl"
+            placeholder="Ex. mail@example.com"
+          />
+        </mat-form-field>
+        <button mat-raised-button color="primary">Sign up</button>
+      </div>
+    </div>
+    <div class="features pb-8 my-0 mx-auto max-w-sm w-full self-center">
+      <h2 class="text-center uppercase text-charcoal">Application features:</h2>
+      <ul class="features__list text-body text-base">
+        <li><mat-icon>done_outline</mat-icon> Create boards</li>
+        <li><mat-icon>done_outline</mat-icon> Create columns</li>
+        <li><mat-icon>done_outline</mat-icon> Create and delete tasks</li>
+        <li><mat-icon>done_outline</mat-icon> Select assignees</li>
+        <li>
+          <mat-icon>done_outline</mat-icon> Search for a task using number, name or an assignee
+        </li>
+        <li><mat-icon>done_outline</mat-icon> Move tasks and columns using Drag-n-Drop</li>
+      </ul>
+    </div>
+  </section>
+  <section>
+    <app-carousel [autoplay]="true" [interval]="4000"></app-carousel>
+  </section>
+</main>

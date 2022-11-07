@@ -4,6 +4,9 @@
   </mat-sidenav>
   <mat-sidenav-container>
     <app-header (navigationToggle)="navigation.toggle()"></app-header>
-    <app-welcome-page></app-welcome-page>
+    <div class="main-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
   </mat-sidenav-container>
 </mat-sidenav-container>
