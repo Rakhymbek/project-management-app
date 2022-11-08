@@ -6,6 +6,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { RouterLinkWithHref } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SharedModule } from '../shared/shared.module';
 
@@ -19,7 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     NavigationComponent,
     CarouselComponent,
   ],
-  imports: [SharedModule, RouterLinkWithHref],
+  imports: [SharedModule, RouterLinkWithHref, TranslateModule.forChild()],
   exports: [
     WelcomePageComponent,
     HeaderComponent,

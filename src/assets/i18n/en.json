@@ -1,0 +1,37 @@
+{
+  "header": {
+    "main": "main",
+    "boards": "boards",
+    "signUp": "sign up"
+  },
+  "welcome": {
+    "header": "the project management app",
+    "about": "This application helps to track the progress of tasks and distribute the workload among employees",
+    "signUp": "Sign Up",
+    "features": {
+      "title": "application features",
+      "boards": "Create boards",
+      "columns": "Create columns",
+      "tasks": "Create and delete tasks",
+      "assignees": "Select assignees",
+      "search": "Search for a task using number, name or an assignee",
+      "dnd": "Move tasks and columns using Drag-n-Drop"
+    },
+    "sliderTitle": "our team",
+    "yevgenii": {
+      "name": "Yevgenii",
+      "role": "frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
+    },
+    "rakhymbek": {
+      "name": "Rakhymbek",
+      "role": "team-lead, frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
+    },
+    "ramir": {
+      "name": "Ramir",
+      "role": "frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
+    }
+  }
+}
