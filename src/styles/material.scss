@@ -2,9 +2,8 @@
 @use '@angular/material' as mat;
 
 @include mat.core();
-
 $app-theme-primary: mat.define-palette(palette.$app-primary);
-$app-theme-accent: mat.define-palette(mat.$indigo-palette);
+$app-theme-accent: mat.define-palette(palette.$app-primary);
 $app-theme-warn: mat.define-palette(mat.$red-palette);
 
 $app-theme: mat.define-light-theme(
@@ -25,3 +24,6 @@ $typography-config: mat.define-typography-config(
 );
 
 @include mat.core($typography-config);
+
+$custom-toggle-theme: mat.define-light-theme(mat.define-palette(palette.$app-primary), mat.define-palette(palette.$app-primary));
+@include mat.slide-toggle-theme($custom-toggle-theme);

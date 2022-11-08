@@ -21,7 +21,6 @@ export class WelcomePageComponent implements OnInit {
   public signUp(): void {
     if (this.emailFormControl.valid) {
       this.router.navigate(['/auth']);
-      console.log(this.email);
     }
   }
 }
