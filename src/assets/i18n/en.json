@@ -13,19 +13,20 @@
       "dnd": "Move tasks and columns using Drag-n-Drop"
     },
     "sliderTitle": "our team",
-    "names": {
-      "developer1": "Yevgenii",
-      "developer2": "Ramir",
-      "teamLead": "Rakhymbek"
+    "yevgenii": {
+      "name": "Yevgenii",
+      "role": "frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
     },
-    "roles": {
-      "developer": "frontend developer",
-      "teamLead": "team-lead, frontend developer"
+    "rakhymbek": {
+      "name": "Rakhymbek",
+      "role": "team-lead, frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
     },
-    "activity": {
-      "developer1": "Lorem ipsum dolor sit amet",
-      "developer2": "Lorem ipsum dolor sit amet",
-      "teamLead": "Lorem ipsum dolor sit amet"
+    "ramir": {
+      "name": "Ramir",
+      "role": "frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
     }
   }
 }

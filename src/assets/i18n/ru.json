@@ -4,7 +4,7 @@
     "about": "Данное приложение помогает отслеживать ход выполнения задач и распределять нагрузку между сотрудниками",
     "signUp": "Регистрация",
     "features": {
-      "title": "Возможности приложение",
+      "title": "Возможности приложения",
       "boards": "Создание бордов",
       "columns": "Создание колонок",
       "tasks": "Создание и удаление задач",
@@ -13,19 +13,20 @@
       "dnd": "Перемещение задач и колонок при помощи drag-n-drop"
     },
     "sliderTitle": "Наша команда",
-    "names": {
-      "developer1": "Евгений",
-      "developer2": "Рамир",
-      "teamLead": "Рахымбек"
+    "yevgenii": {
+      "name": "Евгений",
+      "role": "frontend разработчик",
+      "activity": "Lorem ipsum dolor sit amet"
     },
-    "roles": {
-      "developer": "frontend разработчик",
-      "teamLead": "team-lead, frontend разработчик"
+    "rakhymbek": {
+      "name": "Рахымбек",
+      "role": "team-lead, frontend разработчик",
+      "activity": "Lorem ipsum dolor sit amet"
     },
-    "activity": {
-      "developer1": "Lorem ipsum dolor sit amet",
-      "developer2": "Lorem ipsum dolor sit amet",
-      "teamLead": "Lorem ipsum dolor sit amet"
+    "ramir": {
+      "name": "Рамир",
+      "role": "frontend разработчик",
+      "activity": "Lorem ipsum dolor sit amet"
     }
   }
 }
