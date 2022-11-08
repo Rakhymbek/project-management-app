@@ -1,1 +1,5 @@
-<app-boards-list [boards]="boards"></app-boards-list>
+<h1 class="uppercase text-center">{{ 'main.header' | translate }}</h1>
+<app-boards-list
+  [boards]="boards"
+  class="flex flex-wrap gap-16 py-14 max-w-[1375px] my-0 mx-auto max-h-[550px] overflow-y-scroll justify-center lg:justify-start"
+></app-boards-list>

@@ -6,9 +6,11 @@ import { IBoard } from 'src/app/core/models/board.model';
   providedIn: 'root',
 })
 export class MainService {
+  private readonly url = 'https://creepy-catacombs-89955.herokuapp.com';
+
   constructor(private http: HttpClient) {}
 
   getAllBoards() {
-    return this.http.get<IBoard[]>('boards');
+    return this.http.get<IBoard[]>(`${this.url}/boards`);
   }
 }

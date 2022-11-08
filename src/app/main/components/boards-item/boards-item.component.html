@@ -1,1 +1,8 @@
-<div (click)="toBoard()">{{ board.title }} - {{ board.id }}</div>
+<mat-card class="w-[280px] h-[155px]">
+  <mat-card-title class="mat-h4 w-48 truncate">{{ board.title }}</mat-card-title>
+  <mat-card-content class="truncate">{{ board.description }}</mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="toBoard()"><mat-icon class="text-teal">edit</mat-icon></button>
+    <button mat-button><mat-icon class="text-teal">delete</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
