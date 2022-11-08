@@ -8,9 +8,12 @@
   <li
     class="px-3 py-2 text-base uppercase font-bold flex items-center lg:ml-auto max-lg:order-last"
   >
-    <p class="m-0">en</p>
-    <mat-slide-toggle class="language-switcher"></mat-slide-toggle>
-    <p class="m-0">ru</p>
+    <mat-slide-toggle
+      class="language-switcher"
+      [(ngModel)]="isChecked"
+      (change)="switchLanguage()"
+      >{{ currentLang | uppercase }}</mat-slide-toggle
+    >
   </li>
   <li class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug">
     <a routerLink="/auth" (click)="onCloseNavigation()"> sign up </a>
