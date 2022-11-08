@@ -1,5 +1,5 @@
-<div *ngIf="team && team.length > 0" class="carousel m-auto text-center w-60 rounded-2xl">
-  <h2 class="text-charcoal uppercase">{{ title }}</h2>
+<div *ngIf="team && team.length > 0" class="carousel m-auto text-center w-64 rounded-2xl">
+  <h2 class="text-charcoal uppercase">{{ 'welcome.sliderTitle' | translate }}</h2>
   <div class="carousel__item relative">
     <img
       *ngFor="let person of team; let i = index"
@@ -20,9 +20,10 @@
     class="{{ selectedIndex === i ? 'block' : 'hidden' }}"
   >
     <h4 class="uppercase text-xl">
-      <span class="text-teal font-bold">{{ person.name }}</span> -
-      <span class="text-body font-bold">{{ person.role }}</span>
+      <span class="text-teal font-bold">{{ 'welcome.' + person.name + '.name' | translate }}</span>
+      -
+      <span class="text-body font-bold">{{ 'welcome.' + person.name + '.role' | translate }}</span>
     </h4>
-    <span class="text-body text-lg">{{ person.activity }}</span>
+    <span class="text-body text-lg">{{ 'welcome.' + person.name + '.activity' | translate }}</span>
   </div>
 </div>
