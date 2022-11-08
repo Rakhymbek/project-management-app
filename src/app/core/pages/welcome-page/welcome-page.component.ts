@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface TeamMember {
-  name: string;
-  role: string;
-  imageSrc: string;
-  imageAlt: string;
-}
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome-page',
@@ -17,5 +10,18 @@ interface TeamMember {
 export class WelcomePageComponent implements OnInit {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
+  constructor(private router: Router) {}
+
+  get email() {
+    return this.emailFormControl.value;
+  }
+
   ngOnInit(): void {}
+
+  public signUp(): void {
+    if (this.emailFormControl.valid) {
+      this.router.navigate(['/auth']);
+      console.log(this.email);
+    }
+  }
 }

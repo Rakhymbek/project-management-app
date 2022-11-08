@@ -15,7 +15,9 @@
             placeholder="Ex. mail@example.com"
           />
         </mat-form-field>
-        <button mat-raised-button color="primary">{{ 'welcome.signUp' | translate }}</button>
+        <button mat-raised-button color="primary" (click)="signUp()">
+          {{ 'welcome.signUp' | translate }}
+        </button>
       </div>
     </div>
     <div class="features pb-8 my-0 mx-auto max-w-sm w-full self-center">
