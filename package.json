@@ -62,9 +62,9 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,html}": [
+      "bash -c tsc --noEmit",
       "eslint --fix",
-      "npm run format",
-      "git add"
+      "npm run format"
     ]
   }
 }

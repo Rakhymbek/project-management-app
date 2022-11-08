@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { EStorage, ELang } from '../../models/enums';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,19 +6,11 @@ import { EStorage, ELang } from '../../models/enums';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public currentLang = localStorage.getItem(EStorage.language) || ELang.en;
-
-  public isChecked = this.currentLang === ELang.en;
-
-  constructor(private translate: TranslateService) {
-    this.translate.use(this.currentLang);
-  }
+  @Output() public navigationToggle = new EventEmitter();
 
   ngOnInit(): void {}
 
-  switchLanguage() {
-    this.currentLang = this.isChecked ? ELang.en : ELang.ru;
-    localStorage.setItem(EStorage.language, this.currentLang);
-    this.translate.use(this.currentLang);
+  onToggleNavigation() {
+    this.navigationToggle.emit();
   }
 }
