@@ -1,3 +1,5 @@
-<div *ngFor="let board of boards" class="video-item">
-  <app-boards-item [board]="board"></app-boards-item>
-</div>
+<ng-container *ngIf="boards | async as boards">
+  <div *ngFor="let board of boards">
+    <app-boards-item [board]="board"></app-boards-item>
+  </div>
+</ng-container>

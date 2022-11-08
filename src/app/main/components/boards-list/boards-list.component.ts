@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IBoard } from 'src/app/core/models/board.model';
 
 @Component({
   selector: 'app-boards-list',
@@ -6,11 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./boards-list.component.scss'],
 })
 export class BoardsListComponent implements OnInit {
-  boards = [
-    { id: 1, title: 'First' },
-    { id: 2, title: 'Second' },
-    { id: 3, title: 'Third' },
-  ];
+  @Input() boards: Observable<IBoard[]> | undefined;
 
   ngOnInit(): void {}
 }
