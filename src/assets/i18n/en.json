@@ -1,4 +1,9 @@
 {
+  "header": {
+  "main": "main",
+  "boards": "boards",
+  "signUp": "sign up"
+},
   "welcome": {
     "header": "the project management app",
     "about": "This application helps to track the progress of tasks and distribute the workload among employees",
