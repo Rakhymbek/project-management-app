@@ -1,11 +1,12 @@
 export interface IBoard {
-  id: string;
+  id?: string;
   title: string;
   description: string;
 }
 
 export interface DialogCreateData {
   event: string;
+  id: string;
   title: string;
   description: string;
 }
@@ -17,5 +18,5 @@ export interface DialogData {
 
 export interface DialogOptions {
   width: string;
-  data?: { id: string };
+  data: { event: string; id: string | undefined };
 }

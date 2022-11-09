@@ -34,15 +34,16 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {}
 
   public openDialog(event: string, id?: string): void {
-    const options: DialogOptions = { width: '300px' };
+    const options: DialogOptions = { width: '300px', data: { event, id } };
     const dialog = this.getDialog(event);
-    if (id) options.data = { id };
     const dialogRef = this.dialog.open(dialog, options);
     dialogRef.afterClosed().subscribe((value) => {
       if (value.event === EDialogEvents.create) {
         this.createBoard(value);
       } else if (value.event === EDialogEvents.delete) {
         this.deleteBoard(value);
+      } else if (value.event === EDialogEvents.edit) {
+        this.editBoard(value);
       }
     });
   }
@@ -53,18 +54,31 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  public deleteBoard(data: DialogData) {
+  private deleteBoard(data: DialogData) {
     this.mainService.deleteBoard(data.id).subscribe(() => {
       this.boards = this.boards?.filter((item) => item.id !== data.id);
     });
   }
 
-  getDialog(event: string): typeof DialogComponent | typeof DialogCreateComponent {
+  private editBoard(data: DialogCreateData): void {
+    this.mainService
+      .updateBoard(data.id, {
+        title: data.title,
+        description: data.description,
+      })
+      .subscribe((board) => {
+        console.log(board);
+      });
+  }
+
+  getDialog(event: string) {
     switch (event) {
       case EDialogEvents.create:
         return DialogCreateComponent;
       case EDialogEvents.delete:
         return DialogComponent;
+      case EDialogEvents.edit:
+        return DialogCreateComponent;
       case EDialogEvents.cancel:
         return DialogCreateComponent;
       default:

@@ -11,4 +11,5 @@ export enum EDialogEvents {
   create = 'create',
   cancel = 'cancel',
   delete = 'delete',
+  edit = 'edit',
 }

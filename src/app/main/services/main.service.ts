@@ -15,14 +15,18 @@ export class MainService {
     return this.http.get<IBoard[]>(`${this.url}/boards`);
   }
 
-  public createBoard(title: string, description: string) {
+  public createBoard(title: string, description: string): Observable<IBoard> {
     return this.http.post<IBoard>(`${this.url}/boards`, {
       title,
       description,
     });
   }
 
-  public deleteBoard(id: string) {
+  public deleteBoard(id: string): Observable<Object> {
     return this.http.delete(`${this.url}/boards/${id}`);
+  }
+
+  public updateBoard(id: string, body: IBoard): Observable<IBoard> {
+    return this.http.put(`${this.url}/boards/${id}`, body) as Observable<IBoard>;
   }
 }
