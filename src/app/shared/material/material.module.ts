@@ -6,6 +6,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [],
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonToggleModule,
     MatSidenavModule,
     MatButtonModule,
+    MatCardModule,
   ],
   exports: [
     DragDropModule,
@@ -26,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonToggleModule,
     MatSidenavModule,
     MatButtonModule,
+    MatCardModule,
   ],
 })
 export class MaterialModule {}
