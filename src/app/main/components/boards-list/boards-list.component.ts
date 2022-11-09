@@ -6,11 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./boards-list.component.scss'],
 })
 export class BoardsListComponent implements OnInit {
-  boards = [
-    { id: 1, title: 'First' },
-    { id: 2, title: 'Second' },
-    { id: 3, title: 'Third' },
-  ];
-
   ngOnInit(): void {}
 }
