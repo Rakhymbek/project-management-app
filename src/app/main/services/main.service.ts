@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IBoard } from 'src/app/core/models/board.model';
 
 @Injectable({
@@ -10,7 +11,14 @@ export class MainService {
 
   constructor(private http: HttpClient) {}
 
-  getAllBoards() {
+  public getAllBoards(): Observable<IBoard[]> {
     return this.http.get<IBoard[]>(`${this.url}/boards`);
+  }
+
+  public createBoard(title: string, description: string) {
+    return this.http.post<IBoard>(`${this.url}/boards`, {
+      title,
+      description,
+    });
   }
 }

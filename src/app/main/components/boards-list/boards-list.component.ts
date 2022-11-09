@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { IBoard } from 'src/app/core/models/board.model';
 
 @Component({
@@ -8,7 +7,7 @@ import { IBoard } from 'src/app/core/models/board.model';
   styleUrls: ['./boards-list.component.scss'],
 })
 export class BoardsListComponent implements OnInit {
-  @Input() boards: Observable<IBoard[]> | undefined;
+  @Input() boards: IBoard[] | undefined;
 
   ngOnInit(): void {}
 }

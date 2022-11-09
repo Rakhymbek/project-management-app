@@ -3,7 +3,7 @@ import { MaterialModule } from './material/material.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCardModule } from '@angular/material/card';
+
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -14,7 +14,6 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatCardModule,
     TranslateModule.forChild(),
   ],
   exports: [
@@ -23,7 +22,6 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    MatCardModule,
     TranslateModule,
   ],
 })

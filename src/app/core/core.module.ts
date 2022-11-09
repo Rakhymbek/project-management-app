@@ -10,6 +10,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     ClickOutsideDirective,
     NavigationComponent,
     CarouselComponent,
+    DialogComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref],
   exports: [

@@ -16,4 +16,12 @@ export class BoardsItemComponent implements OnInit {
   toBoard() {
     this.router.navigate(['board', this.board.id]);
   }
+
+  deleteCard(event: Event): void {
+    event.stopPropagation();
+  }
+
+  editCard(event: Event): void {
+    event.stopPropagation();
+  }
 }

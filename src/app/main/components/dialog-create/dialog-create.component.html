@@ -1,0 +1,17 @@
+<h1 mat-dialog-title class="mat-h4">Please enter all necessary data</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Input board title</mat-label>
+      <input matInput formControlName="title" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Input description</mat-label>
+      <input matInput formControlName="description" required />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="getData()" [disabled]="form.invalid">Ok</button>
+  <button mat-button (click)="cancel()">Cancel</button>
+</div>
