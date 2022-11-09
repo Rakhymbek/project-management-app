@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogData } from '../../models/border.model';
+import { DialogData } from 'src/app/core/models/board.model';
 import { EDialogEvents } from 'src/app/core/models/enums';
 
 @Component({

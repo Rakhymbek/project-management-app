@@ -1,10 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { IBoard } from 'src/app/core/models/board.model';
+import {
+  IBoard,
+  DialogData,
+  DialogOptions,
+  DialogCreateData,
+} from 'src/app/core/models/board.model';
 import { MainService } from '../../services/main.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogCreateComponent } from '../../components/dialog-create/dialog-create.component';
-import { DialogData } from '../../models/border.model';
 import { EDialogEvents } from 'src/app/core/models/enums';
+import { DialogComponent } from 'src/app/core/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-main-page',
@@ -21,28 +26,49 @@ export class MainPageComponent implements OnInit {
   constructor(
     private mainService: MainService,
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData | DialogCreateData,
   ) {
     this.mainService.getAllBoards().subscribe((allBoards) => (this.boards = allBoards));
   }
 
   ngOnInit(): void {}
 
-  public openDialog(): void {
-    const dialogRef = this.dialog.open(DialogCreateComponent, {
-      width: '300px',
-      data: { title: this.boardTitle, description: this.boardDescr },
-    });
-    dialogRef.afterClosed().subscribe((data) => {
-      if (data.event === EDialogEvents.create) {
-        this.createBoard(data);
+  public openDialog(event: string, id?: string): void {
+    const options: DialogOptions = { width: '300px' };
+    const dialog = this.getDialog(event);
+    if (id) options.data = { id };
+    const dialogRef = this.dialog.open(dialog, options);
+    dialogRef.afterClosed().subscribe((value) => {
+      if (value.event === EDialogEvents.create) {
+        this.createBoard(value);
+      } else if (value.event === EDialogEvents.delete) {
+        this.deleteBoard(value);
       }
     });
   }
 
-  private createBoard(data: DialogData): void {
+  private createBoard(data: DialogCreateData): void {
     this.mainService.createBoard(data.title, data.description).subscribe((boards) => {
       this.boards?.push(boards);
     });
+  }
+
+  public deleteBoard(data: DialogData) {
+    this.mainService.deleteBoard(data.id).subscribe(() => {
+      this.boards = this.boards?.filter((item) => item.id !== data.id);
+    });
+  }
+
+  getDialog(event: string): typeof DialogComponent | typeof DialogCreateComponent {
+    switch (event) {
+      case EDialogEvents.create:
+        return DialogCreateComponent;
+      case EDialogEvents.delete:
+        return DialogComponent;
+      case EDialogEvents.cancel:
+        return DialogCreateComponent;
+      default:
+        return DialogComponent;
+    }
   }
 }

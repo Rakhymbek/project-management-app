@@ -1,10 +1,16 @@
 <div class="relative max-w-[1375px] my-0 mx-auto">
-  <button mat-button class="absolute left-0" (click)="openDialog()">
+  <button mat-button class="absolute left-0" (click)="openDialog('create')">
     <mat-icon class="text-5xl w-[50px] h-[50px] text-teal">note_add</mat-icon>
   </button>
   <h1 class="uppercase text-center">{{ 'main.header' | translate }}</h1>
-  <app-boards-list
-    [boards]="boards"
+  <div
     class="flex flex-wrap gap-16 py-14 max-h-[550px] overflow-y-scroll justify-center lg:justify-start"
-  ></app-boards-list>
+  >
+    <div *ngFor="let board of boards">
+      <app-boards-item
+        [board]="board"
+        (deleteBoard)="openDialog('delete', $event)"
+      ></app-boards-item>
+    </div>
+  </div>
 </div>

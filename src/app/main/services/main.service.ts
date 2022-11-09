@@ -21,4 +21,8 @@ export class MainService {
       description,
     });
   }
+
+  public deleteBoard(id: string) {
+    return this.http.delete(`${this.url}/boards/${id}`);
+  }
 }

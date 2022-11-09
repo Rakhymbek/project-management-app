@@ -10,4 +10,5 @@ export enum ELang {
 export enum EDialogEvents {
   create = 'create',
   cancel = 'cancel',
+  delete = 'delete',
 }
