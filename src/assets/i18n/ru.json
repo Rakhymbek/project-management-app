@@ -35,6 +35,11 @@
     }
   },
   "main": {
-    "header": "борды"
+    "header": "борды",
+    "dialog": {
+      "title": "Заголовок",
+      "description": "Описание",
+      "cancel": "Отмена"
+    }
   }
 }

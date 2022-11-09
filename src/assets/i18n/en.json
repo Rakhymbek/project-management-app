@@ -35,6 +35,11 @@
     }
   },
   "main": {
-    "header": "boards"
+    "header": "boards",
+    "dialog": {
+      "title": "Title",
+      "description": "Description",
+      "cancel": "Cancel"
+    }
   }
 }
