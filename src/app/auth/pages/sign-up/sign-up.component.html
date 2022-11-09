@@ -1,4 +1,8 @@
-<form class="form-signUp max-w-xs m-auto text-center p-5 shadow-md mt-10" [formGroup]="signUpForm">
+<form
+  class="form-signUp max-w-xs m-auto text-center p-5 shadow-md mt-10"
+  [formGroup]="signUpForm"
+  (ngSubmit)="register()"
+>
   <h2 class="text-teal">Sign-up</h2>
   <mat-card-content>
     <mat-form-field appearance="standard" class="w-full mb-1">
@@ -62,6 +66,6 @@
   </mat-card-content>
   <div class="flex justify-evenly">
     <button mat-raised-button routerLink="/auth/login">Sign-in</button>
-    <button mat-raised-button color="primary">Sign-up</button>
+    <button mat-raised-button color="primary" type="submit">Sign-up</button>
   </div>
 </form>

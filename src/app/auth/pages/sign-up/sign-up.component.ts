@@ -8,6 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
+import { AuthService } from '../../services/auth.service';
+import { ISignUpUserData } from '../../models/user.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +21,7 @@ export class SignUpComponent implements OnInit {
 
   hideConfirmPassword = true;
 
-  constructor(private validator: ValidationService) {}
+  constructor(private validator: ValidationService, public authService: AuthService) {}
 
   signUpForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -55,5 +57,17 @@ export class SignUpComponent implements OnInit {
 
   get confirmPassword() {
     return this.signUpForm.get('confirmPassword');
+  }
+
+  register() {
+    const userData: ISignUpUserData = {
+      name: this.name?.value!,
+      login: this.login?.value!,
+      password: this.password?.value!,
+    };
+    if (this.signUpForm.status === 'VALID') {
+      console.log(userData);
+      this.authService.signUp(userData);
+    }
   }
 }

@@ -9,11 +9,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signUp(userData: ISignUpUserData) {
-    return this.http.post<ISignUpUserData>('/signup', userData);
+    return this.http.post<ISignUpUserData>(`signup`, userData);
   }
 
   signIn(userData: ISignInUserData) {
-    return this.http.post<ISignUpUserData>('/signin', userData);
+    return this.http.post<ISignUpUserData>('signin', userData);
   }
 
   getAuthToken(): string | null {
