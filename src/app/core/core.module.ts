@@ -9,6 +9,7 @@ import { RouterLinkWithHref } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SharedModule } from '../shared/shared.module';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     ClickOutsideDirective,
     NavigationComponent,
     CarouselComponent,
+    ConfirmationModalComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref, TranslateModule.forChild()],
   exports: [

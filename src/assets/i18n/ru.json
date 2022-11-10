@@ -33,5 +33,9 @@
       "role": "frontend разработчик",
       "activity": "Lorem ipsum dolor sit amet"
     }
+  },
+  "confirmationModal": {
+    "yes": "да",
+    "no": "нет"
   }
 }
