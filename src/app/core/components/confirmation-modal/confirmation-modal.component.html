@@ -1,0 +1,12 @@
+<p class="text-center text-xl whitespace-normal">{{ data.question | translate }}</p>
+<div mat-dialog-actions class="action-buttons">
+  <button mat-raised-button mat-dialog-close="true">NO</button>
+  <button
+    mat-raised-button
+    color="primary"
+    mat-dialog-close="true"
+    (click)="data.confirmationFunction()"
+  >
+    YES
+  </button>
+</div>
