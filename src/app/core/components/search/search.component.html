@@ -1,0 +1,11 @@
+<form>
+  <mat-form-field>
+    <input type="text" [formControl]="search" matInput [matAutocomplete]="auto" />
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        <span>{{ option.name }}</span> |
+        <small>Population: {{ option.population }}</small>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

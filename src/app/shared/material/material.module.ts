@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
+    MatAutocompleteModule,
   ],
   exports: [
     DragDropModule,
@@ -32,6 +34,7 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
+    MatAutocompleteModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
