@@ -50,6 +50,7 @@
   },
   "error": {
     "close": "Close",
+    "0": "Unknown Error",
     "400": "Bad Request",
     "401": "Not Authorized",
     "404": "Not Found",
