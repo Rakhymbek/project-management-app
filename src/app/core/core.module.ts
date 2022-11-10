@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
+import { DialogErrorComponent } from './components/dialog-error/dialog-error.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
     NavigationComponent,
     CarouselComponent,
     DialogDeleteComponent,
+    DialogErrorComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref],
   exports: [

@@ -21,3 +21,7 @@ export interface DialogOptions {
   width: string;
   data: { event: string; element: string; id: string | undefined };
 }
+
+export interface DialogErrorData {
+  code: number;
+}

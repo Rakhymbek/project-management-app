@@ -47,5 +47,15 @@
         "task": " task?"
       }
     }
+  },
+  "error": {
+    "close": "Close",
+    "400": "Bad Request",
+    "401": "Not Authorized",
+    "404": "Not Found",
+    "500": "Internal Server Error",
+    "502": "Bad Gateway",
+    "503": "Service Temporarily Unavailable",
+    "505": "HTTP Version Not Supported"
   }
 }
