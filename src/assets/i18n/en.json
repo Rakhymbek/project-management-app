@@ -34,6 +34,31 @@
       "activity": "Lorem ipsum dolor sit amet"
     }
   },
+  "main": {
+    "header": "boards",
+    "dialog": {
+      "title": "Title",
+      "description": "Description",
+      "cancel": "Cancel",
+      "delete": {
+        "message": "Are you sure you want to delete",
+        "board": " board?",
+        "column": " column?",
+        "task": " task?"
+      }
+    }
+  },
+  "error": {
+    "close": "Close",
+    "0": "Unknown Error",
+    "400": "Bad Request",
+    "401": "Not Authorized",
+    "404": "Not Found",
+    "500": "Internal Server Error",
+    "502": "Bad Gateway",
+    "503": "Service Temporarily Unavailable",
+    "505": "HTTP Version Not Supported"
+  },
   "confirmationModal": {
     "yes": "yes",
     "no": "no"

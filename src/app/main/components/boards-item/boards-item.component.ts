@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +9,25 @@ import { Router } from '@angular/router';
 export class BoardsItemComponent implements OnInit {
   @Input() board: any;
 
+  @Output() deleteBoard = new EventEmitter();
+
+  @Output() editBoard = new EventEmitter();
+
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   toBoard() {
     this.router.navigate(['board', this.board.id]);
+  }
+
+  deleteCard(event: Event): void {
+    event.stopPropagation();
+    this.deleteBoard.emit(this.board.id);
+  }
+
+  editCard(event: Event): void {
+    event.stopPropagation();
+    this.editBoard.emit(this.board.id);
   }
 }

@@ -6,7 +6,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [],
@@ -18,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonToggleModule,
     MatSidenavModule,
     MatButtonModule,
+    MatCardModule,
     MatDialogModule,
   ],
   exports: [
@@ -28,7 +30,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonToggleModule,
     MatSidenavModule,
     MatButtonModule,
+    MatCardModule,
     MatDialogModule,
+  ],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} },
   ],
 })
 export class MaterialModule {}
