@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { DialogErrorComponent } from './components/dialog-error/dialog-error.component';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DialogErrorComponent } from './components/dialog-error/dialog-error.com
     CarouselComponent,
     DialogDeleteComponent,
     DialogErrorComponent,
+    ConfirmationModalComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref],
   exports: [

@@ -57,5 +57,9 @@
     "502": "Bad Gateway",
     "503": "Service Temporarily Unavailable",
     "505": "HTTP Version Not Supported"
+  },
+  "confirmationModal": {
+    "yes": "yes",
+    "no": "no"
   }
 }
