@@ -10,7 +10,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { DialogComponent } from './components/dialog/dialog.component';
+import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     ClickOutsideDirective,
     NavigationComponent,
     CarouselComponent,
-    DialogComponent,
+    DialogDeleteComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref],
   exports: [

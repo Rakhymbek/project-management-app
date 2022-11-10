@@ -1,15 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   IBoard,
-  DialogData,
+  DialogDeleteData,
   DialogOptions,
   DialogCreateData,
 } from 'src/app/core/models/board.model';
 import { MainService } from '../../services/main.service';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogCreateComponent } from '../../components/dialog-create/dialog-create.component';
-import { EDialogEvents } from 'src/app/core/models/enums';
-import { DialogComponent } from 'src/app/core/components/dialog/dialog.component';
+import { BoardElements, EDialogEvents } from 'src/app/core/models/enums';
+import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dialog-delete.component';
 
 @Component({
   selector: 'app-main-page',
@@ -17,16 +17,12 @@ import { DialogComponent } from 'src/app/core/components/dialog/dialog.component
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  public boardTitle = '';
-
-  public boardDescr = '';
-
   public boards: IBoard[] | undefined;
 
   constructor(
     private mainService: MainService,
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData | DialogCreateData,
+    @Inject(MAT_DIALOG_DATA) public data: DialogDeleteData | DialogCreateData,
   ) {
     this.mainService.getAllBoards().subscribe((allBoards) => (this.boards = allBoards));
   }
@@ -34,9 +30,11 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {}
 
   public openDialog(event: string, id?: string): void {
-    const options: DialogOptions = { width: '300px', data: { event, id } };
-    const dialog = this.getDialog(event);
-    const dialogRef = this.dialog.open(dialog, options);
+    const options: DialogOptions = {
+      width: '300px',
+      data: { event, element: BoardElements.board, id },
+    };
+    const dialogRef = this.getDialogRef(event, options);
     dialogRef.afterClosed().subscribe((value) => {
       if (value.event === EDialogEvents.create) {
         this.createBoard(value);
@@ -54,7 +52,7 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  private deleteBoard(data: DialogData) {
+  private deleteBoard(data: DialogDeleteData) {
     this.mainService.deleteBoard(data.id).subscribe(() => {
       this.boards = this.boards?.filter((item) => item.id !== data.id);
     });
@@ -67,22 +65,21 @@ export class MainPageComponent implements OnInit {
         description: data.description,
       })
       .subscribe((board) => {
-        console.log(board);
+        const idx = this.boards?.findIndex((item) => item.id === board.id);
+        if (idx && this.boards) {
+          this.boards[idx] = board;
+        }
       });
   }
 
-  getDialog(event: string) {
-    switch (event) {
-      case EDialogEvents.create:
-        return DialogCreateComponent;
-      case EDialogEvents.delete:
-        return DialogComponent;
-      case EDialogEvents.edit:
-        return DialogCreateComponent;
-      case EDialogEvents.cancel:
-        return DialogCreateComponent;
-      default:
-        return DialogComponent;
+  private getDialogRef(
+    event: string,
+    options: DialogOptions,
+  ): MatDialogRef<DialogDeleteComponent | DialogCreateComponent, any> {
+    if (event === EDialogEvents.delete) {
+      return this.dialog.open(DialogDeleteComponent, options);
+    } else {
+      return this.dialog.open(DialogCreateComponent, options);
     }
   }
 }

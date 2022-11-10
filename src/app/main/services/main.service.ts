@@ -7,26 +7,24 @@ import { IBoard } from 'src/app/core/models/board.model';
   providedIn: 'root',
 })
 export class MainService {
-  private readonly url = 'https://creepy-catacombs-89955.herokuapp.com';
-
   constructor(private http: HttpClient) {}
 
   public getAllBoards(): Observable<IBoard[]> {
-    return this.http.get<IBoard[]>(`${this.url}/boards`);
+    return this.http.get<IBoard[]>('boards');
   }
 
   public createBoard(title: string, description: string): Observable<IBoard> {
-    return this.http.post<IBoard>(`${this.url}/boards`, {
+    return this.http.post<IBoard>('boards', {
       title,
       description,
     });
   }
 
   public deleteBoard(id: string): Observable<Object> {
-    return this.http.delete(`${this.url}/boards/${id}`);
+    return this.http.delete(`boards/${id}`);
   }
 
   public updateBoard(id: string, body: IBoard): Observable<IBoard> {
-    return this.http.put(`${this.url}/boards/${id}`, body) as Observable<IBoard>;
+    return this.http.put(`boards/${id}`, body) as Observable<IBoard>;
   }
 }

@@ -39,7 +39,13 @@
     "dialog": {
       "title": "Title",
       "description": "Description",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "delete": {
+        "message": "Are you sure you want to delete",
+        "board": " board?",
+        "column": " column?",
+        "task": " task?"
+      }
     }
   }
 }

@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  API_URL: 'https://creepy-catacombs-89955.herokuapp.com',
 };
 
 /*

@@ -11,12 +11,13 @@ export interface DialogCreateData {
   description: string;
 }
 
-export interface DialogData {
+export interface DialogDeleteData {
   event: string;
+  element: string;
   id: string;
 }
 
 export interface DialogOptions {
   width: string;
-  data: { event: string; id: string | undefined };
+  data: { event: string; element: string; id: string | undefined };
 }

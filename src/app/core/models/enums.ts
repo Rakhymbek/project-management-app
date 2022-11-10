@@ -1,5 +1,6 @@
 export enum EStorage {
   language = 'language',
+  token = 'token',
 }
 
 export enum ELang {
@@ -12,4 +13,10 @@ export enum EDialogEvents {
   cancel = 'cancel',
   delete = 'delete',
   edit = 'edit',
+}
+
+export enum BoardElements {
+  board = 'board',
+  column = 'column',
+  task = 'task',
 }
