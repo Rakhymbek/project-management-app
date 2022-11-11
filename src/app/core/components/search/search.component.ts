@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { forkJoin, map, Observable, startWith, switchMap } from 'rxjs';
-import { IBoard, IBoardData } from '../../models/board.model';
+import { IBoard, IBoardData, ITaskData } from '../../models/board.model';
 import { SearchService } from '../../services/search.service';
 
 export interface State {
@@ -18,7 +18,7 @@ export interface State {
 export class SearchComponent implements OnInit {
   search = new FormControl('');
 
-  $columns: Observable<IBoardData[]> | undefined;
+  $columns: Observable<Observable<ITaskData>[]> | undefined;
 
   options = [
     {
@@ -59,8 +59,14 @@ export class SearchComponent implements OnInit {
     this.$columns = this.searchService.getAllBoards().pipe(
       map((boards) => boards.map((board) => this.getColumns(board))),
       switchMap(($columns) => forkJoin(...$columns)),
+      map((boardData) =>
+        boardData.map((board) =>
+          board.columns.map((column) => this.getTasks(board.boardId!, column.id)),
+        ),
+      ),
+      switchMap(($tasks) => forkJoin(...$tasks)),
     );
-    this.$columns?.subscribe(console.log);
+    this.$columns?.subscribe((item) => console.log(item));
   }
 
   private filter(value: string) {
@@ -80,10 +86,16 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  public getTasks(board: IBoard) {
-    // return this.searchService.getAllColumns(board.id!).pipe(
-    //   map((columns) =>)
-    // )
-    console.log(board);
+  public getTasks(boardId: string, columnId: string) {
+    return this.searchService.getAllTasks(boardId, columnId).pipe(
+      map((task) => {
+        const data: ITaskData = {
+          boardId,
+          columnId,
+          task,
+        };
+        return data;
+      }),
+    );
   }
 }

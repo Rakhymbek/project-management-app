@@ -37,6 +37,12 @@ export interface IBoardData {
   columns: IColumn[];
 }
 
+export interface ITaskData {
+  boardId: string | undefined;
+  columnId: string;
+  task: ITask;
+}
+
 export interface ITask {
   title: string;
   order: number;
