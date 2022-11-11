@@ -1,12 +1,12 @@
 <mat-sidenav-container>
-  <mat-sidenav #navigation class="w-52">
-    <app-navigation (closeNavigation)="navigation.close()"></app-navigation>
+  <mat-sidenav #navigation class="w-52"
+    ><app-navigation (closeNavigation)="navigation.close()"></app-navigation>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-container>
     <app-header class="sticky top-0 z-50" (navigationToggle)="navigation.toggle()"></app-header>
-    <div class="px-10">
+    <div class="main-wrapper px-10 py-14">
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>
-  </mat-sidenav-content>
+  </mat-sidenav-container>
 </mat-sidenav-container>

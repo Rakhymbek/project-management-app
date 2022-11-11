@@ -1,1 +1,15 @@
-<div>Board Item!</div>
+<mat-card
+  class="w-[280px] h-[155px] cursor-pointer hover:scale-110 motion-reduce:transform-none transition-transform"
+  (click)="toBoard()"
+>
+  <mat-card-title class="mat-h4 w-48 truncate">{{ board.title }}</mat-card-title>
+  <mat-card-content class="truncate">{{ board.description }}</mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="editCard($event)">
+      <mat-icon class="text-teal">edit</mat-icon>
+    </button>
+    <button mat-button (click)="deleteCard($event)">
+      <mat-icon class="text-teal">delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
