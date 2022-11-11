@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { forkJoin, map, Observable, startWith, switchMap } from 'rxjs';
-import { IBoard, IBoardData, ITaskData } from '../../models/board.model';
+import { IBoard, IColumnsData, ITask } from '../../models/board.model';
 import { SearchService } from '../../services/search.service';
 
 export interface State {
@@ -18,7 +18,9 @@ export interface State {
 export class SearchComponent implements OnInit {
   search = new FormControl('');
 
-  $columns: Observable<Observable<ITaskData>[]> | undefined;
+  $columns: Observable<ITask[]> | undefined;
+
+  columns: ITask[] | undefined;
 
   options = [
     {
@@ -59,14 +61,18 @@ export class SearchComponent implements OnInit {
     this.$columns = this.searchService.getAllBoards().pipe(
       map((boards) => boards.map((board) => this.getColumns(board))),
       switchMap(($columns) => forkJoin(...$columns)),
-      map((boardData) =>
-        boardData.map((board) =>
-          board.columns.map((column) => this.getTasks(board.boardId!, column.id)),
-        ),
-      ),
-      switchMap(($tasks) => forkJoin(...$tasks)),
+      map((data) => {
+        const tasks = data
+          .map((board) => board.columns.map((column) => this.getTasks(board.boardId!, column.id)))
+          .flat() as unknown;
+        return tasks as Observable<ITask>;
+      }),
+      switchMap((item) => forkJoin(item)),
     );
-    this.$columns?.subscribe((item) => console.log(item));
+    this.$columns?.subscribe((item: ITask[]) => {
+      this.columns = item;
+      console.log(this.columns);
+    });
   }
 
   private filter(value: string) {
@@ -77,7 +83,7 @@ export class SearchComponent implements OnInit {
   public getColumns(board: IBoard) {
     return this.searchService.getAllColumns(board.id!).pipe(
       map((columns) => {
-        const data: IBoardData = {
+        const data: IColumnsData = {
           boardId: board.id,
           columns,
         };
@@ -87,15 +93,7 @@ export class SearchComponent implements OnInit {
   }
 
   public getTasks(boardId: string, columnId: string) {
-    return this.searchService.getAllTasks(boardId, columnId).pipe(
-      map((task) => {
-        const data: ITaskData = {
-          boardId,
-          columnId,
-          task,
-        };
-        return data;
-      }),
-    );
+    const res = this.searchService.getAllTasks(boardId, columnId);
+    return res;
   }
 }

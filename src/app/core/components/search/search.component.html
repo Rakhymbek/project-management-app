@@ -8,4 +8,9 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+  <ng-container *ngIf="columns">
+    <ul>
+      <li *ngFor="let column of columns">{{ column }}</li>
+    </ul>
+  </ng-container>
 </form>

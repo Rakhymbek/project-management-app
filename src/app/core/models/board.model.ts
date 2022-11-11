@@ -32,7 +32,7 @@ export interface IColumn {
   order?: number;
 }
 
-export interface IBoardData {
+export interface IColumnsData {
   boardId: string | undefined;
   columns: IColumn[];
 }
@@ -40,7 +40,7 @@ export interface IBoardData {
 export interface ITaskData {
   boardId: string | undefined;
   columnId: string;
-  task: ITask;
+  tasks: ITask[];
 }
 
 export interface ITask {

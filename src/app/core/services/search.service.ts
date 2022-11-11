@@ -18,6 +18,6 @@ export class SearchService {
 
   getAllTasks(boardId: string, columnId: string) {
     console.log(boardId, columnId);
-    return this.http.get<ITask>(`boards/${boardId}/columns/${columnId}/tasks`);
+    return this.http.get<ITask[]>(`boards/${boardId}/columns/${columnId}/tasks`);
   }
 }
