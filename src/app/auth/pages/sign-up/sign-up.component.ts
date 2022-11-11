@@ -66,8 +66,9 @@ export class SignUpComponent implements OnInit {
       password: this.password?.value!,
     };
     if (this.signUpForm.status === 'VALID') {
-      console.log(userData);
-      this.authService.signUp(userData);
+      this.authService.signUp(userData).subscribe((data) => {
+        return data;
+      });
     }
   }
 }

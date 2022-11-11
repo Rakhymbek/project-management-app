@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ISignInUserData, ISignUpUserData } from '../models/user.model';
+import { ISignInUserData, ISignUpUserData, IUserData } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,10 @@ export class AuthService {
   }
 
   getAuthToken(): string | null {
-    return localStorage.getItem('token');
+    return localStorage.getItem('userToken');
+  }
+
+  getAllUsers(): Observable<IUserData[]> {
+    return this.http.get<IUserData[]>('users');
   }
 }

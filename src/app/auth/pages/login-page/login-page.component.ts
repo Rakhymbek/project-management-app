@@ -1,23 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
+import { AuthService } from '../../services/auth.service';
+import { ISignInUserData } from '../../models/user.model';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent {
   hide = true;
 
-  constructor(private validator: ValidationService) {}
+  constructor(
+    private validator: ValidationService,
+    private authService: AuthService,
+    private userDataService: UserDataService,
+  ) {}
 
   loginForm = new FormGroup({
     login: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [Validators.required, this.validator.passwordValidator()]),
   });
-
-  ngOnInit(): void {}
 
   get login() {
     return this.loginForm.get('login');
@@ -25,5 +30,30 @@ export class LoginPageComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  toSignIn() {
+    if (this.loginForm.valid) {
+      const userData: ISignInUserData = {
+        login: this.login?.value!,
+        password: this.password?.value!,
+      };
+      this.authService.signIn(userData).subscribe(({ token }: ISignInUserData) => {
+        return this.storeUserData(token as string);
+      });
+    }
+  }
+
+  storeUserData(token: string) {
+    this.userDataService.storeUserTokenInLocal(token);
+    this.userDataService.getUserData(this.login?.value!).subscribe((userData) => {
+      const storedData = {
+        id: userData.id,
+        name: userData.name,
+        login: userData.login,
+        isAuthorized: true,
+      };
+      this.userDataService.storeUserDataInLocal(storedData);
+    });
   }
 }

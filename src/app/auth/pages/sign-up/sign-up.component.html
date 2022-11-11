@@ -65,7 +65,9 @@
     </mat-form-field>
   </mat-card-content>
   <div class="flex justify-evenly">
-    <button mat-raised-button routerLink="/auth/login">Sign-in</button>
-    <button mat-raised-button color="primary" type="submit">Sign-up</button>
+    <button mat-raised-button routerLink="/auth/login" type="button">Sign-in</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="signUpForm.invalid">
+      Sign-up
+    </button>
   </div>
 </form>
