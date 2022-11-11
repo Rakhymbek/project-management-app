@@ -1,6 +1,6 @@
 export enum EStorage {
   language = 'language',
-  token = 'token',
+  token = 'userToken',
 }
 
 export enum ELang {

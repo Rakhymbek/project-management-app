@@ -28,13 +28,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     ConfirmationModalComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref],
-  exports: [
-    WelcomePageComponent,
-    HeaderComponent,
-    NavigationComponent,
-    FooterComponent,
-    SharedModule,
-  ],
+  exports: [WelcomePageComponent, HeaderComponent, NavigationComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
