@@ -9,7 +9,8 @@ import {
 } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
 import { AuthService } from '../../services/auth.service';
-import { ISignUpUserData } from '../../models/user.model';
+import { ISignInUserData, ISignUpUserData } from '../../models/user.model';
+import { UserDataService } from '../../services/user-data.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +22,11 @@ export class SignUpComponent implements OnInit {
 
   hideConfirmPassword = true;
 
-  constructor(private validator: ValidationService, public authService: AuthService) {}
+  constructor(
+    private validator: ValidationService,
+    public authService: AuthService,
+    private userDataService: UserDataService,
+  ) {}
 
   signUpForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -66,8 +71,12 @@ export class SignUpComponent implements OnInit {
       password: this.password?.value!,
     };
     if (this.signUpForm.status === 'VALID') {
-      this.authService.signUp(userData).subscribe((data) => {
-        return data;
+      this.authService.signUp(userData).subscribe(() => {
+        this.authService
+          .signIn({ login: userData.login, password: userData.password })
+          .subscribe(({ token }: ISignInUserData) => {
+            return this.userDataService.storeUserData(userData.login, token as string);
+          });
       });
     }
   }

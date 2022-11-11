@@ -34,6 +34,9 @@ export class AuthInterceptor implements HttpInterceptor {
           if (err.status === 403) {
             this.authService.authErrorMessage = 'User was not founded!';
           }
+          if (err.status === 409) {
+            this.authService.authErrorMessage = 'User login already exists!';
+          }
         }
         return throwError(err);
       }),

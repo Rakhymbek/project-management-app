@@ -4,7 +4,6 @@ import { ValidationService } from '../../services/validation.service';
 import { AuthService } from '../../services/auth.service';
 import { ISignInUserData } from '../../models/user.model';
 import { UserDataService } from '../../services/user-data.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -18,7 +17,6 @@ export class LoginPageComponent {
     private validator: ValidationService,
     public authService: AuthService,
     private userDataService: UserDataService,
-    private router: Router,
   ) {}
 
   loginForm = new FormGroup({
@@ -41,22 +39,8 @@ export class LoginPageComponent {
         password: this.password?.value!,
       };
       this.authService.signIn(userData).subscribe(({ token }: ISignInUserData) => {
-        return this.storeUserData(token as string);
+        return this.userDataService.storeUserData(userData.login, token as string);
       });
     }
-  }
-
-  storeUserData(token: string) {
-    this.userDataService.storeUserTokenInLocal(token);
-    this.userDataService.getUserData(this.login?.value!).subscribe((userData) => {
-      const storedData = {
-        id: userData.id,
-        name: userData.name,
-        login: userData.login,
-        isAuthorized: true,
-      };
-      this.userDataService.storeUserDataInLocal(storedData);
-      this.router.navigate(['/main']);
-    });
   }
 }

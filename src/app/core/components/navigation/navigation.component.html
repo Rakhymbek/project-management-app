@@ -15,7 +15,22 @@
       >{{ currentLang | uppercase }}</mat-slide-toggle
     >
   </li>
-  <li class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]">
+  <li
+    *ngIf="userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug"
+  >
+    {{ userDataService.userName }}
+  </li>
+  <li
+    *ngIf="!userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]"
+  >
     <a routerLink="/auth" (click)="onCloseNavigation()"> {{ 'header.signUp' | translate }} </a>
+  </li>
+  <li
+    *ngIf="userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]"
+  >
+    <a routerLink="/auth" (click)="toLogOut()"> logout </a>
   </li>
 </ul>
