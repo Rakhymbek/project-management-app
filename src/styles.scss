@@ -25,6 +25,20 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+app-welcome-page {
+  overflow: auto;
+}
+app-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+}
+
+.mat-drawer-content {
+  overflow: unset!important;
+}
+
 // Switcher styles
 .mat-slide-toggle-thumb {
   background-color: #468189;
