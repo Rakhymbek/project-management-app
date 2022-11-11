@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { map, Observable, startWith } from 'rxjs';
+import { forkJoin, map, Observable, startWith, switchMap } from 'rxjs';
+import { IBoard, IBoardData } from '../../models/board.model';
+import { SearchService } from '../../services/search.service';
 
 export interface State {
   flag: string;
@@ -15,6 +17,8 @@ export interface State {
 })
 export class SearchComponent implements OnInit {
   search = new FormControl('');
+
+  $columns: Observable<IBoardData[]> | undefined;
 
   options = [
     {
@@ -45,15 +49,41 @@ export class SearchComponent implements OnInit {
 
   filteredOptions: Observable<State[]> | undefined;
 
+  constructor(private searchService: SearchService) {}
+
   ngOnInit(): void {
     this.filteredOptions = this.search.valueChanges.pipe(
       startWith(''),
-      map((value) => (value ? this._filter(value || '') : this.options.slice())),
+      map((value) => (value ? this.filter(value || '') : this.options.slice())),
+    );
+    this.$columns = this.searchService.getAllBoards().pipe(
+      map((boards) => boards.map((board) => this.getColumns(board))),
+      switchMap(($columns) => forkJoin(...$columns)),
+    );
+    this.$columns?.subscribe(console.log);
+  }
+
+  private filter(value: string) {
+    const filterValue = value.toLowerCase();
+    return this.options.filter((option) => option.name.toLowerCase().includes(filterValue));
+  }
+
+  public getColumns(board: IBoard) {
+    return this.searchService.getAllColumns(board.id!).pipe(
+      map((columns) => {
+        const data: IBoardData = {
+          boardId: board.id,
+          columns,
+        };
+        return data;
+      }),
     );
   }
 
-  private _filter(value: string) {
-    const filterValue = value.toLowerCase();
-    return this.options.filter((option) => option.name.toLowerCase().includes(filterValue));
+  public getTasks(board: IBoard) {
+    // return this.searchService.getAllColumns(board.id!).pipe(
+    //   map((columns) =>)
+    // )
+    console.log(board);
   }
 }

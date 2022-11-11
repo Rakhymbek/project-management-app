@@ -25,3 +25,24 @@ export interface DialogOptions {
 export interface DialogErrorData {
   code: number;
 }
+
+export interface IColumn {
+  id: string;
+  title: string;
+  order?: number;
+}
+
+export interface IBoardData {
+  boardId: string | undefined;
+  columns: IColumn[];
+}
+
+export interface ITask {
+  title: string;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+  id: string;
+}
