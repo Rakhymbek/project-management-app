@@ -15,7 +15,6 @@ export class UserDataService {
         .getAllUsers()
         .pipe(switchMap((usersData) => usersData.filter((user) => user.login === userLogin)))
         .subscribe((user) => {
-          console.log(user);
           return observer.next(user);
         });
     });

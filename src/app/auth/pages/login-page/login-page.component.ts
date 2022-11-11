@@ -4,6 +4,7 @@ import { ValidationService } from '../../services/validation.service';
 import { AuthService } from '../../services/auth.service';
 import { ISignInUserData } from '../../models/user.model';
 import { UserDataService } from '../../services/user-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -15,8 +16,9 @@ export class LoginPageComponent {
 
   constructor(
     private validator: ValidationService,
-    private authService: AuthService,
+    public authService: AuthService,
     private userDataService: UserDataService,
+    private router: Router,
   ) {}
 
   loginForm = new FormGroup({
@@ -54,6 +56,7 @@ export class LoginPageComponent {
         isAuthorized: true,
       };
       this.userDataService.storeUserDataInLocal(storedData);
+      this.router.navigate(['/main']);
     });
   }
 }

@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
+  authErrorMessage: string = '';
+
   constructor(private http: HttpClient) {}
 
   signUp(userData: ISignUpUserData) {

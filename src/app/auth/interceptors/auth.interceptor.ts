@@ -29,7 +29,10 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((err) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
-            console.log(err.message);
+            this.authService.authErrorMessage = 'Authorization failed!';
+          }
+          if (err.status === 403) {
+            this.authService.authErrorMessage = 'User was not founded!';
           }
         }
         return throwError(err);
