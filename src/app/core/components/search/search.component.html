@@ -2,9 +2,9 @@
   <mat-form-field>
     <input type="text" [formControl]="search" matInput [matAutocomplete]="auto" />
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let task of filteredOptions | async" [value]="tasks">
-        <span>{{ task.title }}</span> |
-        <small>{{ task.description }}</small>
+      <mat-option *ngFor="let task of filteredOptions | async" [value]="task.title">
+        <span class="mat-body" (click)="toBoard(task)">{{ task.userName }}</span> |
+        <span class="mat-body">{{ task.title }}</span> |
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

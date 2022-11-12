@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { forkJoin, map, Observable, startWith, switchMap } from 'rxjs';
 import { IBoard, IColumnsData, ITask } from '../../models/board.model';
 import { SearchService } from '../../services/search.service';
@@ -24,7 +25,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   filteredOptions: Observable<ITask[] | undefined> | undefined;
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService, private router: Router) {}
 
   ngOnDestroy(): void {}
 
@@ -60,7 +61,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  private filter(value: string) {
+  private filter(value: string): ITask[] | undefined {
     const filterValue = value.toLowerCase();
     return this.tasks?.filter((task) => {
       const data: (keyof ITask)[] = ['title', 'userName', 'description'];
@@ -70,7 +71,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getColumns(board: IBoard) {
+  private getColumns(board: IBoard): Observable<IColumnsData> {
     return this.searchService.getAllColumns(board.id!).pipe(
       map((columns) => {
         const data: IColumnsData = {
@@ -82,11 +83,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     );
   }
 
-  private getTasks(boardId: string, columnId: string) {
+  private getTasks(boardId: string, columnId: string): Observable<ITask[]> {
     return this.searchService.getAllTasks(boardId, columnId);
   }
 
-  private getUser(id: string) {
+  private getUser(id: string): Observable<string> {
     return this.searchService.getUser(id).pipe(map((user) => user.name));
+  }
+
+  public toBoard(task: ITask): void {
+    this.router.navigate(['board', task.boardId]);
   }
 }
