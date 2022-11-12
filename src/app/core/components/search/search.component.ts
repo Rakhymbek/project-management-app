@@ -92,6 +92,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   public toBoard(task: ITask): void {
+    console.log(task);
+    console.log(task.boardId);
     this.router.navigate(['board', task.boardId]);
   }
 }
