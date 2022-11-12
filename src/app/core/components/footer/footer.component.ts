@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  names = ['yevgenii', 'ramir', 'rakhymbek'];
+  people = [
+    { name: 'yevgenii', githubUrl: 'https://github.com/fromarys' },
+    { name: 'ramir', githubUrl: 'https://github.com/Ranami' },
+    { name: 'rakhymbek', githubUrl: 'https://github.com/Rakhymbek' },
+  ];
 
   ngOnInit(): void {}
 }
