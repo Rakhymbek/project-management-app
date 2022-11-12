@@ -51,4 +51,11 @@ export interface ITask {
   boardId: string;
   columnId: string;
   id: string;
+  userName?: string;
+}
+
+export interface IUser {
+  id: string;
+  name: string;
+  login: string;
 }

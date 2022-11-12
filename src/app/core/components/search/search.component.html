@@ -2,15 +2,10 @@
   <mat-form-field>
     <input type="text" [formControl]="search" matInput [matAutocomplete]="auto" />
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        <span>{{ option.name }}</span> |
-        <small>Population: {{ option.population }}</small>
+      <mat-option *ngFor="let task of filteredOptions | async" [value]="tasks">
+        <span>{{ task.title }}</span> |
+        <small>{{ task.description }}</small>
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <ng-container *ngIf="columns">
-    <ul>
-      <li *ngFor="let column of columns">{{ column }}</li>
-    </ul>
-  </ng-container>
 </form>
