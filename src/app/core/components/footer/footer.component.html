@@ -5,9 +5,15 @@
     class="names flex justify-left max-md:justify-center w-full gap-20 max-md:gap-10 m-0 font-bold max-md:mb-10"
   >
     <p>©</p>
-    <p *ngFor="let name of names">{{ 'welcome.' + name + '.name' | translate }}</p>
+    <p *ngFor="let person of people">
+      <a href="{{ person.githubUrl }}" target="_blank" rel="noopener noreferrer">
+        {{ 'welcome.' + person.name + '.name' | translate }}
+      </a>
+    </p>
   </div>
   <p>
-    <img src="./assets/icons/rsschool.svg" alt="RSSchool Logo" width="106" height="38" />
+    <a href="https://rs.school/angular/" target="_blank" rel="noopener noreferrer">
+      <img src="./assets/icons/rsschool.svg" alt="RSSchool Logo" width="106" height="38" />
+    </a>
   </p>
 </div>
