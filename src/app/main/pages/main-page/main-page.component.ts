@@ -5,7 +5,7 @@ import {
   DialogOptions,
   DialogCreateData,
 } from 'src/app/core/models/board.model';
-import { MainService } from '../../services/main.service';
+import { BoardService } from '../../../core/services/board.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogCreateComponent } from '../../components/dialog-create/dialog-create.component';
 import { BoardElements, EDialogEvents } from 'src/app/core/models/enums';
@@ -20,11 +20,11 @@ export class MainPageComponent implements OnInit {
   public boards: IBoard[] | undefined;
 
   constructor(
-    private mainService: MainService,
+    private boardService: BoardService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogDeleteData | DialogCreateData,
   ) {
-    this.mainService.getAllBoards().subscribe((allBoards) => (this.boards = allBoards));
+    this.boardService.getAllBoards().subscribe((allBoards) => (this.boards = allBoards));
   }
 
   ngOnInit(): void {}
@@ -47,19 +47,19 @@ export class MainPageComponent implements OnInit {
   }
 
   private createBoard(data: DialogCreateData): void {
-    this.mainService.createBoard(data.title, data.description).subscribe((boards) => {
+    this.boardService.createBoard(data.title, data.description).subscribe((boards) => {
       this.boards?.push(boards);
     });
   }
 
-  private deleteBoard(data: DialogDeleteData) {
-    this.mainService.deleteBoard(data.id).subscribe(() => {
+  private deleteBoard(data: DialogDeleteData): void {
+    this.boardService.deleteBoard(data.id).subscribe(() => {
       this.boards = this.boards?.filter((item) => item.id !== data.id);
     });
   }
 
   private editBoard(data: DialogCreateData): void {
-    this.mainService
+    this.boardService
       .updateBoard(data.id, {
         title: data.title,
         description: data.description,
