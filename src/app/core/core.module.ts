@@ -30,13 +30,7 @@ import { SearchComponent } from './components/search/search.component';
     SearchComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref],
-  exports: [
-    WelcomePageComponent,
-    HeaderComponent,
-    NavigationComponent,
-    FooterComponent,
-    SharedModule,
-  ],
+  exports: [WelcomePageComponent, HeaderComponent, NavigationComponent, FooterComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

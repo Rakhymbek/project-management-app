@@ -1,4 +1,4 @@
-<form>
+<form *ngIf="auth.isAuthorized()">
   <mat-form-field>
     <input type="text" [formControl]="search" matInput [matAutocomplete]="auto" />
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin, map, Observable, startWith, switchMap } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { IBoard, IColumnsData, ITask } from '../../models/board.model';
 import { BoardService } from '../../services/board.service';
 
@@ -19,7 +20,11 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   filteredOptions: Observable<ITask[] | undefined> | undefined;
 
-  constructor(private router: Router, private boardService: BoardService) {}
+  constructor(
+    private router: Router,
+    private boardService: BoardService,
+    protected auth: AuthService,
+  ) {}
 
   ngOnDestroy(): void {}
 
@@ -49,9 +54,11 @@ export class SearchComponent implements OnInit, OnDestroy {
       ),
       switchMap(($tasks) => forkJoin($tasks)),
     );
-    this.$tasks?.subscribe((item: ITask[]) => {
-      this.tasks = item;
-    });
+    if (this.auth.isAuthorized()) {
+      this.$tasks?.subscribe((item: ITask[]) => {
+        this.tasks = item;
+      });
+    }
   }
 
   private filter(value: string): ITask[] | undefined {

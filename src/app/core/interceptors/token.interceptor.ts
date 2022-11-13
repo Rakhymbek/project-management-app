@@ -5,17 +5,18 @@ import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DialogErrorComponent } from '../components/dialog-error/dialog-error.component';
 import { DialogErrorData } from '../models/board.model';
-import { EStorage } from '../models/enums';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogErrorComponent,
+    private authService: AuthService,
   ) {}
 
   intercept(req: HttpRequest<string>, next: HttpHandler) {
-    const token = localStorage.getItem(EStorage.token);
+    const token = this.authService.getAuthToken();
     const options = {
       headers: req.headers.set('Authorization', token ? `Bearer ${token}` : ''),
       url: `${environment.API_URL}/${req.url}`,

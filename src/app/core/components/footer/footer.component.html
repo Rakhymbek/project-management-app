@@ -1,13 +1,19 @@
 <div
-  class="px-12 py-8 flex text-xl uppercase justify-between items-center text-body border-t-2 max-w-full max-md:flex-col max-md:text-base"
+  class="px-12 py-8 max-md:px-6 max-md:py-4 flex text-xl uppercase justify-between items-center text-body border-t-2 max-w-full max-md:flex-col max-md:text-base"
 >
   <div
     class="names flex justify-left max-md:justify-center w-full gap-20 max-md:gap-10 m-0 font-bold max-md:mb-10"
   >
     <p>©</p>
-    <p *ngFor="let name of names">{{ 'welcome.' + name + '.name' | translate }}</p>
+    <p *ngFor="let person of people">
+      <a href="{{ person.githubUrl }}" target="_blank" rel="noopener noreferrer">
+        {{ 'welcome.' + person.name + '.name' | translate }}
+      </a>
+    </p>
   </div>
   <p>
-    <img src="./assets/icons/rsschool.svg" alt="RSSchool Logo" width="106" height="38" />
+    <a href="https://rs.school/angular/" target="_blank" rel="noopener noreferrer">
+      <img src="./assets/icons/rsschool.svg" alt="RSSchool Logo" width="106" height="38" />
+    </a>
   </p>
 </div>
