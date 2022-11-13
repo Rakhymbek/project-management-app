@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -23,6 +24,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatCardModule,
     MatDialogModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     DragDropModule,
@@ -35,6 +37,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatCardModule,
     MatDialogModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
