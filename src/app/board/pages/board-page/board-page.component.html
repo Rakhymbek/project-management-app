@@ -1,6 +1,6 @@
 <div class="relative max-w-[1375px] my-0 mx-auto pt-4">
   <div cdkDropListGroup class="flex gap-x-6">
-    <div *ngFor="let column of columns" class="w-[258px] flex flex-col gap-y-4">
+    <div *ngFor="let column of board?.columns" class="w-[258px] flex flex-col gap-y-4">
       <h2 class="truncate text-center">{{ column.title }}</h2>
       <div
         cdkDropList
@@ -11,7 +11,7 @@
         <div
           *ngFor="let task of column.tasks"
           cdkDrag
-          class="w-[258px] h-36 bg-slate-50 p-5 rounded-[10px] cursor-pointer hover:scale-105 hover:shadow-md"
+          class="w-[258px] h-36 bg-slate-50 p-5 rounded-[10px] cursor-pointer hover:scale-105 hover:shadow-md focus:shadow-lg"
         >
           <h4 class="text-body text-sm uppercase">{{ task.title }}</h4>
           <p></p>

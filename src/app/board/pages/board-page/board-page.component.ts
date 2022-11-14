@@ -1,8 +1,14 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, map, mergeMap, Observable, of, pluck } from 'rxjs';
-import { ITask, IColumnInfo, IColumn } from 'src/app/core/models/board.model';
+import { map, mergeMap, Observable, of, pluck } from 'rxjs';
+import {
+  ITask,
+  IColumnInfo,
+  IColumn,
+  IBoardData,
+  ITaskData,
+} from 'src/app/core/models/board.model';
 import { BoardService } from '../../../core/services/board.service';
 
 @Component({
@@ -15,25 +21,34 @@ export class BoardPageComponent implements OnInit {
 
   public id: string | undefined;
 
-  public columns: IColumnInfo[] | undefined;
+  public board: IBoardData | undefined;
 
   constructor(private activatedRoute: ActivatedRoute, private boardService: BoardService) {}
 
   ngOnInit(): void {
     this.$id
       .pipe(
+        // mergeMap((id) => {
+        //   this.id = id;
+        //   return this.getColumns(id);
+        // }),
+        // map((columns) => {
+        //   return columns.map((column) => this.getTasks(this.id!, column));
+        // }),
+        // mergeMap(($columns) => forkJoin($columns)),
         mergeMap((id) => {
           this.id = id;
-          return this.getColumns(id);
+          return this.getBoard(id);
         }),
-        map((columns) => {
-          return columns.map((column) => this.getTasks(this.id!, column));
-        }),
-        mergeMap(($columns) => forkJoin($columns)),
       )
       .subscribe((columns) => {
-        this.columns = columns;
+        this.board = columns;
+        console.log(columns);
       });
+  }
+
+  private getBoard(id: string) {
+    return this.boardService.getBoard(id);
   }
 
   private getColumns(id: string): Observable<IColumn[]> {
@@ -64,7 +79,7 @@ export class BoardPageComponent implements OnInit {
     );
   }
 
-  drop(event: CdkDragDrop<ITask[]>): void {
+  drop(event: CdkDragDrop<ITaskData[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
