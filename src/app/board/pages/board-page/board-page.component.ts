@@ -1,7 +1,8 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable, pluck } from 'rxjs';
-import { IColumn, IColumnsData } from 'src/app/core/models/board.model';
+import { forkJoin, map, mergeMap, Observable, of, pluck } from 'rxjs';
+import { ITask, IColumnInfo, IColumn } from 'src/app/core/models/board.model';
 import { BoardService } from '../../../core/services/board.service';
 
 @Component({
@@ -12,33 +13,67 @@ import { BoardService } from '../../../core/services/board.service';
 export class BoardPageComponent implements OnInit {
   public $id: Observable<string> = this.activatedRoute.params.pipe(pluck('id'));
 
-  public columns: IColumn[] | undefined;
+  public id: string | undefined;
+
+  public columns: IColumnInfo[] | undefined;
 
   constructor(private activatedRoute: ActivatedRoute, private boardService: BoardService) {}
 
   ngOnInit(): void {
-    // this.$id.pipe(
-    //   map((id) => this.getColumns(id)),
-    //   switchMap(($columns) => forkJoin($columns)),
-    //   switchMap((columns) => columns.flat().map()))
-    // ).subscribe((columns) => {
-    // this.columns = columns;
-    // })
+    this.$id
+      .pipe(
+        mergeMap((id) => {
+          this.id = id;
+          return this.getColumns(id);
+        }),
+        map((columns) => {
+          return columns.map((column) => this.getTasks(this.id!, column));
+        }),
+        mergeMap(($columns) => forkJoin($columns)),
+      )
+      .subscribe((columns) => {
+        this.columns = columns;
+      });
   }
 
-  private getColumns(id: string) {
-    return this.boardService.getAllColumns(id).pipe(
-      map((columns) => {
-        const data: IColumnsData = {
-          boardId: id,
-          columns,
+  private getColumns(id: string): Observable<IColumn[]> {
+    return this.boardService.getAllColumns(id);
+  }
+
+  private getTasks(boardId: string, column: IColumn): Observable<IColumnInfo> {
+    return this.boardService.getAllTasks(boardId, column.id).pipe(
+      mergeMap((tasks) => {
+        const data: IColumnInfo = {
+          boardId,
+          columnId: column.id,
+          title: column.title,
+          order: column.order,
+          tasks,
         };
-        return data;
+        return of(data);
       }),
     );
   }
 
-  private getTasks(boardId: string, columnId: string) {
-    return this.boardService.getAllTasks(boardId, columnId);
+  protected getUserName(task: ITask): Observable<ITask> {
+    return this.boardService.getUser(task.id).pipe(
+      map((user) => {
+        task.userName = user.name;
+        return task;
+      }),
+    );
+  }
+
+  drop(event: CdkDragDrop<ITask[]>): void {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }

@@ -30,6 +30,7 @@ export interface IColumn {
   id: string;
   title: string;
   order?: number;
+  tasks?: ITask[];
 }
 
 export interface IColumnsData {
@@ -44,13 +45,13 @@ export interface ITaskData {
 }
 
 export interface ITask {
+  id: string;
   title: string;
   order: number;
   description: string;
   userId: string;
   boardId: string;
   columnId: string;
-  id: string;
   userName?: string;
 }
 
@@ -58,4 +59,12 @@ export interface IUser {
   id: string;
   name: string;
   login: string;
+}
+
+export interface IColumnInfo {
+  boardId: string;
+  columnId: string;
+  title: string;
+  order: number | undefined;
+  tasks: ITask[];
 }

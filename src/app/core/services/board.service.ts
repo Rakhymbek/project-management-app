@@ -39,4 +39,8 @@ export class BoardService {
   public getUser(id: string): Observable<IUser> {
     return this.http.get<IUser>(`users/${id}`);
   }
+
+  public getBoard(id: string) {
+    return this.http.get<IUser>(`boards${id}`);
+  }
 }
