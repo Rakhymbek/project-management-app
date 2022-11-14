@@ -32,16 +32,32 @@ export interface IColumn {
   order?: number;
   tasks?: ITask[];
 }
+export interface ITaskData {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  boardId?: string;
+  userId: string;
+  userName?: string;
+  files: unknown[];
+}
+export interface IColumnData {
+  id: string;
+  title: string;
+  order: number;
+  tasks: ITaskData[];
+}
+export interface IBoardData {
+  id: string;
+  title: string;
+  description: string;
+  columns: IColumnData[];
+}
 
 export interface IColumnsData {
   boardId: string | undefined;
   columns: IColumn[];
-}
-
-export interface ITaskData {
-  boardId: string | undefined;
-  columnId: string;
-  tasks: ITask[];
 }
 
 export interface ITask {

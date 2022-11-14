@@ -1,9 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { forkJoin, map, Observable, startWith, switchMap } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  forkJoin,
+  map,
+  mergeMap,
+  Observable,
+  switchMap,
+} from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { IBoard, IColumnsData, ITask } from '../../models/board.model';
+import { ITaskData } from '../../models/board.model';
 import { BoardService } from '../../services/board.service';
 
 @Component({
@@ -14,11 +22,7 @@ import { BoardService } from '../../services/board.service';
 export class SearchComponent implements OnInit, OnDestroy {
   search = new FormControl('');
 
-  $tasks: Observable<ITask[]> | undefined;
-
-  tasks: ITask[] | undefined;
-
-  filteredOptions: Observable<ITask[] | undefined> | undefined;
+  $filteredOptions: Observable<ITaskData[] | undefined> | undefined;
 
   constructor(
     private router: Router,
@@ -29,69 +33,63 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {}
 
   ngOnInit(): void {
-    this.filteredOptions = this.search.valueChanges.pipe(
-      startWith(''),
-      map((value) => (value ? this.filter(value || '') : this.tasks?.slice())),
-    );
-    this.$tasks = this.boardService.getAllBoards().pipe(
-      map((boards) => boards.map((board) => this.getColumns(board))),
-      switchMap(($columns) => forkJoin($columns)),
-      map((data) => {
-        return data
-          .map((board) => board.columns.map((column) => this.getTasks(board.boardId!, column.id)))
-          .flat();
-      }),
-      switchMap(($tasks) => forkJoin($tasks)),
-      map((tasks) =>
-        tasks.flat().map((task) => {
-          return this.getUser(task.userId).pipe(
-            map((user) => {
-              task.userName = user;
-              return task;
-            }),
-          );
-        }),
-      ),
-      switchMap(($tasks) => forkJoin($tasks)),
-    );
     if (this.auth.isAuthorized()) {
-      this.$tasks?.subscribe((item: ITask[]) => {
-        this.tasks = item;
-      });
+      this.$filteredOptions = this.search.valueChanges.pipe(
+        debounceTime(800),
+        distinctUntilChanged(),
+        switchMap((value) => this.getTasks(value || '')),
+      );
     }
   }
 
-  private filter(value: string): ITask[] | undefined {
+  private filter(value: string, tasks: ITaskData[]): ITaskData[] | undefined {
     const filterValue = value.toLowerCase();
-    return this.tasks?.filter((task) => {
-      const data: (keyof ITask)[] = ['title', 'userName', 'description'];
+    return tasks?.filter((task) => {
+      const data: (keyof ITaskData)[] = ['title', 'userName', 'description'];
       return data.some((item) => {
         return task[item]?.toString().toLowerCase().includes(filterValue);
       });
     });
   }
 
-  private getColumns(board: IBoard): Observable<IColumnsData> {
-    return this.boardService.getAllColumns(board.id!).pipe(
-      map((columns) => {
-        const data: IColumnsData = {
-          boardId: board.id,
-          columns,
-        };
-        return data;
+  private getUser(task: ITaskData) {
+    return this.boardService.getUser(task.userId).pipe(
+      map((user) => {
+        task.userName = user.name;
+        return task;
       }),
     );
   }
 
-  private getTasks(boardId: string, columnId: string): Observable<ITask[]> {
-    return this.boardService.getAllTasks(boardId, columnId);
-  }
-
-  private getUser(id: string): Observable<string> {
-    return this.boardService.getUser(id).pipe(map((user) => user.name));
-  }
-
-  public toBoard(task: ITask): void {
+  public toBoard(task: ITaskData): void {
     this.router.navigate(['board', task.boardId]);
+  }
+
+  private getBoard(boardId: string) {
+    return this.boardService.getBoard(boardId).pipe(
+      map((boards) =>
+        boards.columns
+          .map((column) => {
+            column.tasks.forEach((task) => (task.boardId = boardId));
+            return column.tasks;
+          })
+          .flat(),
+      ),
+    );
+  }
+
+  private getTasks(value: string): Observable<ITaskData[] | undefined> {
+    return this.boardService.getAllBoards().pipe(
+      map((boards) => boards.map((board) => this.getBoard(board.id!))),
+      switchMap(($board) => forkJoin($board)),
+      map((arr) => {
+        const tasks = arr.flat();
+        return tasks.map((task) => this.getUser(task));
+      }),
+      mergeMap(($board) => forkJoin($board)),
+      map((tasks) => {
+        return this.filter(value, tasks);
+      }),
+    );
   }
 }
