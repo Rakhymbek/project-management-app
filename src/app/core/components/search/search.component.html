@@ -4,7 +4,7 @@
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option
         (click)="toBoard(task)"
-        *ngFor="let task of filteredOptions | async"
+        *ngFor="let task of $filteredOptions | async"
         [value]="task.title"
       >
         <span class="mat-body">{{ task.userName }}</span> |
