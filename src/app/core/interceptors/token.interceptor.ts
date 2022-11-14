@@ -5,8 +5,7 @@ import { catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DialogErrorComponent } from '../components/dialog-error/dialog-error.component';
 import { DialogErrorData } from '../models/board.model';
-import { EStorage } from '../models/enums';
-import { AuthService } from '../../auth/services/auth.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -17,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(req: HttpRequest<string>, next: HttpHandler) {
-    const token = localStorage.getItem(EStorage.token);
+    const token = this.authService.getAuthToken();
     const options = {
       headers: req.headers.set('Authorization', token ? `Bearer ${token}` : ''),
       url: `${environment.API_URL}/${req.url}`,
@@ -29,15 +28,6 @@ export class TokenInterceptor implements HttpInterceptor {
           code: error.status,
         };
         this.dialog.open(DialogErrorComponent, { data });
-        if (error.status === 401) {
-          this.authService.authErrorMessage = 'Authorization failed!';
-        }
-        if (error.status === 403) {
-          this.authService.authErrorMessage = 'User was not founded!';
-        }
-        if (error.status === 409) {
-          this.authService.authErrorMessage = 'User login already exists!';
-        }
         return throwError(() => error.message);
       }),
     );

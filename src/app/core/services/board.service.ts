@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IBoard } from 'src/app/core/models/board.model';
+import { IBoard, IColumn, ITask, IUser } from 'src/app/core/models/board.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MainService {
+export class BoardService {
   constructor(private http: HttpClient) {}
 
   public getAllBoards(): Observable<IBoard[]> {
@@ -26,5 +26,17 @@ export class MainService {
 
   public updateBoard(id: string, body: IBoard): Observable<IBoard> {
     return this.http.put(`boards/${id}`, body) as Observable<IBoard>;
+  }
+
+  public getAllColumns(id: string): Observable<IColumn[]> {
+    return this.http.get<IColumn[]>(`boards/${id}/columns`);
+  }
+
+  public getAllTasks(boardId: string, columnId: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(`boards/${boardId}/columns/${columnId}/tasks`);
+  }
+
+  public getUser(id: string): Observable<IUser> {
+    return this.http.get<IUser>(`users/${id}`);
   }
 }

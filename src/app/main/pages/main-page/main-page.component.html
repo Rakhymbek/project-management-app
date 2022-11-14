@@ -6,6 +6,7 @@
   <div
     class="flex flex-wrap gap-16 py-14 max-h-[550px] overflow-y-scroll justify-center lg:justify-start"
   >
+    <mat-spinner *ngIf="!boards" color="text-teal" class="my-0 mx-auto"></mat-spinner>
     <div *ngFor="let board of boards">
       <app-boards-item
         [board]="board"

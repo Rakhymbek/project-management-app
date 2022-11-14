@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ISignInUserData, ISignUpUserData, IUserData } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EStorage } from 'src/app/core/models/enums';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +21,14 @@ export class AuthService {
   }
 
   getAuthToken(): string | null {
-    return localStorage.getItem('userToken');
+    return localStorage.getItem(EStorage.token);
   }
 
   getAllUsers(): Observable<IUserData[]> {
     return this.http.get<IUserData[]>('users');
+  }
+
+  isAuthorized(): boolean {
+    return !!this.getAuthToken();
   }
 }

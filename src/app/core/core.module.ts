@@ -13,6 +13,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { DialogErrorComponent } from './components/dialog-error/dialog-error.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
     DialogDeleteComponent,
     DialogErrorComponent,
     ConfirmationModalComponent,
+    SearchComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref],
   exports: [WelcomePageComponent, HeaderComponent, NavigationComponent, FooterComponent],
