@@ -4,7 +4,7 @@
   </button>
   <h1 class="uppercase text-center">{{ 'main.header' | translate }}</h1>
   <div
-    class="flex flex-wrap gap-y-10 gap-x-8 px-8 pt-5 max-h-[360px] overflow-y-scroll justify-center lg:justify-start"
+    class="flex flex-wrap gap-y-10 gap-x-8 px-8 pt-5 max-h-frame overflow-scroll overflow-y-auto overflow-x-hidden justify-center lg:justify-start"
   >
     <mat-spinner *ngIf="!boards" color="text-teal" class="my-0 mx-auto"></mat-spinner>
     <div *ngFor="let board of boards">

@@ -64,5 +64,8 @@
   "confirmationModal": {
     "yes": "да",
     "no": "нет"
+  },
+  "board": {
+    "user": "пользователь"
   }
 }

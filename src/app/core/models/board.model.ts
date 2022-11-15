@@ -55,11 +55,6 @@ export interface IBoardData {
   columns: IColumnData[];
 }
 
-export interface IColumnsData {
-  boardId: string | undefined;
-  columns: IColumn[];
-}
-
 export interface ITask {
   id: string;
   title: string;
@@ -75,12 +70,4 @@ export interface IUser {
   id: string;
   name: string;
   login: string;
-}
-
-export interface IColumnInfo {
-  boardId: string;
-  columnId: string;
-  title: string;
-  order: number | undefined;
-  tasks: ITask[];
 }

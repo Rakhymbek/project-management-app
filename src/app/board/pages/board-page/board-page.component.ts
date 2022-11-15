@@ -1,8 +1,8 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, mergeMap, Observable, pluck } from 'rxjs';
-import { ITask, IBoardData, ITaskData } from 'src/app/core/models/board.model';
+import { forkJoin, map, mergeMap, Observable, pluck, Subscription } from 'rxjs';
+import { IBoardData, ITaskData } from 'src/app/core/models/board.model';
 import { BoardService } from '../../../core/services/board.service';
 
 @Component({
@@ -10,26 +10,44 @@ import { BoardService } from '../../../core/services/board.service';
   templateUrl: './board-page.component.html',
   styleUrls: ['./board-page.component.scss'],
 })
-export class BoardPageComponent implements OnInit {
+export class BoardPageComponent implements OnInit, OnDestroy {
   public $id: Observable<string> = this.activatedRoute.params.pipe(pluck('id'));
+
+  public $taskData: Subscription | undefined;
 
   public id: string | undefined;
 
-  public board: IBoardData | undefined;
+  public boards: IBoardData | undefined;
+
+  public boardsData: IBoardData | undefined;
 
   constructor(private activatedRoute: ActivatedRoute, private boardService: BoardService) {}
 
   ngOnInit(): void {
-    this.$id
+    this.$taskData = this.$id
       .pipe(
         mergeMap((id) => {
           this.id = id;
           return this.getBoard(id);
         }),
+        map((board) => {
+          this.boardsData = board;
+          return board.columns.map((column) =>
+            column.tasks.map((task) => {
+              return this.getUserName(task);
+            }),
+          );
+        }),
+        map(($tasks) => $tasks.flat()),
+        mergeMap(($tasks) => forkJoin($tasks)),
       )
-      .subscribe((columns) => {
-        this.board = columns;
-        console.log(columns);
+      .subscribe((tasks) => {
+        this.boardsData?.columns.forEach((column) => {
+          column.tasks.forEach((item) => {
+            item = tasks.filter((task) => item.id === task.id)[0];
+          });
+        });
+        this.boards = this.boardsData;
       });
   }
 
@@ -37,8 +55,8 @@ export class BoardPageComponent implements OnInit {
     return this.boardService.getBoard(id);
   }
 
-  protected getUserName(task: ITask): Observable<ITask> {
-    return this.boardService.getUser(task.id).pipe(
+  protected getUserName(task: ITaskData): Observable<ITaskData> {
+    return this.boardService.getUser(task.userId).pipe(
       map((user) => {
         task.userName = user.name;
         return task;
@@ -46,7 +64,7 @@ export class BoardPageComponent implements OnInit {
     );
   }
 
-  drop(event: CdkDragDrop<ITaskData[]>): void {
+  protected drop(event: CdkDragDrop<ITaskData[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -57,5 +75,9 @@ export class BoardPageComponent implements OnInit {
         event.currentIndex,
       );
     }
+  }
+
+  ngOnDestroy(): void {
+    this.$taskData?.unsubscribe();
   }
 }
