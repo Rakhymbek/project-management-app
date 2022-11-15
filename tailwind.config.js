@@ -34,7 +34,10 @@ module.exports = {
         coverGradient: 'linear-gradient(116.7deg, #468189 9.51%, #075762 95.18%)',
       },
       maxHeight: {
-        frame: 'calc(100vh - 400px)',
+        frame: 'calc(100vh - 350px)',
+      },
+      minHeight: {
+        frame: 'calc(100vh - 600px)',
       },
     },
   },

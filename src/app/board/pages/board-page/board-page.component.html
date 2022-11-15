@@ -1,14 +1,14 @@
-<div class="relative max-w-[1275px] my-0 mx-auto py-10">
+<div class="relative max-w-[1275px] my-0 mx-auto py-10 px-10 overflow-hidden">
   <h2 class="text-left uppercase text-charcoal">{{ boards?.title }}</h2>
-  <div cdkDropListGroup class="flex gap-x-6 w-[400px] max-w-full">
-    <div *ngFor="let column of boards?.columns" class="w-[270px] flex flex-col gap-y-4">
-      <h4 class="truncate text-center text-body">{{ column.title }}</h4>
+  <div cdkDropListGroup class="flex gap-x-6 max-w-full max-h-frame">
+    <div *ngFor="let column of boards?.columns" class="w-[270px] flex flex-col">
+      <h4 class="text-ellipsis text-center text-body">{{ column.title }}</h4>
       <div
         cdkDropList
         #taskList="cdkDropList"
         [cdkDropListData]="column.tasks"
         [cdkDropListConnectedTo]="[taskList]"
-        class="min-h-[400px] bg-transparent rounded pb-20 flex flex-col gap-y-2 max-h-frame overflow-scroll overflow-y-auto overflow-x-hidden"
+        class="min-h-[80%] bg-transparent rounded pb-20 flex flex-col gap-y-2 overflow-scroll overflow-y-auto overflow-x-hidden"
         (cdkDropListDropped)="drop($event)"
       >
         <app-task
