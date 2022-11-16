@@ -2,7 +2,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, map, mergeMap, Observable, pluck, Subscription } from 'rxjs';
-import { IBoardData, ITaskData } from 'src/app/core/models/board.model';
+import { IBoardData, IColumnData, ITaskData } from 'src/app/core/models/board.model';
 import { BoardService } from '../../../core/services/board.service';
 
 @Component({
@@ -17,9 +17,9 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   public id: string | undefined;
 
-  public boards: IBoardData | undefined;
+  public board: IBoardData | undefined;
 
-  public boardsData: IBoardData | undefined;
+  public boardData: IBoardData | undefined;
 
   constructor(private activatedRoute: ActivatedRoute, private boardService: BoardService) {}
 
@@ -31,7 +31,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
           return this.getBoard(id);
         }),
         map((board) => {
-          this.boardsData = board;
+          this.boardData = board;
           return board.columns.map((column) =>
             column.tasks.map((task) => {
               return this.getUserName(task);
@@ -42,12 +42,12 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         mergeMap(($tasks) => forkJoin($tasks)),
       )
       .subscribe((tasks) => {
-        this.boardsData?.columns.forEach((column) => {
+        this.boardData?.columns.forEach((column) => {
           column.tasks.forEach((item) => {
             item = tasks.filter((task) => item.id === task.id)[0];
           });
         });
-        this.boards = this.boardsData;
+        this.board = this.boardData;
       });
   }
 
@@ -74,6 +74,21 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex,
       );
+    }
+  }
+
+  protected dropColumn(event: CdkDragDrop<IColumnData[] | undefined>): void {
+    if (event.container.data && event.previousContainer.data) {
+      if (event.previousContainer === event.container) {
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      } else {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
+      }
     }
   }
 

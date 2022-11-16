@@ -1,7 +1,19 @@
-<div class="relative max-w-[1275px] my-0 mx-auto py-10">
-  <h2 class="text-left uppercase text-charcoal">{{ boards?.title }}</h2>
-  <div cdkDropListGroup class="flex gap-x-6 w-[400px] max-w-full">
-    <div *ngFor="let column of boards?.columns" class="w-[270px] flex flex-col gap-y-4">
+<div
+  cdkDropList
+  #columnList="cdkDropList"
+  cdkDropListOrientation="horizontal"
+  [cdkDropListData]="board?.columns"
+  [cdkDropListConnectedTo]="[columnList]"
+  (cdkDropListDropped)="dropColumn($event)"
+  class="relative max-w-[1275px] my-0 mx-auto py-10"
+>
+  <h2 class="text-left uppercase text-charcoal">{{ board?.title }}</h2>
+  <div cdkDropListGroup class="flex gap-x-6 max-w-full">
+    <div
+      *ngFor="let column of board?.columns"
+      cdkDrag
+      class="w-[270px] flex flex-col gap-y-4 cursor-move"
+    >
       <h4 class="truncate text-center text-body">{{ column.title }}</h4>
       <div
         cdkDropList
