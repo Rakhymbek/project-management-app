@@ -1,6 +1,7 @@
 <form
   class="form-editUser max-w-xs m-auto text-center p-5 shadow-md mt-10"
   [formGroup]="editUserForm"
+  (ngSubmit)="saveChanges()"
 >
   <h2 class="text-teal">Edit-user</h2>
   <mat-card-content>

@@ -20,6 +20,10 @@ export class AuthService {
     return this.http.post<ISignUpUserData>('signin', userData);
   }
 
+  updateUser(userData: ISignUpUserData, id: string) {
+    return this.http.put<ISignUpUserData>(`users/${id}`, userData);
+  }
+
   getAuthToken(): string | null {
     return localStorage.getItem(EStorage.token);
   }
