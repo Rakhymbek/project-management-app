@@ -1,1 +1,77 @@
-<p>edit-user works!</p>
+<form
+  class="form-editUser max-w-xs m-auto text-center p-5 shadow-md mt-10"
+  [formGroup]="editUserForm"
+>
+  <h2 class="text-teal">Edit-user</h2>
+  <mat-card-content>
+    <mat-form-field appearance="standard" class="w-full mb-1">
+      <mat-label class="px-3">Name</mat-label>
+      <input
+        autofocus
+        type="text"
+        matInput
+        formControlName="name"
+        (input)="authService.authErrorMessage = ''"
+      />
+      <mat-error *ngIf="name?.hasError('required')"> Name is required </mat-error>
+      <mat-error *ngIf="name?.errors?.['minlength'] && !name?.hasError('required')">
+        Min length must be 4
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="w-full mb-1">
+      <mat-label class="px-3">Login</mat-label>
+      <input
+        autofocus
+        type="text"
+        matInput
+        formControlName="login"
+        (input)="authService.authErrorMessage = ''"
+      />
+      <mat-error *ngIf="login?.hasError('required')"> Login is required </mat-error>
+      <mat-error *ngIf="login?.errors?.['minlength'] && !login?.hasError('required')">
+        Min length must be 4
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password"
+        (input)="authService.authErrorMessage = ''"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePassword"
+      >
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="(password?.errors?.['passwordStrength'])">
+        <ul>
+          <ng-template ngFor let-e [ngForOf]="password?.errors?.['errorMessage'].split('.')">
+            <li *ngIf="e.length > 0">
+              {{ e }}
+            </li>
+          </ng-template>
+        </ul>
+      </mat-error>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-error class="mb-2" *ngIf="authService.authErrorMessage">{{
+    authService.authErrorMessage
+  }}</mat-error>
+  <div class="flex justify-evenly">
+    <button mat-raised-button routerLink="/" type="button">Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="editUserForm.invalid || authService.authErrorMessage !== ''"
+    >
+      Save Changes
+    </button>
+  </div>
+</form>

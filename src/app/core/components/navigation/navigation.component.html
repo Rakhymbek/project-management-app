@@ -25,7 +25,9 @@
     *ngIf="userDataService.userName"
     class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug"
   >
-    {{ userDataService.userName }}
+    <a class="text-teal" routerLink="/auth/edit-user" (click)="onCloseNavigation()">
+      {{ userDataService.userName }}
+    </a>
   </li>
   <li
     *ngIf="!userDataService.userName"
