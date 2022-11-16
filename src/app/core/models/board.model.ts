@@ -27,10 +27,9 @@ export interface DialogErrorData {
 }
 
 export interface IColumn {
-  id: string;
+  id?: string;
   title: string;
   order?: number;
-  tasks?: ITask[];
 }
 export interface ITaskData {
   id: string;
@@ -56,7 +55,7 @@ export interface IBoardData {
 }
 
 export interface ITask {
-  id: string;
+  id?: string;
   title: string;
   order: number;
   description: string;

@@ -66,6 +66,7 @@
     "no": "no"
   },
   "board": {
-    "user": "user"
+    "user": "user",
+    "task": "create task"
   }
 }

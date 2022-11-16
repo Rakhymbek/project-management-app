@@ -42,12 +42,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         mergeMap(($tasks) => forkJoin($tasks)),
       )
       .subscribe((tasks) => {
-        this.boardData?.columns.forEach((column) => {
-          column.tasks.forEach((item) => {
-            item = tasks.filter((task) => item.id === task.id)[0];
-          });
-        });
-        this.board = this.boardData;
+        this.board = this.sortByOrder(tasks, this.boardData);
       });
   }
 
@@ -75,6 +70,24 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         event.currentIndex,
       );
     }
+    this.updateTask(event);
+  }
+
+  private updateTask(event: CdkDragDrop<ITaskData[]>): void {
+    const task = event.container.data[event.currentIndex];
+    const prevColumnId = event.previousContainer.id;
+    const columnId = event.container.id;
+    if (this.id) {
+      const body = {
+        title: task.title,
+        description: task.description,
+        order: event.currentIndex + 1,
+        userId: task.userId,
+        boardId: this.id,
+        columnId,
+      };
+      this.boardService.updateTask(this.id, prevColumnId, task.id, body).subscribe();
+    }
   }
 
   protected dropColumn(event: CdkDragDrop<IColumnData[] | undefined>): void {
@@ -90,9 +103,36 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         );
       }
     }
+    this.updateColumn(event);
+  }
+
+  private updateColumn(event: CdkDragDrop<IColumnData[] | undefined>): void {
+    const column = event.container.data![event.currentIndex];
+    const order = event.currentIndex + 1;
+    const title = column.title;
+    if (this.id) {
+      this.boardService.updateColumn(this.id, column.id, { title, order }).subscribe();
+    }
   }
 
   ngOnDestroy(): void {
     this.$taskData?.unsubscribe();
+  }
+
+  private sortByOrder(tasks: ITaskData[], board: IBoardData | undefined): IBoardData | undefined {
+    board?.columns.forEach((column) => {
+      column.tasks.map((item) => {
+        return (item = tasks.filter((task) => item.id === task.id)[0]);
+      });
+    });
+    board?.columns.sort((a, b) => a.order - b.order);
+    board?.columns.forEach((column) => {
+      column.tasks.sort((a, b) => a.order - b.order);
+    });
+    return board;
+  }
+
+  protected openDialog(column: IColumnData) {
+    console.log(column);
   }
 }

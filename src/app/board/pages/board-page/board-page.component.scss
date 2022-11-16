@@ -20,6 +20,7 @@
 
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 /* Track */
@@ -37,4 +38,15 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gumbo-color);
+}
+
+::ng-deep {
+  .mat-spinner {
+    height: 300px!important;
+    width: 300px!important;
+    svg {
+      height: 300px!important;
+      width: 300px!important;
+    }
+  }
 }
