@@ -49,4 +49,16 @@
       width: 300px!important;
     }
   }
+
+  .tooltip {
+    background: var(--teal-color);
+    font-size: 12px;
+  }
+
+  .column {
+    &__button {
+      padding: 0!important;
+      min-width: 0!important;
+    }
+  }
 }

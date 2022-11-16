@@ -67,6 +67,21 @@
   },
   "board": {
     "user": "user",
-    "task": "create task"
+    "column": {
+      "button": "create column",
+      "dialog": {
+        "title": "Title",
+        "cancel": "Cancel"
+      }
+    },
+    "task": {
+      "button": "create task",
+      "dialog": {
+        "title": "Title",
+        "description": "Description",
+        "user": "User",
+        "cancel": "Cancel"
+      }
+    }
   }
 }

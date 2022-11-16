@@ -1,0 +1,24 @@
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'board.task.dialog.title' | translate }}</mat-label>
+      <input matInput formControlName="title" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'board.task.dialog.description' | translate }}</mat-label>
+      <input matInput formControlName="description" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'board.task.dialog.user' | translate }}</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let user of users" [value]="user.name">
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [disabled]="form.invalid">OK</button>
+  <button mat-button>{{ 'board.task.dialog.cancel' | translate }}</button>
+</div>
