@@ -64,7 +64,7 @@
   <mat-error class="mb-2" *ngIf="authService.authErrorMessage">{{
     authService.authErrorMessage
   }}</mat-error>
-  <div class="flex justify-evenly">
+  <div class="flex justify-evenly mb-3">
     <button mat-raised-button routerLink="/" type="button">Cancel</button>
     <button
       mat-raised-button
@@ -73,6 +73,11 @@
       [disabled]="editUserForm.invalid || authService.authErrorMessage !== ''"
     >
       Save Changes
+    </button>
+  </div>
+  <div class="flex justify-center text-error">
+    <button mat-raised-button color="warn" type="button" (click)="openDialog('delete')">
+      Delete User
     </button>
   </div>
 </form>

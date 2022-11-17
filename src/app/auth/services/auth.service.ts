@@ -24,12 +24,16 @@ export class AuthService {
     return this.http.put<ISignUpUserData>(`users/${id}`, userData);
   }
 
-  getAuthToken(): string | null {
-    return localStorage.getItem(EStorage.token);
+  deleteUser(id: string) {
+    return this.http.delete(`users/${id}`);
   }
 
   getAllUsers(): Observable<IUserData[]> {
     return this.http.get<IUserData[]>('users');
+  }
+
+  getAuthToken(): string | null {
+    return localStorage.getItem(EStorage.token);
   }
 
   isAuthorized(): boolean {

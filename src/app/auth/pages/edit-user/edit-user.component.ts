@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
 import { UserDataService } from '../../services/user-data.service';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogDeleteData, DialogOptions } from '../../../core/models/board.model';
+import { DialogDeleteComponent } from '../../../core/components/dialog-delete/dialog-delete.component';
+import { EDialogEvents, UserEdit } from '../../../core/models/enums';
 
 @Component({
   selector: 'app-edit-user',
@@ -16,6 +20,8 @@ export class EditUserComponent {
     private validator: ValidationService,
     public authService: AuthService,
     private userDataService: UserDataService,
+    private dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public userId: string,
   ) {}
 
   editUserForm = new FormGroup({
@@ -47,5 +53,28 @@ export class EditUserComponent {
     this.authService.updateUser(userData, userId).subscribe((data) => {
       return this.userDataService.storeUserData(data.login, token as string);
     });
+  }
+
+  public openDialog(event: string): void {
+    const userId = this.userDataService.getUserDataId();
+    const options: DialogOptions = {
+      width: '300px',
+      data: { event, element: UserEdit.account, id: userId },
+    };
+    const dialogRef = this.getDialogRef(options);
+    dialogRef.afterClosed().subscribe((value) => {
+      if (value.event === EDialogEvents.delete) {
+        this.deleteUserProfile(value);
+      }
+    });
+  }
+
+  private deleteUserProfile(data: DialogDeleteData): void {
+    this.authService.deleteUser(data.id).subscribe();
+    this.userDataService.removeUserData();
+  }
+
+  private getDialogRef(options: DialogOptions): MatDialogRef<DialogDeleteComponent> {
+    return this.dialog.open(DialogDeleteComponent, options);
   }
 }
