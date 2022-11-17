@@ -3,43 +3,43 @@
   [formGroup]="signUpForm"
   (ngSubmit)="register()"
 >
-  <h2 class="text-teal">Sign-up</h2>
+  <h2 class="text-teal">{{ 'auth.signUp' | translate }}</h2>
   <mat-card-content>
     <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">Name</mat-label>
+      <mat-label class="px-3">{{ 'auth.name' | translate }}</mat-label>
       <input
         autofocus
         type="text"
         matInput
         formControlName="name"
-        (input)="authService.authErrorMessage = ''"
+        (input)="authService.authErrorStatus = ''"
       />
-      <mat-error *ngIf="name?.hasError('required')"> Name is required </mat-error>
+      <mat-error *ngIf="name?.hasError('required')">{{ 'auth.nameError' | translate }}</mat-error>
       <mat-error *ngIf="name?.errors?.['minlength'] && !name?.hasError('required')">
-        Min length must be 4
+        {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">Login</mat-label>
+      <mat-label class="px-3">{{ 'auth.login' | translate }}</mat-label>
       <input
         autofocus
         type="text"
         matInput
         formControlName="login"
-        (input)="authService.authErrorMessage = ''"
+        (input)="authService.authErrorStatus = ''"
       />
       <mat-error *ngIf="login?.hasError('required')"> Login is required </mat-error>
       <mat-error *ngIf="login?.errors?.['minlength'] && !login?.hasError('required')">
-        Min length must be 4
+        {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Enter your password</mat-label>
+      <mat-label>{{ 'auth.password' | translate }}</mat-label>
       <input
         matInput
         [type]="hidePassword ? 'password' : 'text'"
         formControlName="password"
-        (input)="authService.authErrorMessage = ''"
+        (input)="authService.authErrorStatus = ''"
       />
       <button
         mat-icon-button
@@ -54,19 +54,19 @@
         <ul>
           <ng-template ngFor let-e [ngForOf]="password?.errors?.['errorMessage'].split('.')">
             <li *ngIf="e.length > 0">
-              {{ e }}
+              {{ 'auth.' + e + '$' | translate }}
             </li>
           </ng-template>
         </ul>
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Confirm your password</mat-label>
+      <mat-label>{{ 'auth.confirmPassword' | translate }}</mat-label>
       <input
         matInput
         [type]="hideConfirmPassword ? 'password' : 'text'"
         formControlName="confirmPassword"
-        (input)="authService.authErrorMessage = ''"
+        (input)="authService.authErrorStatus = ''"
       />
       <button
         mat-icon-button
@@ -78,22 +78,24 @@
         <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
       <mat-error *ngIf="confirmPassword?.hasError('confirmPassword')">
-        Password is not matching
+        {{ 'auth.passwordMatchError' | translate }}
       </mat-error>
     </mat-form-field>
   </mat-card-content>
-  <mat-error class="mb-2" *ngIf="authService.authErrorMessage">{{
-    authService.authErrorMessage
+  <mat-error class="mb-2" *ngIf="authService.authErrorStatus">{{
+    'error.' + authService.authErrorStatus | translate
   }}</mat-error>
   <div class="flex justify-evenly">
-    <button mat-raised-button routerLink="/auth/login" type="button">Sign-in</button>
+    <button mat-raised-button routerLink="/auth/login" type="button">
+      {{ 'auth.signIn' | translate }}
+    </button>
     <button
       mat-raised-button
       color="primary"
       type="submit"
-      [disabled]="signUpForm.invalid || authService.authErrorMessage !== ''"
+      [disabled]="signUpForm.invalid || authService.authErrorStatus !== ''"
     >
-      Sign-up
+      {{ 'auth.createAccount' | translate }}
     </button>
   </div>
 </form>

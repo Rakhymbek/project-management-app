@@ -4,6 +4,30 @@
     "boards": "борды",
     "signUp": "регистрация"
   },
+  "auth": {
+    "signUp": "Регистрация",
+    "signIn": "Войти",
+    "authorize": "Авторизоваться",
+    "createAccount": "Создать аккаунт",
+    "name": "Имя",
+    "login": "Логин",
+    "password": "Введите свой пароль",
+    "confirmPassword": "Подтвердите свой пароль",
+    "nameError": "Укажите имя",
+    "loginError": "Укажите логин",
+    "minLengthError": "Минимальная длина должна быть 4",
+    "passwordMatchError": "Пароли не совпадают",
+    "leastEightCharacters$": "Не менее 8 символов.",
+    "upperLowerCaseError$": "Должен содержать прописные и строчные буквы.",
+    "mixNumsLettersError$": "Должен содержать цифры.",
+    "specialSymbolError$": "Хотя бы один символ.",
+    "editUser": {
+      "edit": "Редактировать пользователя",
+      "saveChanges": "Сохранить",
+      "cancel": "Отменить",
+      "deleteUser": "Удалить аккаунт"
+    }
+  },
   "welcome": {
     "header": "the project management app",
     "about": "Данное приложение помогает отслеживать ход выполнения задач и распределять нагрузку между сотрудниками",

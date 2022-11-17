@@ -4,6 +4,28 @@
     "boards": "boards",
     "signUp": "sign up"
   },
+  "auth": {
+    "signUp": "Sign-up",
+    "signIn": "Login",
+    "authorize": "Authorize",
+    "createAccount": "Create account",
+    "name": "Name",
+    "login": "Login",
+    "password": "Enter your password",
+    "confirmPassword": "Confirm your password",
+    "nameError": "Name is required",
+    "loginError": "Login is required",
+    "minLengthError": "Min length must be 4",
+    "passwordMatchError": "Password is not matching",
+    "leastEightCharacters$": "At least 8 characters.",
+    "upperLowerCaseError$": "A mixture of both uppercase and lowercase letters.",
+    "mixNumsLettersError$": "A mixture of letters and numbers.",
+    "specialSymbolError$": "Inclusion of at least one special character.",
+    "editUser": {
+      "saveChanges": "Сохранить изменения",
+      "deleteUser": "Удалить аккаунт"
+    }
+  },
   "welcome": {
     "header": "the project management app",
     "about": "This application helps to track the progress of tasks and distribute the workload among employees",

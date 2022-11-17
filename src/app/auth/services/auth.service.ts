@@ -8,7 +8,7 @@ import { EStorage } from 'src/app/core/models/enums';
   providedIn: 'root',
 })
 export class AuthService {
-  authErrorMessage: string = '';
+  authErrorStatus: number | string = '';
 
   constructor(private http: HttpClient) {}
 

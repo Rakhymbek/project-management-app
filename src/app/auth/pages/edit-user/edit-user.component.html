@@ -3,43 +3,45 @@
   [formGroup]="editUserForm"
   (ngSubmit)="saveChanges()"
 >
-  <h2 class="text-teal">Edit-user</h2>
+  <h2 class="text-teal">{{ 'auth.editUser.edit' | translate }}</h2>
   <mat-card-content>
     <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">Name</mat-label>
+      <mat-label class="px-3">{{ 'auth.name' | translate }}</mat-label>
       <input
         autofocus
         type="text"
         matInput
         formControlName="name"
-        (input)="authService.authErrorMessage = ''"
+        (input)="authService.authErrorStatus = ''"
       />
-      <mat-error *ngIf="name?.hasError('required')"> Name is required </mat-error>
+      <mat-error *ngIf="name?.hasError('required')"> {{ 'auth.nameError' | translate }} </mat-error>
       <mat-error *ngIf="name?.errors?.['minlength'] && !name?.hasError('required')">
-        Min length must be 4
+        {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">Login</mat-label>
+      <mat-label class="px-3">{{ 'auth.login' | translate }}</mat-label>
       <input
         autofocus
         type="text"
         matInput
         formControlName="login"
-        (input)="authService.authErrorMessage = ''"
+        (input)="authService.authErrorStatus = ''"
       />
-      <mat-error *ngIf="login?.hasError('required')"> Login is required </mat-error>
+      <mat-error *ngIf="login?.hasError('required')">
+        {{ 'auth.loginError' | translate }}
+      </mat-error>
       <mat-error *ngIf="login?.errors?.['minlength'] && !login?.hasError('required')">
-        Min length must be 4
+        {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Enter your password</mat-label>
+      <mat-label>{{ 'auth.password' | translate }}</mat-label>
       <input
         matInput
         [type]="hidePassword ? 'password' : 'text'"
         formControlName="password"
-        (input)="authService.authErrorMessage = ''"
+        (input)="authService.authErrorStatus = ''"
       />
       <button
         mat-icon-button
@@ -54,30 +56,32 @@
         <ul>
           <ng-template ngFor let-e [ngForOf]="password?.errors?.['errorMessage'].split('.')">
             <li *ngIf="e.length > 0">
-              {{ e }}
+              {{ 'auth.' + e + '$' | translate }}
             </li>
           </ng-template>
         </ul>
       </mat-error>
     </mat-form-field>
   </mat-card-content>
-  <mat-error class="mb-2" *ngIf="authService.authErrorMessage">{{
-    authService.authErrorMessage
+  <mat-error class="mb-2" *ngIf="authService.authErrorStatus">{{
+    'error.' + authService.authErrorStatus | translate
   }}</mat-error>
   <div class="flex justify-evenly mb-3">
-    <button mat-raised-button routerLink="/" type="button">Cancel</button>
+    <button mat-raised-button routerLink="/" type="button">
+      {{ 'auth.editUser.cancel' | translate }}
+    </button>
     <button
       mat-raised-button
       color="primary"
       type="submit"
-      [disabled]="editUserForm.invalid || authService.authErrorMessage !== ''"
+      [disabled]="editUserForm.invalid || authService.authErrorStatus !== ''"
     >
-      Save Changes
+      {{ 'auth.editUser.saveChanges' | translate }}
     </button>
   </div>
   <div class="flex justify-center text-error">
     <button mat-raised-button color="warn" type="button" (click)="openDialog('delete')">
-      Delete User
+      {{ 'auth.editUser.deleteUser' | translate }}
     </button>
   </div>
 </form>
