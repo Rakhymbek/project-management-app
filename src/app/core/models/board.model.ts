@@ -11,15 +11,25 @@ export interface DialogCreateData {
   description: string;
 }
 
-export interface DialogDeleteData {
+export interface BoardDialogDeleteData {
   event: string;
   element: string;
   id: string;
 }
 
-export interface DialogOptions {
+export interface BoardDialogOptions {
   width: string;
   data: { event: string; element: string; id: string | undefined };
+}
+
+export interface TaskDialogOptions {
+  width: string;
+  data: { event: string; element: string; boardId: string; columnId: string };
+}
+
+export interface ColumnDialogOptions {
+  width: string;
+  data: { event: string; element: string; boardId: string };
 }
 
 export interface DialogErrorData {
@@ -27,10 +37,9 @@ export interface DialogErrorData {
 }
 
 export interface IColumn {
-  id: string;
+  id?: string;
   title: string;
   order?: number;
-  tasks?: ITask[];
 }
 export interface ITaskData {
   id: string;
@@ -48,6 +57,7 @@ export interface IColumnData {
   order: number;
   tasks: ITaskData[];
 }
+
 export interface IBoardData {
   id: string;
   title: string;
@@ -56,7 +66,7 @@ export interface IBoardData {
 }
 
 export interface ITask {
-  id: string;
+  id?: string;
   title: string;
   order: number;
   description: string;

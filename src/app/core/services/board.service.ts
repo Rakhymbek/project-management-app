@@ -10,7 +10,6 @@ export class BoardService {
   constructor(private http: HttpClient) {}
 
   public getAllBoards(): Observable<IBoard[]> {
-    console.log('board');
     return this.http.get<IBoard[]>('boards');
   }
 
@@ -43,5 +42,13 @@ export class BoardService {
 
   public getBoard(id: string) {
     return this.http.get<IBoardData>(`boards/${id}`);
+  }
+
+  public updateColumn(boardId: string, columnId: string, body: IColumn) {
+    return this.http.put<IColumn>(`boards/${boardId}/columns/${columnId}`, body);
+  }
+
+  public updateTask(boardId: string, columnId: string, taskId: string, body: ITask) {
+    return this.http.put<ITask>(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`, body);
   }
 }
