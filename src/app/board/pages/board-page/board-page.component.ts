@@ -52,20 +52,13 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         }),
         map((board) => {
           this.boardData = board;
-          const columns = board.columns.length === 0;
-          const tasks = board.columns.every((column) => column.tasks.length === 0);
-          if (columns || tasks) return [of({} as ITaskData)];
-          return this.getUserName(board);
+          return this.getTasksWithUser(board);
         }),
         map(($tasks) => $tasks.flat()),
         mergeMap(($tasks) => forkJoin($tasks)),
       )
       .subscribe((tasks) => {
-        if (tasks.length === 0) {
-          this.board = this.boardData;
-        } else {
-          this.board = this.sortByOrder(tasks, this.boardData);
-        }
+        this.board = this.sortByOrder(tasks, this.boardData);
       });
   }
 
@@ -73,18 +66,27 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     return this.boardService.getBoard(id);
   }
 
-  protected getUserName(board: IBoardData) {
-    return board.columns.map((column) =>
-      column.tasks.map((task) => {
-        return this.boardService.getUser(task.userId).pipe(
-          map((user) => {
-            this.users.push(user);
-            task.userName = user.name;
-            return task;
-          }),
-        );
-      }),
-    );
+  private getTasksWithUser(board: IBoardData): Observable<ITaskData>[][] {
+    if (board.columns.length !== 0) {
+      return board.columns.map((column) => {
+        if (column.tasks.length !== 0) {
+          const tasksWithUser = column.tasks.map((task) => {
+            return this.boardService.getUser(task.userId).pipe(
+              map((user) => {
+                this.users.push(user);
+                task.userName = user.name;
+                return task;
+              }),
+            );
+          });
+          return tasksWithUser;
+        } else {
+          return [of({} as ITaskData)];
+        }
+      });
+    } else {
+      return [[of({} as ITaskData)]];
+    }
   }
 
   protected drop(event: CdkDragDrop<ITaskData[]>): void {
