@@ -1,10 +1,10 @@
-<div class="relative max-w-[1275px] my-0 mx-auto p-10">
+<div class="relative max-w-[1275px] my-0 mx-auto px-10 py-6">
   <button mat-button class="absolute left-[52px]" (click)="openDialog('create')">
     <mat-icon class="text-5xl w-[50px] h-[50px] text-teal">note_add</mat-icon>
   </button>
   <h1 class="uppercase text-center">{{ 'main.header' | translate }}</h1>
   <div
-    class="flex flex-wrap gap-y-4 gap-x-4 px-8 py-5 max-h-frame overflow-scroll overflow-y-auto overflow-x-hidden justify-center lg:justify-start"
+    class="flex flex-wrap gap-y-4 gap-x-4 px-8 py-5 h-main overflow-scroll overflow-y-auto overflow-x-hidden justify-center lg:justify-start"
   >
     <mat-spinner *ngIf="!boards" color="text-teal" class="my-0 mx-auto"></mat-spinner>
     <div *ngFor="let board of boards">

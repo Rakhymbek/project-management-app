@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../dialog-create/dialog-create.component.scss"
+    ],
+    "names": [],
+    "file": "dialog-create.component.min.css"
+}
