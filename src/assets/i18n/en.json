@@ -61,6 +61,10 @@
     "503": "Service Temporarily Unavailable",
     "505": "HTTP Version Not Supported"
   },
+  "success": {
+    "signIn": "Successful login",
+    "signUp": "Registration was successful"
+  },
   "confirmationModal": {
     "yes": "yes",
     "no": "no"
