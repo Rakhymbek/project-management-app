@@ -4,15 +4,16 @@
   </button>
   <h1 class="uppercase text-center">{{ 'main.header' | translate }}</h1>
   <div
-    class="flex flex-wrap gap-y-4 gap-x-4 px-8 py-5 h-main overflow-scroll overflow-y-auto overflow-x-hidden justify-center lg:justify-start"
+    class="flex flex-wrap gap-y-4 gap-x-4 px-8 py-5 max-h-main h-main overflow-scroll overflow-y-auto overflow-x-hidden justify-center lg:justify-start"
   >
     <mat-spinner *ngIf="!boards" color="text-teal" class="my-0 mx-auto"></mat-spinner>
-    <div *ngFor="let board of boards">
+    <ng-container *ngFor="let board of boards">
       <app-boards-item
+        class="h-[145px] w-[260px]"
         [board]="board"
         (deleteBoard)="openDialog('delete', $event)"
         (editBoard)="openDialog('edit', $event)"
       ></app-boards-item>
-    </div>
+    </ng-container>
   </div>
 </div>
