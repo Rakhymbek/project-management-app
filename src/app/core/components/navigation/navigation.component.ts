@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ELang, EStorage } from '../../models/enums';
 import { UserDataService } from '../../../auth/services/user-data.service';
@@ -8,7 +8,7 @@ import { UserDataService } from '../../../auth/services/user-data.service';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
   public currentLang = localStorage.getItem(EStorage.language) || ELang.en;
 
   public isChecked = this.currentLang === ELang.en;
@@ -18,8 +18,6 @@ export class NavigationComponent implements OnInit {
   constructor(private translate: TranslateService, public userDataService: UserDataService) {
     this.translate.use(this.currentLang);
   }
-
-  ngOnInit(): void {}
 
   onCloseNavigation() {
     this.closeNavigation.emit();

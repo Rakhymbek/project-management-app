@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -17,7 +17,7 @@ import { UserDataService } from '../../services/user-data.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
   hidePassword = true;
 
   hideConfirmPassword = true;
@@ -34,8 +34,6 @@ export class SignUpComponent implements OnInit {
     password: new FormControl('', [Validators.required, this.validator.passwordValidator()]),
     confirmPassword: new FormControl('', [Validators.required, this.confirmPasswordMatching()]),
   });
-
-  ngOnInit(): void {}
 
   private confirmPasswordMatching(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
