@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin, map, mergeMap, Observable, pluck, Subscription } from 'rxjs';
+import { forkJoin, map, mergeMap, Observable, of, pluck, Subscription } from 'rxjs';
 import {
   ColumnDialogOptions,
   IBoardData,
@@ -30,6 +30,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   public board: IBoardData | undefined;
 
+  public $board: Observable<IBoardData> | undefined;
+
   public boardData: IBoardData | undefined;
 
   public users: IUser[] = [];
@@ -50,17 +52,20 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         }),
         map((board) => {
           this.boardData = board;
-          return board.columns.map((column) =>
-            column.tasks.map((task) => {
-              return this.getUserName(task);
-            }),
-          );
+          const columns = board.columns.length === 0;
+          const tasks = board.columns.every((column) => column.tasks.length === 0);
+          if (columns || tasks) return [of({} as ITaskData)];
+          return this.getUserName(board);
         }),
         map(($tasks) => $tasks.flat()),
         mergeMap(($tasks) => forkJoin($tasks)),
       )
       .subscribe((tasks) => {
-        this.board = this.sortByOrder(tasks, this.boardData);
+        if (tasks.length === 0) {
+          this.board = this.boardData;
+        } else {
+          this.board = this.sortByOrder(tasks, this.boardData);
+        }
       });
   }
 
@@ -68,12 +73,16 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     return this.boardService.getBoard(id);
   }
 
-  protected getUserName(task: ITaskData): Observable<ITaskData> {
-    return this.boardService.getUser(task.userId).pipe(
-      map((user) => {
-        this.users.push(user);
-        task.userName = user.name;
-        return task;
+  protected getUserName(board: IBoardData) {
+    return board.columns.map((column) =>
+      column.tasks.map((task) => {
+        return this.boardService.getUser(task.userId).pipe(
+          map((user) => {
+            this.users.push(user);
+            task.userName = user.name;
+            return task;
+          }),
+        );
       }),
     );
   }
