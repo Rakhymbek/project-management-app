@@ -14,6 +14,7 @@ import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.
 import { DialogErrorComponent } from './components/dialog-error/dialog-error.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { SearchComponent } from './components/search/search.component';
+import { ToasterComponent } from './components/toaster/toaster.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SearchComponent } from './components/search/search.component';
     DialogErrorComponent,
     ConfirmationModalComponent,
     SearchComponent,
+    ToasterComponent,
   ],
   imports: [SharedModule, RouterLinkWithHref],
   exports: [WelcomePageComponent, HeaderComponent, NavigationComponent, FooterComponent],
