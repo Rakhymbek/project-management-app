@@ -1,31 +1,30 @@
-<div cdkDropListGroup class="flex gap-x-6 overflow-x-auto">
-  <div *ngFor="let column of board?.columns" cdkDrag class="w-[270px] flex flex-col justify-start">
-    <div class="text-right">
-      <mat-icon cdkDragHandle class="text-teal cursor-move">open_with</mat-icon>
-    </div>
-    <h4 class="text-ellipsis text-center text-body">{{ column.title }}</h4>
-    <div
-      cdkDropList
-      #taskList="cdkDropList"
-      [cdkDropListData]="column.tasks"
-      [cdkDropListConnectedTo]="[taskList]"
-      [id]="column.id"
-      class="bg-transparent rounded pb-40 flex flex-col gap-y-2 w-[270px] h-board max-h-board overflow-scroll overflow-y-auto overflow-x-hidden"
-      (cdkDropListDropped)="drop($event)"
-    >
-      <app-task
-        *ngFor="let task of column.tasks"
-        cdkDrag
-        [task]="task"
-        [column]="column"
-        class="items-start text-sm border-solid border-b w-[260px] border-slate-300 mr-2 bg-white p-5 rounded-[10px] cursor-move flex flex-col"
-      >
-      </app-task>
-    </div>
-    <div class="text-center">
-      <button mat-flat-button class="my-5 uppercase" color="primary" (click)="openDialog('create')">
-        {{ 'board.task.button' | translate }}
-      </button>
-    </div>
-  </div>
+<div class="flex justify-between mb-5">
+  <mat-icon cdkDragHandle class="text-teal cursor-move text-left">open_with</mat-icon>
+  <button mat-button class="min-w-0 p-0 leading-none" (click)="openDialog('delete')">
+    <mat-icon class="text-teal cursor-pointer">delete</mat-icon>
+  </button>
+</div>
+<h4 class="text-ellipsis text-center text-body">{{ column?.title }}</h4>
+<div
+  cdkDropList
+  #taskList="cdkDropList"
+  [cdkDropListData]="column?.tasks"
+  [cdkDropListConnectedTo]="[taskList]"
+  [id]="column?.id || ''"
+  class="bg-transparent rounded pb-40 flex flex-col gap-y-2 w-[270px] h-board max-h-board overflow-scroll overflow-y-auto overflow-x-hidden"
+  (cdkDropListDropped)="drop($event)"
+>
+  <app-task
+    *ngFor="let task of column?.tasks"
+    cdkDrag
+    [task]="task"
+    [column]="column"
+    class="items-start text-sm border-solid border-b w-[260px] border-slate-300 mr-2 bg-white p-5 rounded-[10px] cursor-move flex flex-col"
+  >
+  </app-task>
+</div>
+<div class="text-center">
+  <button mat-flat-button class="my-5 uppercase" color="primary" (click)="openDialog('create')">
+    {{ 'board.task.button' | translate }}
+  </button>
 </div>

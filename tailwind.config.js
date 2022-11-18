@@ -42,7 +42,7 @@ module.exports = {
       },
       height: {
         main: 'calc(100vh - 370px)',
-        board: 'calc(100vh - 450px)',
+        board: 'calc(100vh - 500px)',
       },
     },
   },

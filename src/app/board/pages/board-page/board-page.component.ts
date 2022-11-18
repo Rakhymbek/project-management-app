@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { forkJoin, map, mergeMap, Observable, of, pluck, Subscription } from 'rxjs';
 import {
   ColumnDialogCreateData,
+  ColumnDialogDeleteData,
   ColumnDialogOptions,
   IBoardData,
   IColumnData,
@@ -130,18 +131,18 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     return board;
   }
 
-  protected openDialog(event: string) {
+  protected openDialog(event: string, columnId?: string) {
     const options: ColumnDialogOptions = {
       width: '300px',
-      data: { event, element: BoardElements.column, boardId: this.id! },
+      data: { event, element: BoardElements.column, boardId: this.id!, id: columnId },
     };
     const dialogRef = this.getDialogRef(event, options);
-    dialogRef.afterClosed().subscribe((value: ColumnDialogCreateData) => {
+    dialogRef.afterClosed().subscribe((value) => {
       if (value) {
         if (value.event === EDialogEvents.create) {
           this.createColumn(value);
         } else if (value.event === EDialogEvents.delete) {
-          this.deleteColumn();
+          this.deleteColumn(value);
         } else if (value.event === EDialogEvents.edit) {
           this.editColumn();
         }
@@ -166,7 +167,13 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  private deleteColumn(): void {}
+  private deleteColumn(data: ColumnDialogDeleteData): void {
+    this.boardService.deleteColumn(this.board?.id!, data.id).subscribe(() => {
+      if (this.board) {
+        this.board.columns = this.board?.columns.filter((item) => item.id !== data.id);
+      }
+    });
+  }
 
   private editColumn(): void {}
 }

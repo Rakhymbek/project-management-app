@@ -23,6 +23,12 @@ export interface BoardDialogDeleteData {
   id: string;
 }
 
+export interface ColumnDialogDeleteData {
+  event: string;
+  boardId: string;
+  id: string;
+}
+
 export interface BoardDialogOptions {
   width: string;
   data: { event: string; element: string; id: string | undefined };
@@ -35,7 +41,7 @@ export interface TaskDialogOptions {
 
 export interface ColumnDialogOptions {
   width: string;
-  data: { event: string; element: string; boardId: string };
+  data: { event: string; element: string; boardId: string; id: string | undefined };
 }
 
 export interface DialogErrorData {

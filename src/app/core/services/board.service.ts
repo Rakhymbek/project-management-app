@@ -35,6 +35,10 @@ export class BoardService {
     return this.http.delete(`boards/${id}`);
   }
 
+  public deleteColumn(boardId: string, columnId: string): Observable<Object> {
+    return this.http.delete(`boards/${boardId}/columns/${columnId}`);
+  }
+
   public getAllColumns(id: string): Observable<IColumn[]> {
     return this.http.get<IColumn[]>(`boards/${id}/columns`);
   }
