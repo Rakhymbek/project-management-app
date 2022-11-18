@@ -1,24 +1,30 @@
-<main class="max-w-4xl w-full my-0 mx-auto px-10 py-14">
-  <h1 class="text-center text-charcoal font-bold uppercase my-8">the project management app</h1>
-  <section class="flex mt-36 min-h-[25rem] flex-wrap md:flex-nowrap">
-    <div class="max-w-2xl w-full my-0 mx-auto mb-10">
+<main class="max-w-4xl w-full my-0 mx-auto px-10 py-14 max-sm:px-5">
+  <h1 class="text-center text-charcoal font-bold uppercase my-8 max-sm:text-4xl">
+    the project management app
+  </h1>
+  <section class="flex mt-36 max-sm:mt-16 min-h-[25rem] flex-wrap md:flex-nowrap">
+    <div class="max-w-2xl w-full my-0 mx-auto mb-10 max-sm:text-center">
       <p class="text-xl text-body min-h-[90px]">
         {{ 'welcome.about' | translate }}
       </p>
-      <div class="form flex flex-row gap-x-2.5">
+      <form
+        class="form flex flex-wrap flex-row gap-x-2.5 max-sm:justify-center"
+        (ngSubmit)="signUp()"
+      >
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Email</mat-label>
-          <input
-            type="email"
-            matInput
-            [formControl]="emailFormControl"
-            placeholder="Ex. mail@example.com"
-          />
+          <mat-label>{{ 'auth.name' | translate }}</mat-label>
+          <input type="text" matInput [formControl]="signUpForm" />
+          <mat-error *ngIf="signUpForm?.hasError('required')">{{
+            'auth.nameError' | translate
+          }}</mat-error>
+          <mat-error *ngIf="signUpForm?.errors?.['minlength'] && !signUpForm?.hasError('required')">
+            {{ 'auth.minLengthError' | translate }}
+          </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="signUp()">
+        <button mat-raised-button color="primary" class="h-12" type="submit">
           {{ 'welcome.signUp' | translate }}
         </button>
-      </div>
+      </form>
     </div>
     <div class="features pb-8 my-0 mx-auto max-w-sm w-full self-center">
       <h2 class="text-center uppercase text-charcoal">

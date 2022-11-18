@@ -6,6 +6,12 @@
     <a routerLink="/main" (click)="onCloseNavigation()"> {{ 'header.boards' | translate }} </a>
   </li>
   <li
+    *ngIf="userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]"
+  >
+    <app-search></app-search>
+  </li>
+  <li
     class="px-3 py-2 text-base uppercase font-bold flex items-center lg:ml-auto max-lg:order-last"
   >
     <mat-slide-toggle
@@ -15,12 +21,6 @@
       >{{ currentLang | uppercase }}</mat-slide-toggle
     >
   </li>
-  <li class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]">
-    <app-search></app-search>
-  </li>
-  <li
-    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]"
-  ></li>
   <li
     *ngIf="userDataService.userName"
     class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug"
@@ -31,13 +31,13 @@
   </li>
   <li
     *ngIf="!userDataService.userName"
-    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px] max-lg:justify-center"
   >
     <a routerLink="/auth" (click)="onCloseNavigation()"> {{ 'header.signUp' | translate }} </a>
   </li>
   <li
     *ngIf="userDataService.userName"
-    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px] max-lg:justify-center"
   >
     <a routerLink="/auth" (click)="toLogOut()"> logout </a>
   </li>

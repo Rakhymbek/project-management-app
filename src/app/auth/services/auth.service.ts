@@ -10,6 +10,8 @@ import { EStorage } from 'src/app/core/models/enums';
 export class AuthService {
   authErrorStatus: number | string = '';
 
+  signUpFormName: string = '';
+
   constructor(private http: HttpClient) {}
 
   signUp(userData: ISignUpUserData) {

@@ -29,7 +29,10 @@ export class SignUpComponent {
   ) {}
 
   signUpForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl(this.authService.signUpFormName, [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
     login: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [Validators.required, this.validator.passwordValidator()]),
     confirmPassword: new FormControl('', [Validators.required, this.confirmPasswordMatching()]),

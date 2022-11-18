@@ -22,8 +22,10 @@
     "mixNumsLettersError$": "A mixture of letters and numbers.",
     "specialSymbolError$": "Inclusion of at least one special character.",
     "editUser": {
-      "saveChanges": "Сохранить изменения",
-      "deleteUser": "Удалить аккаунт"
+      "edit": "Edit-user",
+      "saveChanges": "Save changes",
+      "cancel": "Cancel",
+      "deleteUser": "Delete Account"
     }
   },
   "welcome": {
