@@ -3,6 +3,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { forkJoin, map, mergeMap, Observable, of, pluck, Subscription } from 'rxjs';
 import {
+  ColumnDialogCreateData,
   ColumnDialogOptions,
   IBoardData,
   IColumnData,
@@ -29,8 +30,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   public id: string | undefined;
 
   public board: IBoardData | undefined;
-
-  public $board: Observable<IBoardData> | undefined;
 
   public boardData: IBoardData | undefined;
 
@@ -89,37 +88,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  protected drop(event: CdkDragDrop<ITaskData[]>): void {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
-    this.updateTask(event);
-  }
-
-  private updateTask(event: CdkDragDrop<ITaskData[]>): void {
-    const task = event.container.data[event.currentIndex];
-    const prevColumnId = event.previousContainer.id;
-    const columnId = event.container.id;
-    if (this.id) {
-      const body = {
-        title: task.title,
-        description: task.description,
-        order: event.currentIndex + 1,
-        userId: task.userId,
-        boardId: this.id,
-        columnId,
-      };
-      this.boardService.updateTask(this.id, prevColumnId, task.id, body).subscribe();
-    }
-  }
-
   protected dropColumn(event: CdkDragDrop<IColumnData[] | undefined>): void {
     if (event.container.data && event.previousContainer.data) {
       if (event.previousContainer === event.container) {
@@ -168,18 +136,16 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       data: { event, element: BoardElements.column, boardId: this.id! },
     };
     const dialogRef = this.getDialogRef(event, options);
-    dialogRef.afterClosed().subscribe((value) => {
-      console.log(value);
-      // if (value.event === EDialogEvents.create) {
-      //   // this.createBoard(value);
-      //   console.log(event);
-      // } else if (value.event === EDialogEvents.delete) {
-      //   // this.deleteBoard(value);
-      //   console.log(event);
-      // } else if (value.event === EDialogEvents.edit) {
-      //   // this.editBoard(value);
-      //   console.log(event);
-      // }
+    dialogRef.afterClosed().subscribe((value: ColumnDialogCreateData) => {
+      if (value) {
+        if (value.event === EDialogEvents.create) {
+          this.createColumn(value);
+        } else if (value.event === EDialogEvents.delete) {
+          this.deleteColumn();
+        } else if (value.event === EDialogEvents.edit) {
+          this.editColumn();
+        }
+      }
     });
   }
 
@@ -193,4 +159,14 @@ export class BoardPageComponent implements OnInit, OnDestroy {
       return this.dialog.open(DialogColumnComponent, options);
     }
   }
+
+  private createColumn(data: ColumnDialogCreateData): void {
+    this.boardService.createColumn(data.boardId, { title: data.title }).subscribe((column) => {
+      this.board?.columns.push(column);
+    });
+  }
+
+  private deleteColumn(): void {}
+
+  private editColumn(): void {}
 }

@@ -20,7 +20,8 @@
     </button>
     <h2 class="text-left uppercase text-charcoal">{{ board.title }}</h2>
   </div>
-  <div cdkDropListGroup class="flex gap-x-6 overflow-x-auto">
+  <app-column [board]="board" [id]="id"></app-column>
+  <!-- <div cdkDropListGroup class="flex gap-x-6 overflow-x-auto">
     <div
       *ngFor="let column of board?.columns"
       cdkDrag
@@ -59,5 +60,5 @@
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

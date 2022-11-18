@@ -3,7 +3,7 @@ import {
   IBoard,
   BoardDialogDeleteData,
   BoardDialogOptions,
-  DialogCreateData,
+  BoardDialogCreateData,
 } from 'src/app/core/models/board.model';
 import { BoardService } from '../../../core/services/board.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -22,7 +22,7 @@ export class MainPageComponent implements OnInit {
   constructor(
     private boardService: BoardService,
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: BoardDialogDeleteData | DialogCreateData,
+    @Inject(MAT_DIALOG_DATA) public data: BoardDialogDeleteData | BoardDialogCreateData,
   ) {
     this.boardService.getAllBoards().subscribe((allBoards) => (this.boards = allBoards));
   }
@@ -48,7 +48,7 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  private createBoard(data: DialogCreateData): void {
+  private createBoard(data: BoardDialogCreateData): void {
     this.boardService.createBoard(data.title, data.description).subscribe((boards) => {
       this.boards?.push(boards);
     });
@@ -60,7 +60,7 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  private editBoard(data: DialogCreateData): void {
+  private editBoard(data: BoardDialogCreateData): void {
     this.boardService
       .updateBoard(data.id, {
         title: data.title,
@@ -70,7 +70,6 @@ export class MainPageComponent implements OnInit {
         const idx = this.boards?.findIndex((item) => item.id === board.id);
         if (idx !== undefined && this.boards) {
           this.boards[idx] = board;
-          console.log(this.boards);
         }
       });
   }

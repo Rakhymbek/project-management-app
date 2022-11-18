@@ -4,11 +4,17 @@ export interface IBoard {
   description: string;
 }
 
-export interface DialogCreateData {
+export interface BoardDialogCreateData {
   event: string;
   id: string;
   title: string;
   description: string;
+}
+
+export interface ColumnDialogCreateData {
+  event: string;
+  boardId: string;
+  title: string;
 }
 
 export interface BoardDialogDeleteData {

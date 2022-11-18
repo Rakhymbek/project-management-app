@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IBoard, IBoardData, IColumn, ITask, IUser } from 'src/app/core/models/board.model';
+import {
+  IBoard,
+  IBoardData,
+  IColumn,
+  IColumnData,
+  ITask,
+  IUser,
+} from 'src/app/core/models/board.model';
 
 @Injectable({
   providedIn: 'root',
@@ -20,12 +27,12 @@ export class BoardService {
     });
   }
 
-  public deleteBoard(id: string): Observable<Object> {
-    return this.http.delete(`boards/${id}`);
+  public createColumn(boardId: string, body: IColumn): Observable<IColumnData> {
+    return this.http.post<IColumnData>(`boards/${boardId}/columns`, body);
   }
 
-  public updateBoard(id: string, body: IBoard): Observable<IBoard> {
-    return this.http.put(`boards/${id}`, body) as Observable<IBoard>;
+  public deleteBoard(id: string): Observable<Object> {
+    return this.http.delete(`boards/${id}`);
   }
 
   public getAllColumns(id: string): Observable<IColumn[]> {
@@ -42,6 +49,10 @@ export class BoardService {
 
   public getBoard(id: string) {
     return this.http.get<IBoardData>(`boards/${id}`);
+  }
+
+  public updateBoard(id: string, body: IBoard): Observable<IBoard> {
+    return this.http.put(`boards/${id}`, body) as Observable<IBoard>;
   }
 
   public updateColumn(boardId: string, columnId: string, body: IColumn) {

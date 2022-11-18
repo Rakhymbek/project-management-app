@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogCreateData } from 'src/app/core/models/board.model';
+import { ColumnDialogCreateData } from 'src/app/core/models/board.model';
 import { EDialogEvents } from 'src/app/core/models/enums';
 
 @Component({
@@ -20,13 +20,17 @@ export class DialogColumnComponent implements OnInit {
 
   constructor(
     public dialog: MatDialogRef<DialogColumnComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogCreateData,
+    @Inject(MAT_DIALOG_DATA) public data: ColumnDialogCreateData,
   ) {}
 
   ngOnInit(): void {}
 
   getData() {
-    console.log(this.data);
+    this.dialog.close({
+      event: this.data.event,
+      boardId: this.data.boardId,
+      title: this.form.value.title,
+    });
   }
 
   cancel(): void {

@@ -5,8 +5,15 @@ import { SharedModule } from '../shared/shared.module';
 import { TaskComponent } from './components/task/task.component';
 import { DialogTaskComponent } from './components/dialog-task/dialog-task.component';
 import { DialogColumnComponent } from './components/dialog-column/dialog-column.component';
+import { ColumnComponent } from './components/column/column.component';
 @NgModule({
-  declarations: [BoardPageComponent, TaskComponent, DialogTaskComponent, DialogColumnComponent],
+  declarations: [
+    BoardPageComponent,
+    TaskComponent,
+    DialogTaskComponent,
+    DialogColumnComponent,
+    ColumnComponent,
+  ],
   imports: [BoardRoutingModule, SharedModule],
 })
 export class BoardModule {}
