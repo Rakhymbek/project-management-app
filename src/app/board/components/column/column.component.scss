@@ -39,3 +39,22 @@
 .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
+::ng-deep {
+  .mat-form-field-infix {
+    padding: 0;
+    border-top: 0;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 0;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding: 0;
+  }
+
+  .mat-form-field-wrapper {
+    padding: 0;
+  }
+}
