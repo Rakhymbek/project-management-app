@@ -30,7 +30,10 @@
         [column]="column"
         [id]="id"
         (deleteColumn)="openDialog('delete', $event)"
-      ></app-column>
+        (editColumn)="openDialog('edit', $event)"
+      >
+        <mat-icon cdkDragHandle class="text-teal cursor-move text-left">open_with</mat-icon>
+      </app-column>
     </div>
   </div>
 </div>

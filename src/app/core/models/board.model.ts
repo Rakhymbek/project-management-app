@@ -15,6 +15,7 @@ export interface ColumnDialogCreateData {
   event: string;
   boardId: string;
   title: string;
+  id: string;
 }
 
 export interface BoardDialogDeleteData {

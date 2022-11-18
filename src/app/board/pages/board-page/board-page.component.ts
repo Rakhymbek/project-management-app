@@ -144,7 +144,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         } else if (value.event === EDialogEvents.delete) {
           this.deleteColumn(value);
         } else if (value.event === EDialogEvents.edit) {
-          this.editColumn();
+          this.editColumn(value);
         }
       }
     });
@@ -175,5 +175,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  private editColumn(): void {}
+  private editColumn(data: ColumnDialogCreateData): void {
+    // this.boardService.updateColumn(data.boardId)
+    console.log(data);
+  }
 }

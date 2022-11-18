@@ -1,5 +1,5 @@
 <div class="flex justify-between mb-5">
-  <mat-icon cdkDragHandle class="text-teal cursor-move text-left">open_with</mat-icon>
+  <ng-content></ng-content>
   <button mat-button class="min-w-0 p-0 leading-none" (click)="openDialog('delete')">
     <mat-icon class="text-teal cursor-pointer">delete</mat-icon>
   </button>
@@ -12,7 +12,7 @@
   [cdkDropListConnectedTo]="[taskList]"
   [id]="column?.id || ''"
   class="bg-transparent rounded pb-40 flex flex-col gap-y-2 w-[270px] h-board max-h-board overflow-scroll overflow-y-auto overflow-x-hidden"
-  (cdkDropListDropped)="drop($event)"
+  (cdkDropListDropped)="dropTask($event)"
 >
   <app-task
     *ngFor="let task of column?.tasks"

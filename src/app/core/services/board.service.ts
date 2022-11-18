@@ -20,6 +20,14 @@ export class BoardService {
     return this.http.get<IBoard[]>('boards');
   }
 
+  public getAllColumns(id: string): Observable<IColumn[]> {
+    return this.http.get<IColumn[]>(`boards/${id}/columns`);
+  }
+
+  public getAllTasks(boardId: string, columnId: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(`boards/${boardId}/columns/${columnId}/tasks`);
+  }
+
   public createBoard(title: string, description: string): Observable<IBoard> {
     return this.http.post<IBoard>('boards', {
       title,
@@ -37,14 +45,6 @@ export class BoardService {
 
   public deleteColumn(boardId: string, columnId: string): Observable<Object> {
     return this.http.delete(`boards/${boardId}/columns/${columnId}`);
-  }
-
-  public getAllColumns(id: string): Observable<IColumn[]> {
-    return this.http.get<IColumn[]>(`boards/${id}/columns`);
-  }
-
-  public getAllTasks(boardId: string, columnId: string): Observable<ITask[]> {
-    return this.http.get<ITask[]>(`boards/${boardId}/columns/${columnId}/tasks`);
   }
 
   public getUser(id: string): Observable<IUser> {

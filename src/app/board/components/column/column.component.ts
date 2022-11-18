@@ -23,7 +23,7 @@ export class ColumnComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  protected drop(event: CdkDragDrop<ITaskData[] | undefined>): void {
+  protected dropTask(event: CdkDragDrop<ITaskData[] | undefined>): void {
     if (event.container.data && event.previousContainer.data) {
       if (event.previousContainer === event.container) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
