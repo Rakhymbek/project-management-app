@@ -72,6 +72,7 @@
         "create": "create column",
         "edit": "edit column",
         "accept": "accept changes",
+        "cancel": "cancel changes",
         "delete": "delete column"
       },
       "dialog": {

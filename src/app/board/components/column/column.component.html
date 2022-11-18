@@ -1,9 +1,15 @@
 <div class="text-left mb-5">
   <ng-content></ng-content>
 </div>
-<div class="flex gap-x-3 justify-between items-start">
-  <h4 class="text-ellipsis text-body h-[24px]" *ngIf="!editing">{{ columnTitle }}</h4>
-  <mat-form-field *ngIf="editing" appearance="legacy">
+<div class="flex justify-between items-start w-full">
+  <h4
+    class="text-ellipsis text-body h-[24px] w-[150px] truncate"
+    *ngIf="!editing"
+    (click)="editing = true"
+  >
+    {{ columnTitle }}
+  </h4>
+  <mat-form-field *ngIf="editing" appearance="legacy" class="w-[150px]">
     <input type="text" [formControl]="title" matInput class="text-body mat-h4" required />
   </mat-form-field>
   <div class="flex gap-x-3 justify-start items-baseline">
@@ -17,7 +23,6 @@
     >
       <mat-icon class="text-teal">edit</mat-icon>
     </button>
-
     <button
       mat-button
       matTooltip="{{ 'board.column.tooltip.accept' | translate | uppercase }}"
@@ -28,7 +33,16 @@
     >
       <mat-icon class="text-teal">check</mat-icon>
     </button>
-
+    <button
+      mat-button
+      matTooltip="{{ 'board.column.tooltip.cancel' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      class="min-w-0 p-0 leading-none items-baseline h-[24px]"
+      (click)="editing = false"
+      *ngIf="editing"
+    >
+      <mat-icon class="text-teal">cancel</mat-icon>
+    </button>
     <button
       mat-button
       matTooltip="{{ 'board.column.tooltip.delete' | translate | uppercase }}"
