@@ -1,4 +1,4 @@
-<ul class="flex flex-col lg:flex-row list-none max-lg:items-center max-lg:pt-5">
+<ul class="flex max-md:flex-col lg:flex-row list-none max-lg:items-center max-md:pt-5">
   <li class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug">
     <a routerLink="/welcome" (click)="onCloseNavigation()"> {{ 'header.main' | translate }} </a>
   </li>
@@ -12,7 +12,7 @@
     <app-search></app-search>
   </li>
   <li
-    class="px-3 py-2 text-base uppercase font-bold flex items-center lg:ml-auto max-lg:order-last"
+    class="px-3 py-2 text-base uppercase font-bold flex items-center md:ml-auto max-md:order-last"
   >
     <mat-slide-toggle
       class="language-switcher"
@@ -31,14 +31,20 @@
   </li>
   <li
     *ngIf="!userDataService.userName"
-    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px] max-lg:justify-center"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug max-w-[145px] max-lg:justify-center"
+  >
+    <a routerLink="/auth/login" (click)="onCloseNavigation()"> {{ 'auth.signIn' | translate }} </a>
+  </li>
+  <li
+    *ngIf="!userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[90px] max-lg:justify-center"
   >
     <a routerLink="/auth" (click)="onCloseNavigation()"> {{ 'header.signUp' | translate }} </a>
   </li>
   <li
     *ngIf="userDataService.userName"
-    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px] max-lg:justify-center"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug max-w-[145px] max-lg:justify-center"
   >
-    <a routerLink="/auth" (click)="toLogOut()"> logout </a>
+    <a routerLink="/auth" (click)="toLogOut()"> {{ 'auth.logout' | translate }} </a>
   </li>
 </ul>

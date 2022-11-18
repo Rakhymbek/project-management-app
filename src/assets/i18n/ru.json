@@ -7,6 +7,7 @@
   "auth": {
     "signUp": "Регистрация",
     "signIn": "Войти",
+    "logout": "выйти",
     "authorize": "Авторизоваться",
     "createAccount": "Создать аккаунт",
     "name": "Имя",
