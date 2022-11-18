@@ -25,7 +25,7 @@ export class DialogColumnComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getData() {
+  getData(): void {
     this.dialog.close({
       event: this.data.event,
       boardId: this.data.boardId,

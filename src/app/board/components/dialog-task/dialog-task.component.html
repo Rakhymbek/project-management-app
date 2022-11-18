@@ -10,8 +10,8 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ 'board.task.dialog.user' | translate }}</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let user of users" [value]="user.name">
+      <mat-select formControlName="userId" required>
+        <mat-option *ngFor="let user of users" [value]="user.id">
           {{ user.name }}
         </mat-option>
       </mat-select>
@@ -19,6 +19,8 @@
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [disabled]="form.invalid">OK</button>
-  <button mat-button>{{ 'board.task.dialog.cancel' | translate }}</button>
+  <button mat-button [disabled]="form.invalid" (click)="getData()">OK</button>
+  <button mat-button (click)="cancel()" mat-dialog-close>
+    {{ 'board.task.dialog.cancel' | translate }}
+  </button>
 </div>

@@ -55,7 +55,7 @@ export class MainPageComponent implements OnInit {
   }
 
   private deleteBoard(data: BoardDialogDeleteData): void {
-    this.boardService.deleteBoard(data.id).subscribe(() => {
+    this.boardService.deleteBoard(data.id!).subscribe(() => {
       this.boards = this.boards?.filter((item) => item.id !== data.id);
     });
   }

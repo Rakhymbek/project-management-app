@@ -1,10 +1,18 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { IColumnData, ITaskData } from 'src/app/core/models/board.model';
-import { EDialogEvents } from 'src/app/core/models/enums';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dialog-delete.component';
+import {
+  IColumnData,
+  ITaskData,
+  TaskDialogCreateData,
+  TaskDialogDeleteData,
+  TaskDialogOptions,
+} from 'src/app/core/models/board.model';
+import { BoardElements, EDialogEvents } from 'src/app/core/models/enums';
 import { BoardService } from 'src/app/core/services/board.service';
+import { DialogTaskComponent } from '../dialog-task/dialog-task.component';
 
 @Component({
   selector: 'app-column',
@@ -28,7 +36,11 @@ export class ColumnComponent implements OnInit {
     Validators.required,
   ]);
 
-  constructor(private activatedRoute: ActivatedRoute, private boardService: BoardService) {}
+  constructor(
+    private boardService: BoardService,
+    private dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: DialogTaskComponent,
+  ) {}
 
   ngOnInit(): void {
     this.title.setValue(this.column?.title || '');
@@ -75,8 +87,40 @@ export class ColumnComponent implements OnInit {
     }
   }
 
-  protected openDialog(event: string) {
-    if (event === EDialogEvents.create) {
+  protected openDialog(event: string, id?: string): void {
+    const data = {
+      event,
+      element: BoardElements.task,
+      boardId: this.boardId!,
+      columnId: this.column?.id!,
+      id: id,
+    };
+    const options: TaskDialogOptions = {
+      width: '300px',
+      data,
+    };
+    const dialogRef = this.getDialogRef(event, options);
+    dialogRef.afterClosed().subscribe((value) => {
+      if (value) {
+        if (value.event === EDialogEvents.create) {
+          this.createTask(value);
+        } else if (value.event === EDialogEvents.delete) {
+          this.deleteTask(value);
+        } else if (value.event === EDialogEvents.edit) {
+          this.editTask(value);
+        }
+      }
+    });
+  }
+
+  private getDialogRef(
+    event: string,
+    options: TaskDialogOptions,
+  ): MatDialogRef<DialogDeleteComponent | DialogTaskComponent, any> {
+    if (event === EDialogEvents.delete) {
+      return this.dialog.open(DialogDeleteComponent, options);
+    } else {
+      return this.dialog.open(DialogTaskComponent, options);
     }
   }
 
@@ -89,5 +133,21 @@ export class ColumnComponent implements OnInit {
         })
         .subscribe();
     }
+  }
+
+  private createTask(data: TaskDialogCreateData) {
+    console.log(data);
+  }
+
+  private deleteTask(data: TaskDialogDeleteData) {
+    this.boardService.deleteTask(data.boardId, data.columnId, data.id!).subscribe(() => {
+      if (this.column) {
+        this.column.tasks = this.column?.tasks.filter((item) => item.id !== data.id);
+      }
+    });
+  }
+
+  private editTask(data: TaskDialogCreateData) {
+    console.log(data);
   }
 }

@@ -1,4 +1,15 @@
-<h4 class="text-charcoal text-sm uppercase text-left">{{ task?.title }}</h4>
+<div class="flex justify-between w-full">
+  <h4 class="text-charcoal text-sm uppercase text-left">{{ task?.title }}</h4>
+  <button
+    mat-button
+    matTooltip="{{ 'board.column.tooltip.delete' | translate | uppercase }}"
+    matTooltipClass="tooltip"
+    class="min-w-0 p-0 leading-none items-baseline h-[24px]"
+    (click)="deleteTask.emit(task?.id)"
+  >
+    <mat-icon class="text-teal cursor-pointer">delete</mat-icon>
+  </button>
+</div>
 <p class="text-body w-full text-ellipsis overflow-hidden">{{ task?.description }}</p>
 <div class="flex justify-between w-full">
   <span class="text-charcoal uppercase font-medium">{{ 'board.user' | translate }}</span>

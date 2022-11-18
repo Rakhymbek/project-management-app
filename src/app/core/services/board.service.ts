@@ -28,6 +28,10 @@ export class BoardService {
     return this.http.get<ITask[]>(`boards/${boardId}/columns/${columnId}/tasks`);
   }
 
+  public getAllUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>('users');
+  }
+
   public createBoard(title: string, description: string): Observable<IBoard> {
     return this.http.post<IBoard>('boards', {
       title,
@@ -45,6 +49,10 @@ export class BoardService {
 
   public deleteColumn(boardId: string, columnId: string): Observable<Object> {
     return this.http.delete(`boards/${boardId}/columns/${columnId}`);
+  }
+
+  public deleteTask(boardId: string, columnId: string, taskId: string): Observable<Object> {
+    return this.http.delete(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`);
   }
 
   public getUser(id: string): Observable<IUser> {

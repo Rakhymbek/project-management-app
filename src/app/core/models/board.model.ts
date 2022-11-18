@@ -18,31 +18,50 @@ export interface ColumnDialogCreateData {
   id: string;
 }
 
+export interface TaskDialogCreateData {
+  event: string;
+  boardId: string;
+  columnId: string;
+  userId: string;
+  description: string;
+  title: string;
+  id: string;
+}
+
 export interface BoardDialogDeleteData {
   event: string;
   element: string;
-  id: string;
+  id: string | undefined;
 }
 
 export interface ColumnDialogDeleteData {
   event: string;
+  element: string;
   boardId: string;
-  id: string;
+  id: string | undefined;
+}
+
+export interface TaskDialogDeleteData {
+  event: string;
+  boardId: string;
+  element: string;
+  columnId: string;
+  id: string | undefined;
 }
 
 export interface BoardDialogOptions {
   width: string;
-  data: { event: string; element: string; id: string | undefined };
+  data: BoardDialogDeleteData;
 }
 
 export interface TaskDialogOptions {
   width: string;
-  data: { event: string; element: string; boardId: string; columnId: string };
+  data: TaskDialogDeleteData;
 }
 
 export interface ColumnDialogOptions {
   width: string;
-  data: { event: string; element: string; boardId: string; id: string | undefined };
+  data: ColumnDialogDeleteData;
 }
 
 export interface DialogErrorData {

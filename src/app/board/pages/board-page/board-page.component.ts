@@ -143,8 +143,6 @@ export class BoardPageComponent implements OnInit, OnDestroy {
           this.createColumn(value);
         } else if (value.event === EDialogEvents.delete) {
           this.deleteColumn(value);
-        } else if (value.event === EDialogEvents.edit) {
-          this.editColumn(value);
         }
       }
     });
@@ -168,15 +166,10 @@ export class BoardPageComponent implements OnInit, OnDestroy {
   }
 
   private deleteColumn(data: ColumnDialogDeleteData): void {
-    this.boardService.deleteColumn(this.board?.id!, data.id).subscribe(() => {
+    this.boardService.deleteColumn(this.board?.id!, data.id!).subscribe(() => {
       if (this.board) {
         this.board.columns = this.board?.columns.filter((item) => item.id !== data.id);
       }
     });
-  }
-
-  private editColumn(data: ColumnDialogCreateData): void {
-    // this.boardService.updateColumn(data.boardId)
-    console.log(data);
   }
 }
