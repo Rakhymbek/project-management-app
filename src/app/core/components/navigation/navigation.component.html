@@ -7,7 +7,7 @@
   </li>
   <li
     *ngIf="userDataService.userName"
-    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[145px]"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug"
   >
     <app-search></app-search>
   </li>
@@ -28,6 +28,14 @@
     <a class="text-teal" routerLink="/auth/edit-user" (click)="onCloseNavigation()">
       {{ userDataService.userName }}
     </a>
+  </li>
+  <li
+    *ngIf="userDataService.userName"
+    class="py-2 text-base flex items-center text-center uppercase font-bold leading-snug"
+  >
+    <div class="flex" (click)="onCloseNavigation()">
+      <mat-icon fontIcon="add_circle"></mat-icon> {{ 'header.board' | translate }}
+    </div>
   </li>
   <li
     *ngIf="!userDataService.userName"

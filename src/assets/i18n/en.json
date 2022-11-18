@@ -2,7 +2,8 @@
   "header": {
     "main": "main",
     "boards": "boards",
-    "signUp": "sign up"
+    "signUp": "sign up",
+    "board": "board"
   },
   "auth": {
     "signUp": "Sign-up",
