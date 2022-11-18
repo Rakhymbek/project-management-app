@@ -9,6 +9,8 @@
   <div class="flex gap-x-3 justify-start items-baseline">
     <button
       mat-button
+      matTooltip="{{ 'board.column.tooltip.edit' | translate | uppercase }}"
+      matTooltipClass="tooltip"
       class="min-w-0 p-0 leading-none items-baseline h-[24px]"
       *ngIf="!editing"
       (click)="editing = true"
@@ -18,6 +20,8 @@
 
     <button
       mat-button
+      matTooltip="{{ 'board.column.tooltip.accept' | translate | uppercase }}"
+      matTooltipClass="tooltip"
       class="min-w-0 p-0 leading-none items-baseline h-[24px]"
       (click)="editing = false; editColumnTitle()"
       *ngIf="editing"
@@ -27,6 +31,8 @@
 
     <button
       mat-button
+      matTooltip="{{ 'board.column.tooltip.delete' | translate | uppercase }}"
+      matTooltipClass="tooltip"
       class="min-w-0 p-0 leading-none items-baseline h-[24px]"
       (click)="openDialog('delete')"
     >

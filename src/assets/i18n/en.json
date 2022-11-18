@@ -68,7 +68,12 @@
   "board": {
     "user": "user",
     "column": {
-      "button": "create column",
+      "tooltip": {
+        "create": "create column",
+        "edit": "edit column",
+        "accept": "accept changes",
+        "delete": "delete column"
+      },
       "dialog": {
         "title": "Title",
         "cancel": "Cancel"

@@ -11,7 +11,7 @@
   <div class="flex relative justify-center mb-5" *ngIf="board">
     <button
       mat-button
-      matTooltip="{{ 'board.column.button' | translate | uppercase }}"
+      matTooltip="{{ 'board.column.tooltip.create' | translate | uppercase }}"
       matTooltipClass="tooltip"
       class="column__button absolute top-0 left-0"
       (click)="openDialog('create')"
