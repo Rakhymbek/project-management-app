@@ -13,7 +13,7 @@ export class DialogColumnComponent implements OnInit {
   public form = new FormGroup({
     title: new FormControl('', [
       Validators.minLength(3),
-      Validators.maxLength(15),
+      Validators.maxLength(10),
       Validators.required,
     ]),
   });

@@ -28,7 +28,7 @@
       matTooltip="{{ 'board.column.tooltip.accept' | translate | uppercase }}"
       matTooltipClass="tooltip"
       class="min-w-0 p-0 leading-none items-baseline h-[24px]"
-      (click)="editing = false; editColumnTitle()"
+      (click)="title.valid && (editing = false); editColumnTitle()"
       *ngIf="editing"
     >
       <mat-icon class="text-teal">check</mat-icon>
@@ -48,7 +48,7 @@
       matTooltip="{{ 'board.column.tooltip.delete' | translate | uppercase }}"
       matTooltipClass="tooltip"
       class="min-w-0 p-0 leading-none items-baseline h-[24px]"
-      (click)="openDialog('delete')"
+      (click)="deleteColumn.emit(column?.id)"
     >
       <mat-icon class="text-teal cursor-pointer">delete</mat-icon>
     </button>

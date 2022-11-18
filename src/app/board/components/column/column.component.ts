@@ -1,6 +1,6 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IColumnData, ITaskData } from 'src/app/core/models/board.model';
 import { EDialogEvents } from 'src/app/core/models/enums';
@@ -22,7 +22,11 @@ export class ColumnComponent implements OnInit {
 
   public editing: boolean = false;
 
-  public title = new FormControl(``);
+  public title = new FormControl('', [
+    Validators.minLength(3),
+    Validators.maxLength(10),
+    Validators.required,
+  ]);
 
   constructor(private activatedRoute: ActivatedRoute, private boardService: BoardService) {}
 
@@ -72,8 +76,7 @@ export class ColumnComponent implements OnInit {
   }
 
   protected openDialog(event: string) {
-    if (event === EDialogEvents.delete) {
-      this.deleteColumn.emit(this.column?.id);
+    if (event === EDialogEvents.create) {
     }
   }
 
