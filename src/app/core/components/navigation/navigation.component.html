@@ -33,9 +33,9 @@
     *ngIf="userDataService.userName"
     class="py-2 text-base flex items-center text-center uppercase font-bold leading-snug"
   >
-    <div class="flex" (click)="onCloseNavigation()">
+    <button class="flex items-center uppercase text-base" (click)="openDialog('create')">
       <mat-icon fontIcon="add_circle"></mat-icon> {{ 'header.board' | translate }}
-    </div>
+    </button>
   </li>
   <li
     *ngIf="!userDataService.userName"
