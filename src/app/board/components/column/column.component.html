@@ -1,7 +1,7 @@
 <div class="text-left mb-5">
   <ng-content></ng-content>
 </div>
-<div class="flex justify-between items-start w-full">
+<div class="column flex justify-between items-start w-full">
   <h4
     class="text-ellipsis text-body h-[24px] w-[150px] truncate"
     *ngIf="!editing"
@@ -74,7 +74,13 @@
   </app-task>
 </div>
 <div class="text-center">
-  <button mat-flat-button class="my-5 uppercase" color="primary" (click)="openDialog('create')">
-    {{ 'board.task.button' | translate }}
+  <button
+    mat-button
+    class="min-w-0 p-0 leading-none items-baseline h-[24px] my-5"
+    (click)="openDialog('create')"
+    matTooltip="{{ 'board.task.tooltip.create' | translate | uppercase }}"
+    matTooltipClass="tooltip"
+  >
+    <mat-icon class="text-teal">note_add</mat-icon>
   </button>
 </div>

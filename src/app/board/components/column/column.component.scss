@@ -41,22 +41,24 @@
 }
 
 ::ng-deep {
-  .mat-form-field-infix {
-    padding: 0;
-    border-top: 0;
-  }
+ .column {
+    .mat-form-field-infix {
+      padding: 0;
+      border-top: 0;
+    }
 
-  .mat-form-field-appearance-legacy .mat-form-field-infix {
-    padding: 0;
-  }
+    .mat-form-field-appearance-legacy .mat-form-field-infix {
+      padding: 0;
+    }
 
-  .mat-form-field-appearance-legacy .mat-form-field-wrapper {
-    padding: 0;
-  }
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+      padding: 0;
+    }
 
-  .mat-form-field-wrapper {
-    padding: 0;
-  }
+    .mat-form-field-wrapper {
+      padding: 0;
+    }
+ }
 }
 
 .tooltip {

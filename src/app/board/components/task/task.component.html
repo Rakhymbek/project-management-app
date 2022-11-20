@@ -2,7 +2,7 @@
   <h4 class="text-charcoal text-sm uppercase text-left">{{ task?.title }}</h4>
   <button
     mat-button
-    matTooltip="{{ 'board.column.tooltip.delete' | translate | uppercase }}"
+    matTooltip="{{ 'board.task.tooltip.delete' | translate | uppercase }}"
     matTooltipClass="tooltip"
     class="min-w-0 p-0 leading-none items-baseline h-[24px]"
     (click)="deleteTask.emit(task?.id)"

@@ -7,6 +7,7 @@ import {
   IColumn,
   IColumnData,
   ITask,
+  ITaskData,
   IUser,
 } from 'src/app/core/models/board.model';
 
@@ -41,6 +42,10 @@ export class BoardService {
 
   public createColumn(boardId: string, body: IColumn): Observable<IColumnData> {
     return this.http.post<IColumnData>(`boards/${boardId}/columns`, body);
+  }
+
+  public createTask(boardId: string, columnId: string, body: ITask): Observable<ITaskData> {
+    return this.http.post<ITaskData>(`boards/${boardId}/columns/${columnId}/tasks`, body);
   }
 
   public deleteBoard(id: string): Observable<Object> {

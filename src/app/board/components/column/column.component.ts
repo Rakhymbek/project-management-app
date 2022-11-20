@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dialog-delete.component';
 import {
   IColumnData,
+  ITask,
   ITaskData,
   TaskDialogCreateData,
   TaskDialogDeleteData,
@@ -137,6 +138,14 @@ export class ColumnComponent implements OnInit {
 
   private createTask(data: TaskDialogCreateData) {
     console.log(data);
+    const body: ITask = {
+      title: data.title,
+      description: data.description,
+      userId: data.userId,
+    };
+    this.boardService.createTask(data.boardId, data.columnId, body).subscribe((task) => {
+      this.column?.tasks.push(task);
+    });
   }
 
   private deleteTask(data: TaskDialogDeleteData) {

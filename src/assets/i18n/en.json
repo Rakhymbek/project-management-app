@@ -85,7 +85,10 @@
       }
     },
     "task": {
-      "button": "create task",
+      "tooltip": {
+        "create": "create task",
+        "delete": "delete task"
+      },
       "dialog": {
         "title": "Title",
         "description": "Description",
