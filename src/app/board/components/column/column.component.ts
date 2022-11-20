@@ -94,6 +94,7 @@ export class ColumnComponent implements OnInit {
       element: BoardElements.task,
       boardId: this.boardId!,
       columnId: this.column?.id!,
+      order: task?.order,
       title: task?.title,
       description: task?.description,
       userName: task?.userName,
@@ -162,6 +163,20 @@ export class ColumnComponent implements OnInit {
   }
 
   private editTask(data: TaskDialogCreateData) {
-    console.log(data);
+    const body = {
+      boardId: data.boardId,
+      columnId: data.columnId,
+      userId: data.userId,
+      order: data.order,
+      title: data.title,
+      description: data.description,
+    };
+    this.boardService.updateTask(data.boardId, data.columnId, data.id, body).subscribe((task) => {
+      const tasks = this.column?.tasks;
+      const idx = tasks?.findIndex((item) => item.id === task.id);
+      if (idx !== undefined && tasks) {
+        tasks[idx] = task as ITaskData;
+      }
+    });
   }
 }

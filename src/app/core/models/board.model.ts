@@ -18,15 +18,45 @@ export interface ColumnDialogCreateData {
   id: string;
 }
 
+export interface ITask {
+  id?: string;
+  title: string;
+  order?: number;
+  description: string;
+  userId: string;
+  boardId?: string;
+  columnId?: string;
+  userName?: string;
+}
+
+//For creation and updation of tasks
 export interface TaskDialogCreateData {
   event: string;
   boardId: string;
   columnId: string;
   userId: string;
   userName: string;
+  order: number | undefined;
   description: string;
   title: string;
   id: string;
+}
+export interface TaskDialogDeleteData {
+  event: string;
+  boardId: string;
+  element: string;
+  columnId: string;
+  id: string | undefined;
+}
+export interface ITaskData {
+  id: string;
+  title: string;
+  order: number;
+  description: string;
+  boardId?: string;
+  columnId?: string;
+  userId: string;
+  userName?: string;
 }
 
 export interface BoardDialogDeleteData {
@@ -39,14 +69,6 @@ export interface ColumnDialogDeleteData {
   event: string;
   element: string;
   boardId: string;
-  id: string | undefined;
-}
-
-export interface TaskDialogDeleteData {
-  event: string;
-  boardId: string;
-  element: string;
-  columnId: string;
   id: string | undefined;
 }
 
@@ -74,17 +96,7 @@ export interface IColumn {
   title: string;
   order?: number;
 }
-export interface ITaskData {
-  id: string;
-  title: string;
-  order: number;
-  description: string;
-  boardId?: string;
-  columnId?: string;
-  userId: string;
-  userName?: string;
-  files: unknown[];
-}
+
 export interface IColumnData {
   id: string;
   title: string;
@@ -97,17 +109,6 @@ export interface IBoardData {
   title: string;
   description: string;
   columns: IColumnData[];
-}
-
-export interface ITask {
-  id?: string;
-  title: string;
-  order?: number;
-  description: string;
-  userId: string;
-  boardId?: string;
-  columnId?: string;
-  userName?: string;
 }
 
 export interface IUser {

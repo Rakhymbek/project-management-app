@@ -27,8 +27,6 @@ export class DialogTaskComponent implements OnInit {
     ]),
   });
 
-  public user: TaskDialogCreateData | undefined;
-
   constructor(
     public dialog: MatDialogRef<DialogTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: TaskDialogCreateData,
@@ -39,20 +37,14 @@ export class DialogTaskComponent implements OnInit {
     this.boardService.getAllUsers().subscribe((users) => {
       this.users = users;
     });
+    console.log(this.data);
   }
 
   protected getData(): void {
-    const data: TaskDialogCreateData = {
-      event: this.data.event,
-      boardId: this.data.boardId,
-      columnId: this.data.columnId,
-      description: this.form.value.description,
-      userId: this.form.value.user.id,
-      userName: this.form.value.user.name,
-      title: this.form.value.title,
-      id: this.data.id,
-    };
-    this.dialog.close(data);
+    this.data.userName = this.form.value.user.name;
+    this.data.title = this.form.value.title;
+    this.data.description = this.form.value.description;
+    this.dialog.close(this.data);
   }
 
   protected cancel(): void {
