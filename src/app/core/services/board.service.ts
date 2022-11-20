@@ -69,11 +69,11 @@ export class BoardService {
   }
 
   public updateBoard(id: string, body: IBoard): Observable<IBoard> {
-    return this.http.put(`boards/${id}`, body) as Observable<IBoard>;
+    return this.http.put<IBoardData>(`boards/${id}`, body) as Observable<IBoard>;
   }
 
   public updateColumn(boardId: string, columnId: string, body: IColumn) {
-    return this.http.put<IColumn>(`boards/${boardId}/columns/${columnId}`, body);
+    return this.http.put<IColumnData>(`boards/${boardId}/columns/${columnId}`, body);
   }
 
   public updateTask(boardId: string, columnId: string, taskId: string, body: ITask) {
