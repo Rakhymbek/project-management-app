@@ -94,8 +94,13 @@ export class ColumnComponent implements OnInit {
       element: BoardElements.task,
       boardId: this.boardId!,
       columnId: this.column?.id!,
+      title: task?.title,
+      description: task?.description,
+      userName: task?.userName,
+      userId: task?.userId,
       id: task?.id,
     };
+
     const options: TaskDialogOptions = {
       width: '300px',
       data,
