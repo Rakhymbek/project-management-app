@@ -15,7 +15,7 @@ export class DialogTaskComponent implements OnInit {
   public form: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.minLength(3), Validators.maxLength(10)]),
     description: new FormControl('', [Validators.minLength(3), Validators.maxLength(40)]),
-    userId: new FormControl('', [Validators.required]),
+    user: new FormControl('', [Validators.required]),
   });
 
   constructor(
@@ -36,7 +36,8 @@ export class DialogTaskComponent implements OnInit {
       boardId: this.data.boardId,
       columnId: this.data.columnId,
       description: this.form.value.description,
-      userId: this.form.value.userId,
+      userId: this.form.value.user.userId,
+      userName: this.form.value.user.userName,
       title: this.form.value.title,
       id: this.data.id,
     };

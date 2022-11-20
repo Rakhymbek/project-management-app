@@ -88,13 +88,13 @@ export class ColumnComponent implements OnInit {
     }
   }
 
-  protected openDialog(event: string, id?: string): void {
+  protected openDialog(event: string, task?: ITaskData): void {
     const data = {
       event,
       element: BoardElements.task,
       boardId: this.boardId!,
       columnId: this.column?.id!,
-      id: id,
+      id: task?.id,
     };
     const options: TaskDialogOptions = {
       width: '300px',
@@ -137,13 +137,13 @@ export class ColumnComponent implements OnInit {
   }
 
   private createTask(data: TaskDialogCreateData) {
-    console.log(data);
     const body: ITask = {
       title: data.title,
       description: data.description,
       userId: data.userId,
     };
     this.boardService.createTask(data.boardId, data.columnId, body).subscribe((task) => {
+      task.userName = data.userName;
       this.column?.tasks.push(task);
     });
   }

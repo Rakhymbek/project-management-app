@@ -10,8 +10,8 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ 'board.task.dialog.user' | translate }}</mat-label>
-      <mat-select formControlName="userId" required>
-        <mat-option *ngFor="let user of users" [value]="user.id">
+      <mat-select formControlName="user" required>
+        <mat-option *ngFor="let user of users" [value]="{ userId: user.id, userName: user.name }">
           {{ user.name }}
         </mat-option>
       </mat-select>

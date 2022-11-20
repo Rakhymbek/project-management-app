@@ -23,6 +23,7 @@ export interface TaskDialogCreateData {
   boardId: string;
   columnId: string;
   userId: string;
+  userName: string;
   description: string;
   title: string;
   id: string;
@@ -79,6 +80,7 @@ export interface ITaskData {
   order: number;
   description: string;
   boardId?: string;
+  columnId?: string;
   userId: string;
   userName?: string;
   files: unknown[];

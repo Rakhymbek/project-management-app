@@ -69,6 +69,7 @@
     [task]="task"
     [column]="column"
     (deleteTask)="openDialog('delete', $event)"
+    (click)="openDialog('edit', task)"
     class="items-start text-sm border-solid border-b w-[260px] border-slate-300 mr-2 bg-white p-5 rounded-[10px] cursor-move flex flex-col"
   >
   </app-task>

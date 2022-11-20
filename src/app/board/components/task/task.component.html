@@ -5,7 +5,7 @@
     matTooltip="{{ 'board.task.tooltip.delete' | translate | uppercase }}"
     matTooltipClass="tooltip"
     class="min-w-0 p-0 leading-none items-baseline h-[24px]"
-    (click)="deleteTask.emit(task?.id)"
+    (click)="deleteTask.emit(task); $event.stopPropagation()"
   >
     <mat-icon class="text-teal cursor-pointer">delete</mat-icon>
   </button>

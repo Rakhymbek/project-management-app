@@ -11,7 +11,7 @@ export class TaskComponent implements OnInit {
 
   @Input() column: IColumnData | undefined;
 
-  @Output() deleteTask = new EventEmitter<string>();
+  @Output() deleteTask = new EventEmitter<ITaskData>();
 
   ngOnInit(): void {}
 }
