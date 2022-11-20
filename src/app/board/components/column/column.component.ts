@@ -175,7 +175,7 @@ export class ColumnComponent implements OnInit {
       const tasks = this.column?.tasks;
       const idx = tasks?.findIndex((item) => item.id === task.id);
       if (idx !== undefined && tasks) {
-        tasks[idx] = task as ITaskData;
+        tasks[idx] = task;
       }
     });
   }

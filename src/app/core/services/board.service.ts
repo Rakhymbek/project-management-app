@@ -77,6 +77,6 @@ export class BoardService {
   }
 
   public updateTask(boardId: string, columnId: string, taskId: string, body: ITask) {
-    return this.http.put<ITask>(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`, body);
+    return this.http.put<ITaskData>(`boards/${boardId}/columns/${columnId}/tasks/${taskId}`, body);
   }
 }
