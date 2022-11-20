@@ -11,6 +11,7 @@ import { ValidationService } from '../../services/validation.service';
 import { AuthService } from '../../services/auth.service';
 import { ISignInUserData, ISignUpUserData } from '../../models/user.model';
 import { UserDataService } from '../../services/user-data.service';
+import { ToasterService } from '../../../core/services/toaster.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -26,6 +27,7 @@ export class SignUpComponent implements OnInit {
     private validator: ValidationService,
     public authService: AuthService,
     private userDataService: UserDataService,
+    private toaster: ToasterService,
   ) {}
 
   signUpForm = new FormGroup({
@@ -75,6 +77,7 @@ export class SignUpComponent implements OnInit {
         this.authService
           .signIn({ login: userData.login, password: userData.password })
           .subscribe(({ token }: ISignInUserData) => {
+            this.toaster.openSuccessfulToaster('success.signUp');
             return this.userDataService.storeUserData(userData.login, token as string);
           });
       });

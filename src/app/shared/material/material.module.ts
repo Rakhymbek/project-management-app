@@ -12,6 +12,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatTooltipModule,
+    MatSnackBarModule,
   ],
   exports: [
     DragDropModule,
@@ -44,6 +46,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatTooltipModule,
+    MatSnackBarModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },

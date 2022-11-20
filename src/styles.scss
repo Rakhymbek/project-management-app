@@ -52,3 +52,20 @@ app-footer {
 .mat-sidenav-container {
   height: 100%;
 }
+
+// styles for toaster
+.green-snackbar {
+  background: rgb(0, 199, 72);
+  color: white;
+}
+
+.red-snackbar {
+  background: #F44336;
+  color: white;
+}
+
+.snackbar {
+  margin-bottom: 180px !important;
+  text-align: center;
+  min-width: 220px !important;
+}
