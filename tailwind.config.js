@@ -34,7 +34,8 @@ module.exports = {
         coverGradient: 'linear-gradient(116.7deg, #468189 9.51%, #075762 95.18%)',
       },
       maxWidth: {
-        page: '1245px',
+        main: '1275px',
+        board: '1245px',
       },
       maxHeight: {
         main: '350px',
