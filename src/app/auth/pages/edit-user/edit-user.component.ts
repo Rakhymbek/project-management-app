@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
 import { UserDataService } from '../../services/user-data.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DialogDeleteData, DialogOptions } from '../../../core/models/board.model';
+import { DialogDeleteData, DialogOptions } from '../../../core/models/common.model';
 import { DialogDeleteComponent } from '../../../core/components/dialog-delete/dialog-delete.component';
 import { EDialogEvents, UserEdit } from '../../../core/models/enums';
 

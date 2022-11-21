@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogCreateData } from 'src/app/core/models/board.model';
+import { BoardDialogCreateData } from 'src/app/core/models/board.model';
 import { EDialogEvents } from 'src/app/core/models/enums';
 
 @Component({
@@ -17,7 +17,7 @@ export class DialogCreateComponent {
 
   constructor(
     public dialog: MatDialogRef<DialogCreateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogCreateData,
+    @Inject(MAT_DIALOG_DATA) public data: BoardDialogCreateData,
   ) {}
 
   cancel(): void {

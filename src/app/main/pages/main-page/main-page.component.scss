@@ -4,7 +4,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #eee;
+  background: var(--white-color);
   border-radius: 15px;
 }
 
@@ -27,5 +27,10 @@
       height: 300px!important;
       width: 300px!important;
     }
+  }
+
+  .tooltip {
+    background: var(--teal-color);
+    font-size: 12px;
   }
 }

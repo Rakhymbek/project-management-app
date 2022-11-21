@@ -62,6 +62,11 @@
   },
   "main": {
     "header": "boards",
+    "tooltip": {
+      "create": "create board",
+      "edit": "edit board",
+      "delete": "delete board"
+    },
     "dialog": {
       "title": "Title",
       "description": "Description",
@@ -95,5 +100,33 @@
   "confirmationModal": {
     "yes": "yes",
     "no": "no"
+  },
+  "board": {
+    "user": "user",
+    "column": {
+      "tooltip": {
+        "create": "create column",
+        "edit": "edit column",
+        "accept": "accept changes",
+        "cancel": "cancel changes",
+        "delete": "delete column"
+      },
+      "dialog": {
+        "title": "Title",
+        "cancel": "Cancel"
+      }
+    },
+    "task": {
+      "tooltip": {
+        "create": "create task",
+        "delete": "delete task"
+      },
+      "dialog": {
+        "title": "Title",
+        "description": "Description",
+        "user": "User",
+        "cancel": "Cancel"
+      }
+    }
   }
 }

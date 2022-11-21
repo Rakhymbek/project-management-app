@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { BoardElements, EDialogEvents, ELang, EStorage } from '../../models/enums';
 import { UserDataService } from '../../../auth/services/user-data.service';
-import { DialogCreateData, DialogOptions } from '../../models/board.model';
+import { DialogCreateData, DialogOptions } from '../../models/common.model';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { BoardService } from '../../services/board.service';
 import { DialogCreateComponent } from '../../../main/components/dialog-create/dialog-create.component';

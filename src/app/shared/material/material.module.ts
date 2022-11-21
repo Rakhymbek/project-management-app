@@ -10,6 +10,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { MatCardModule } from '@angular/material/card';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatSnackBarModule,
   ],
   exports: [
@@ -40,6 +42,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatSnackBarModule,
   ],
   providers: [

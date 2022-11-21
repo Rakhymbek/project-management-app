@@ -1,1 +1,39 @@
-<p>Board-Page (Kanban-trello) yep!</p>
+<mat-spinner *ngIf="!board" color="text-teal" class="absolute my-0 mx-auto"></mat-spinner>
+<div
+  cdkDropList
+  #columnList="cdkDropList"
+  cdkDropListOrientation="horizontal"
+  [cdkDropListData]="board?.columns"
+  [cdkDropListConnectedTo]="[columnList]"
+  (cdkDropListDropped)="dropColumn($event)"
+  class="relative max-w-board my-0 mx-auto py-6 px-6 md:px-10"
+>
+  <div class="flex flex-col items-center relative justify-center mb-2 md:mb-5" *ngIf="board">
+    <button
+      mat-button
+      matTooltip="{{ 'board.column.tooltip.create' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      class="md:absolute md:top-0 md:left-0 min-w-0 p-0 leading-none items-baseline"
+      (click)="openDialog('create')"
+    >
+      <mat-icon class="text-5xl w-[50px] h-[50px] text-teal">view_column</mat-icon>
+    </button>
+    <h2 class="text-left uppercase text-charcoal">{{ board.title }}</h2>
+  </div>
+  <div cdkDropListGroup class="flex gap-x-6 overflow-x-auto">
+    <div
+      *ngFor="let column of board?.columns"
+      cdkDrag
+      class="w-[270px] flex flex-col justify-start"
+    >
+      <app-column
+        [column]="column"
+        [boardId]="id"
+        (deleteColumn)="openDialog('delete', $event)"
+        (editColumn)="openDialog('edit', $event)"
+      >
+        <mat-icon cdkDragHandle class="text-teal cursor-move text-left">open_with</mat-icon>
+      </app-column>
+    </div>
+  </div>
+</div>
