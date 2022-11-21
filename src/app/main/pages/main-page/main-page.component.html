@@ -1,5 +1,11 @@
 <div class="relative max-w-[1275px] my-0 mx-auto px-10 py-6">
-  <button mat-button class="absolute left-[52px]" (click)="openDialog('create')">
+  <button
+    mat-button
+    class="absolute left-[52px]"
+    (click)="openDialog('create')"
+    matTooltip="{{ 'main.tooltip.create' | translate | uppercase }}"
+    matTooltipClass="tooltip"
+  >
     <mat-icon class="text-5xl w-[50px] h-[50px] text-teal">note_add</mat-icon>
   </button>
   <h1 class="uppercase text-center">{{ 'main.header' | translate }}</h1>

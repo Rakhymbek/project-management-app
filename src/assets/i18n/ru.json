@@ -36,6 +36,9 @@
   },
   "main": {
     "header": "борды",
+    "tooltip": {
+      "create": "создать борд"
+    },
     "dialog": {
       "title": "Заголовок",
       "description": "Описание",

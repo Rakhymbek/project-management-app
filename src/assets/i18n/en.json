@@ -36,6 +36,9 @@
   },
   "main": {
     "header": "boards",
+    "tooltip": {
+      "create": "create board"
+    },
     "dialog": {
       "title": "Title",
       "description": "Description",

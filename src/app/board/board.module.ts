@@ -6,6 +6,8 @@ import { TaskComponent } from './components/task/task.component';
 import { DialogTaskComponent } from './components/dialog-task/dialog-task.component';
 import { DialogColumnComponent } from './components/dialog-column/dialog-column.component';
 import { ColumnComponent } from './components/column/column.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 @NgModule({
   declarations: [
     BoardPageComponent,
@@ -14,6 +16,6 @@ import { ColumnComponent } from './components/column/column.component';
     DialogColumnComponent,
     ColumnComponent,
   ],
-  imports: [BoardRoutingModule, SharedModule],
+  imports: [BoardRoutingModule, SharedModule, MatTooltipModule],
 })
 export class BoardModule {}
