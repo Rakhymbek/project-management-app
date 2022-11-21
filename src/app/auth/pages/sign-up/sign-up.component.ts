@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -18,7 +18,7 @@ import { ToasterService } from '../../../core/services/toaster.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
   hidePassword = true;
 
   hideConfirmPassword = true;
@@ -31,13 +31,14 @@ export class SignUpComponent implements OnInit {
   ) {}
 
   signUpForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    name: new FormControl(this.authService.signUpFormName, [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
     login: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password: new FormControl('', [Validators.required, this.validator.passwordValidator()]),
     confirmPassword: new FormControl('', [Validators.required, this.confirmPasswordMatching()]),
   });
-
-  ngOnInit(): void {}
 
   private confirmPasswordMatching(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

@@ -17,27 +17,29 @@
 }
 
 ::ng-deep {
-  .mat-icon {
-    color: var(--teal-color);
-    background-color: var(--mercury-color);
-    border-radius: 100%;
-    transition: all 0.15s ease;
-    opacity: 0.5;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    &:active {
+  .carousel {
+    .mat-icon {
+      color: var(--teal-color);
+      background-color: var(--mercury-color);
+      border-radius: 100%;
+      transition: all 0.15s ease;
       opacity: 0.5;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:active {
+        opacity: 0.5;
+      }
     }
-  }
 
-  .mat-typography h3 {
-    font-weight: bold;
-  }
+    .mat-typography h3 {
+      font-weight: bold;
+    }
 
-  .mat-typography h4 {
-    margin: 0 0 7px;
+    .mat-typography h4 {
+      margin: 0 0 7px;
+    }
   }
 }

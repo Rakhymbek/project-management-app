@@ -26,6 +26,8 @@ export class TokenInterceptor implements HttpInterceptor {
     if (req.url.includes('./assets/')) options.url = req.url;
     return next.handle(req.clone(options)).pipe(
       catchError((error: HttpErrorResponse) => {
+        console.log(error);
+        this.authService.authErrorStatus = error.status;
         const data: DialogErrorData = {
           code: error.status,
         };

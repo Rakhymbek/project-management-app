@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   IBoard,
   BoardDialogDeleteData,
@@ -16,7 +16,7 @@ import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dia
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
   public boards: IBoard[] | undefined;
 
   constructor(
@@ -26,8 +26,6 @@ export class MainPageComponent implements OnInit {
   ) {
     this.boardService.getAllBoards().subscribe((allBoards) => (this.boards = allBoards));
   }
-
-  ngOnInit(): void {}
 
   public openDialog(event: string, id?: string): void {
     const options: BoardDialogOptions = {

@@ -1,4 +1,7 @@
-<div *ngIf="team && team.length > 0" class="carousel m-auto text-center w-64 rounded-2xl">
+<div
+  *ngIf="team && team.length > 0"
+  class="carousel m-auto text-center w-64 max-sm:w-56 rounded-2xl"
+>
   <h2 class="text-charcoal uppercase">{{ 'welcome.sliderTitle' | translate }}</h2>
   <div class="carousel__item relative">
     <img

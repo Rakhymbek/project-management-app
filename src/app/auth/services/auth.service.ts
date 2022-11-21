@@ -8,7 +8,9 @@ import { EStorage } from 'src/app/core/models/enums';
   providedIn: 'root',
 })
 export class AuthService {
-  authErrorMessage: string = '';
+  authErrorStatus: number | string = '';
+
+  signUpFormName: string = '';
 
   constructor(private http: HttpClient) {}
 
@@ -20,12 +22,20 @@ export class AuthService {
     return this.http.post<ISignUpUserData>('signin', userData);
   }
 
-  getAuthToken(): string | null {
-    return localStorage.getItem(EStorage.token);
+  updateUser(userData: ISignUpUserData, id: string) {
+    return this.http.put<ISignUpUserData>(`users/${id}`, userData);
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete(`users/${id}`);
   }
 
   getAllUsers(): Observable<IUserData[]> {
     return this.http.get<IUserData[]>('users');
+  }
+
+  getAuthToken(): string | null {
+    return localStorage.getItem(EStorage.token);
   }
 
   isAuthorized(): boolean {

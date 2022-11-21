@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   BoardDialogDeleteData,
@@ -12,7 +12,7 @@ import { EDialogEvents } from '../../models/enums';
   templateUrl: './dialog-delete.component.html',
   styleUrls: ['./dialog-delete.component.scss'],
 })
-export class DialogDeleteComponent implements OnInit {
+export class DialogDeleteComponent {
   public element = `main.dialog.delete.${this.data.element}`;
 
   constructor(
@@ -20,8 +20,6 @@ export class DialogDeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: BoardDialogDeleteData | ColumnDialogDeleteData | TaskDialogDeleteData,
   ) {}
-
-  ngOnInit(): void {}
 
   public cancel(): void {
     this.dialog.close({ event: EDialogEvents.cancel });
