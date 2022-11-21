@@ -43,20 +43,20 @@
 ::ng-deep {
  .column {
     .mat-form-field-infix {
-      padding: 0;
-      border-top: 0;
+      padding: 0!important;
+      border-top: 0!important;
     }
 
     .mat-form-field-appearance-legacy .mat-form-field-infix {
-      padding: 0;
+      padding: 0!important;
     }
 
     .mat-form-field-appearance-legacy .mat-form-field-wrapper {
-      padding: 0;
+      padding: 0!important;
     }
 
     .mat-form-field-wrapper {
-      padding: 0;
+      padding: 0!important;
     }
  }
 }
