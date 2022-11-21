@@ -37,11 +37,11 @@ export class DialogTaskComponent implements OnInit {
     this.boardService.getAllUsers().subscribe((users) => {
       this.users = users;
     });
-    console.log(this.data);
   }
 
   protected getData(): void {
     this.data.userName = this.form.value.user.name;
+    this.data.userId = this.form.value.user.id;
     this.data.title = this.form.value.title;
     this.data.description = this.form.value.description;
     this.dialog.close(this.data);
