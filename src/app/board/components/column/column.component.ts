@@ -150,7 +150,7 @@ export class ColumnComponent implements OnInit {
     };
     this.boardService.createTask(data.boardId, data.columnId, body).subscribe((task) => {
       task.userName = data.userName;
-      this.column?.tasks.push(task);
+      this.column?.tasks?.push(task);
     });
   }
 

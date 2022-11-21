@@ -161,7 +161,8 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   private createColumn(data: ColumnDialogCreateData): void {
     this.boardService.createColumn(data.boardId, { title: data.title }).subscribe((column) => {
-      this.board?.columns.push(column);
+      column.tasks = [];
+      this.board?.columns?.push(column);
     });
   }
 
