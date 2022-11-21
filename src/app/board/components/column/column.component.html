@@ -1,7 +1,7 @@
 <div class="text-left mb-5">
   <ng-content></ng-content>
 </div>
-<div class="column flex justify-between items-start w-full">
+<div class="flex justify-between items-start w-full">
   <h4
     class="text-ellipsis text-body h-[24px] w-[150px] truncate"
     *ngIf="!editing"
@@ -9,7 +9,7 @@
   >
     {{ columnTitle }}
   </h4>
-  <mat-form-field *ngIf="editing" appearance="legacy" class="w-[150px]">
+  <mat-form-field *ngIf="editing" appearance="legacy" class="column w-[150px]">
     <input type="text" [formControl]="title" matInput class="text-body mat-h4" required />
   </mat-form-field>
   <div class="flex gap-x-3 justify-start items-baseline">
@@ -60,7 +60,7 @@
   [cdkDropListData]="column?.tasks"
   [cdkDropListConnectedTo]="[taskList]"
   [id]="column?.id || ''"
-  class="bg-transparent rounded pb-40 flex flex-col gap-y-2 w-[270px] h-board max-h-boardMobile md:max-h-board overflow-scroll overflow-y-auto overflow-x-hidden"
+  class="bg-transparent rounded pb-40 flex flex-col gap-y-2 w-[270px] h-board max-h-boardMobile xl:max-h-board overflow-scroll overflow-y-auto overflow-x-hidden"
   (cdkDropListDropped)="dropTask($event)"
 >
   <app-task

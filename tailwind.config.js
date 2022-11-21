@@ -33,16 +33,19 @@ module.exports = {
           'linear-gradient(116.7deg, rgba(70, 129, 137, 0.1) 9.51%, rgba(7, 87, 98, 0.1) 95.18%)',
         coverGradient: 'linear-gradient(116.7deg, #468189 9.51%, #075762 95.18%)',
       },
-      minHeight: {
-        frame: 'calc(100vh - 450px)',
+      maxWidth: {
+        page: '1245px',
       },
       maxHeight: {
         main: '350px',
         board: '600px',
+        boardLaptop: '500px',
+        mainMobile: '300',
         boardMobile: '500px',
       },
       height: {
         main: 'calc(100vh - 370px)',
+        mainMobile: 'calc(100vh - 500px)',
         board: 'calc(100vh - 500px)',
       },
     },

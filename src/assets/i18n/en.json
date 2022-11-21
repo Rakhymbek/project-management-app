@@ -37,7 +37,9 @@
   "main": {
     "header": "boards",
     "tooltip": {
-      "create": "create board"
+      "create": "create board",
+      "edit": "edit board",
+      "delete": "delete board"
     },
     "dialog": {
       "title": "Title",
