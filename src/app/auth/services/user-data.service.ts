@@ -25,19 +25,19 @@ export class UserDataService {
     });
   }
 
-  storeUserTokenInLocal(token: string) {
+  storeUserTokenInLocal(token: string): void {
     localStorage.setItem('userToken', token);
   }
 
-  storeUserDataInLocal(userData: IUserData) {
+  storeUserDataInLocal(userData: IUserData): void {
     localStorage.setItem('userData', JSON.stringify(userData));
   }
 
-  getUserDataFromLocal(): IUserData {
-    return JSON.parse(localStorage.getItem('userData')!);
+  getUserDataId(): string {
+    return JSON.parse(localStorage.getItem('userData')!).id;
   }
 
-  getUserName() {
+  getUserName(): string {
     return JSON.parse(localStorage.getItem('userData')!)?.login;
   }
 

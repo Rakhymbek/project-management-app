@@ -20,3 +20,7 @@ export enum BoardElements {
   column = 'column',
   task = 'task',
 }
+
+export enum UserEdit {
+  account = 'account',
+}

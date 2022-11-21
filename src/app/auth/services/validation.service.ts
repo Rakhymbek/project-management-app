@@ -14,7 +14,7 @@ export class ValidationService {
 
       const hasMoreThanEightCharacters = value.trim().length >= 8;
       if (!hasMoreThanEightCharacters) {
-        errorMessage += 'At least 8 characters.';
+        errorMessage += 'leastEightCharacters.';
       }
 
       const hasLowerCase = /[a-z]/.test(value);
@@ -22,17 +22,17 @@ export class ValidationService {
 
       const hasLowerAndUpperCase = hasLowerCase && hasUpperCase;
       if (!hasLowerAndUpperCase) {
-        errorMessage += 'A mixture of both uppercase and lowercase letters.';
+        errorMessage += 'upperLowerCaseError.';
       }
 
       const hasNumeric = /[0-9]+/.test(value);
       if (!hasNumeric) {
-        errorMessage += 'A mixture of letters and numbers.';
+        errorMessage += 'mixNumsLettersError.';
       }
 
       const hasOneSpecialCharacter = /[$&+,:;=?@#|'<>.^*()%!-]+/.test(value);
       if (!hasOneSpecialCharacter) {
-        errorMessage += 'Inclusion of at least one special character.';
+        errorMessage += 'specialSymbolError.';
       }
 
       const passwordValid =
