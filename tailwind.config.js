@@ -39,6 +39,7 @@ module.exports = {
       maxHeight: {
         main: '350px',
         board: '600px',
+        boardMobile: '500px',
       },
       height: {
         main: 'calc(100vh - 370px)',

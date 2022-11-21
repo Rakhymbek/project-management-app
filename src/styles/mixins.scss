@@ -1,0 +1,13 @@
+@import './variables.scss';
+
+@mixin media-desktop {
+  @media (max-width: $xl) { @content };
+}
+
+@mixin media-laptop {
+  @media (max-width: $lg) { @content };
+}
+
+@mixin media-tablet {
+  @media (max-width: $md) { @content };
+}

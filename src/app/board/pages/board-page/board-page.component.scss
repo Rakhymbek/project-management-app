@@ -1,10 +1,24 @@
+@import './../../../../styles/mixins.scss';
+
 ::ng-deep {
   .mat-spinner {
     height: 300px!important;
     width: 300px!important;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    @include media-tablet {
+      height: 200px!important;
+      width: 200px!important;
+    }
+
     svg {
       height: 300px!important;
       width: 300px!important;
+      @include media-tablet {
+        height: 200px!important;
+        width: 200px!important;
+      }
     }
   }
 
@@ -13,12 +27,6 @@
     font-size: 12px;
   }
 
-  .column {
-    &__button {
-      padding: 0!important;
-      min-width: 0!important;
-    }
-  }
 }
 
 .cdk-drag-preview {
