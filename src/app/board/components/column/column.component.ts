@@ -13,6 +13,7 @@ import {
 } from 'src/app/core/models/board.model';
 import { BoardElements, EDialogEvents } from 'src/app/core/models/enums';
 import { BoardService } from 'src/app/core/services/board.service';
+import { SearchService } from 'src/app/core/services/search.service';
 import { DialogTaskComponent } from '../dialog-task/dialog-task.component';
 
 @Component({
@@ -41,6 +42,7 @@ export class ColumnComponent implements OnInit {
     private boardService: BoardService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogTaskComponent,
+    private searchService: SearchService,
   ) {}
 
   ngOnInit(): void {
@@ -151,6 +153,7 @@ export class ColumnComponent implements OnInit {
     this.boardService.createTask(data.boardId, data.columnId, body).subscribe((task) => {
       task.userName = data.userName;
       this.column?.tasks?.push(task);
+      this.searchService.tasks = this.column?.tasks;
     });
   }
 
@@ -158,6 +161,7 @@ export class ColumnComponent implements OnInit {
     this.boardService.deleteTask(data.boardId, data.columnId, data.id!).subscribe(() => {
       if (this.column) {
         this.column.tasks = this.column?.tasks.filter((item) => item.id !== data.id);
+        this.searchService.tasks = this.column?.tasks;
       }
     });
   }
@@ -176,6 +180,7 @@ export class ColumnComponent implements OnInit {
       const idx = tasks?.findIndex((item) => item.id === task.id);
       if (idx !== undefined && tasks) {
         tasks[idx] = task;
+        this.searchService.tasks = tasks;
       }
     });
   }
