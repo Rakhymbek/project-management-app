@@ -52,13 +52,12 @@ export class SearchService {
   private getTasks(): Observable<ITaskData[] | undefined> {
     return this.boardService.getAllBoards().pipe(
       map((boards) => boards.map((board) => this.getBoard(board.id!))),
-      switchMap(($board) => forkJoin($board)),
-      map((arr) => {
-        const tasks = arr.flat();
-        return this.getUsers(tasks);
+      switchMap(($tasks) => forkJoin($tasks)),
+      map((tasks) => {
+        return this.getUsers(tasks.flat());
       }),
-      mergeMap(($board) => forkJoin($board)),
-      mergeMap(($board) => forkJoin($board)),
+      mergeMap(($tasks) => forkJoin($tasks)),
+      map((tasks) => tasks.flat()),
     );
   }
 }
