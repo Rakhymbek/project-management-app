@@ -4,12 +4,9 @@
   <div class="">
     <h1 class="text-teal text-6xl lg:text-9xl">:(</h1>
   </div>
-  <div class="text-center max-w-[600px]">
-    <h2 class="text-charcoal text-3xl lg:text-5xl">404 - Page not found</h2>
-    <p class="text-body text-sm sm:text-lg">
-      The page you are looking for might have been removed had its name changed or is temporarily
-      unavailable.
-    </p>
+  <div class="text-center max-w-[800px]">
+    <h2 class="text-charcoal text-3xl lg:text-5xl">{{ 'not-found.title' | translate }}</h2>
+    <p class="text-body text-sm sm:text-lg max-w-[600px]">{{ 'not-found.text' | translate }}</p>
     <a
       [routerLink]="['/']"
       mat-raised-button
@@ -17,7 +14,7 @@
       routerLinkActive="router-link-active"
       class="text-lg lg:text-2xl uppercase py-3 px-4"
     >
-      home page</a
-    >
+      {{ 'not-found.home' | translate }}
+    </a>
   </div>
 </div>
