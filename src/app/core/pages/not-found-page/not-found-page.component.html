@@ -1,1 +1,20 @@
-<p>not-found-page works!</p>
+<div
+  class="h-[calc(100vh-250px)] lg:h-[calc(100vh-200px)] flex flex-col items-center lg:flex-row justify-center gap-x-7 p-9"
+>
+  <div class="">
+    <h1 class="text-teal text-6xl lg:text-9xl">:(</h1>
+  </div>
+  <div class="text-center max-w-[800px]">
+    <h2 class="text-charcoal text-3xl lg:text-5xl">{{ 'not-found.title' | translate }}</h2>
+    <p class="text-body text-sm sm:text-lg max-w-[600px]">{{ 'not-found.text' | translate }}</p>
+    <a
+      [routerLink]="['/']"
+      mat-raised-button
+      color="primary"
+      routerLinkActive="router-link-active"
+      class="text-lg lg:text-2xl uppercase py-3 px-4"
+    >
+      {{ 'not-found.home' | translate }}
+    </a>
+  </div>
+</div>
