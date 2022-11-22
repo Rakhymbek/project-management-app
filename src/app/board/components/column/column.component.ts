@@ -2,7 +2,6 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthService } from 'src/app/auth/services/auth.service';
 import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dialog-delete.component';
 import {
   IColumnData,
@@ -44,7 +43,6 @@ export class ColumnComponent implements OnInit {
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogTaskComponent,
     private searchService: SearchService,
-    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -155,9 +153,7 @@ export class ColumnComponent implements OnInit {
     this.boardService.createTask(data.boardId, data.columnId, body).subscribe((task) => {
       task.userName = data.userName;
       this.column?.tasks?.push(task);
-      if (this.authService.isAuthorized()) {
-        this.searchService.tasks?.push(task);
-      }
+      this.searchService.tasks = this.column?.tasks;
     });
   }
 
@@ -165,6 +161,7 @@ export class ColumnComponent implements OnInit {
     this.boardService.deleteTask(data.boardId, data.columnId, data.id!).subscribe(() => {
       if (this.column) {
         this.column.tasks = this.column?.tasks.filter((item) => item.id !== data.id);
+        this.searchService.tasks = this.column?.tasks;
       }
     });
   }
@@ -183,6 +180,7 @@ export class ColumnComponent implements OnInit {
       const idx = tasks?.findIndex((item) => item.id === task.id);
       if (idx !== undefined && tasks) {
         tasks[idx] = task;
+        this.searchService.tasks = tasks;
       }
     });
   }
