@@ -21,11 +21,17 @@ export class SearchService {
     });
   }
 
-  private getUser(task: ITaskData) {
-    return this.boardService.getUser(task.userId).pipe(
-      map((user) => {
-        task.userName = user.name;
-        return task;
+  private getUsers(tasks: ITaskData[]): Observable<ITaskData[]> {
+    return this.boardService.getAllUsers().pipe(
+      map((users) => {
+        tasks.forEach((task) => {
+          users.forEach((user) => {
+            if (task.userId === user.id) {
+              task.userName = user.name;
+            }
+          });
+        });
+        return tasks;
       }),
     );
   }
@@ -49,8 +55,9 @@ export class SearchService {
       switchMap(($board) => forkJoin($board)),
       map((arr) => {
         const tasks = arr.flat();
-        return tasks.map((task) => this.getUser(task));
+        return this.getUsers(tasks);
       }),
+      mergeMap(($board) => forkJoin($board)),
       mergeMap(($board) => forkJoin($board)),
     );
   }
