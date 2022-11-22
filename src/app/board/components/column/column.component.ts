@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dialog-delete.component';
 import {
   IColumnData,
@@ -13,6 +14,7 @@ import {
 } from 'src/app/core/models/board.model';
 import { BoardElements, EDialogEvents } from 'src/app/core/models/enums';
 import { BoardService } from 'src/app/core/services/board.service';
+import { SearchService } from 'src/app/core/services/search.service';
 import { DialogTaskComponent } from '../dialog-task/dialog-task.component';
 
 @Component({
@@ -41,6 +43,8 @@ export class ColumnComponent implements OnInit {
     private boardService: BoardService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogTaskComponent,
+    private searchService: SearchService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -151,6 +155,9 @@ export class ColumnComponent implements OnInit {
     this.boardService.createTask(data.boardId, data.columnId, body).subscribe((task) => {
       task.userName = data.userName;
       this.column?.tasks?.push(task);
+      if (this.authService.isAuthorized()) {
+        this.searchService.tasks?.push(task);
+      }
     });
   }
 
