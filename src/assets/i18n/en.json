@@ -3,7 +3,8 @@
     "main": "main",
     "boards": "boards",
     "signUp": "sign up",
-    "board": "board"
+    "board": "board",
+    "edit": "edit"
   },
   "auth": {
     "signUp": "Sign-up",
