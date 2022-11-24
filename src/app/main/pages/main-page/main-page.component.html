@@ -10,10 +10,14 @@
   </button>
   <h1 class="uppercase text-center">{{ 'main.header' | translate }}</h1>
   <div
-    class="flex flex-wrap gap-y-4 gap-x-4 px-3 md:px-8 py-5 max-h-mainMobile md:max-h-main h-mainMobile md:h-main overflow-scroll overflow-y-auto overflow-x-hidden justify-center lg:justify-start"
+    class="flex flex-wrap gap-y-4 gap-x-4 px-3 md:px-8 py-5 max-h-mainMobile h-mainMobile md:h-main overflow-scroll overflow-y-auto overflow-x-hidden justify-center lg:justify-start"
   >
-    <mat-spinner *ngIf="!boards" color="text-teal" class="my-0 mx-auto"></mat-spinner>
-    <ng-container *ngFor="let board of boards">
+    <mat-spinner
+      *ngIf="!this.boardService.boards"
+      color="text-teal"
+      class="my-0 mx-auto"
+    ></mat-spinner>
+    <ng-container *ngFor="let board of this.boardService.boards">
       <app-boards-item
         class="h-[145px] w-[260px]"
         [board]="board"

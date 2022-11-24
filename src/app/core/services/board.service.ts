@@ -15,6 +15,8 @@ import {
   providedIn: 'root',
 })
 export class BoardService {
+  public boards: IBoard[] | undefined;
+
   constructor(private http: HttpClient) {}
 
   public getAllBoards(): Observable<IBoard[]> {
