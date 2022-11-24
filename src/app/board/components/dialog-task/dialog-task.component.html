@@ -1,5 +1,5 @@
 <div mat-dialog-content>
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="getData()">
     <mat-form-field appearance="fill">
       <mat-label>{{ 'board.task.dialog.title' | translate }}</mat-label>
       <input matInput formControlName="title" required />
@@ -10,17 +10,17 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ 'board.task.dialog.user' | translate }}</mat-label>
-      <mat-select formControlName="user" required [compareWith]="compareWith">
+      <mat-select formControlName="user" [compareWith]="compareWith">
         <mat-option *ngFor="let user of users" [value]="user">
           {{ user.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <div class="flex gap-5">
+      <button mat-raised-button [disabled]="form.invalid" color="primary" type="submit">OK</button>
+      <button mat-button (click)="cancel()" mat-dialog-close>
+        {{ 'board.task.dialog.cancel' | translate }}
+      </button>
+    </div>
   </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button [disabled]="form.invalid" (click)="getData()">OK</button>
-  <button mat-button (click)="cancel()" mat-dialog-close>
-    {{ 'board.task.dialog.cancel' | translate }}
-  </button>
 </div>
