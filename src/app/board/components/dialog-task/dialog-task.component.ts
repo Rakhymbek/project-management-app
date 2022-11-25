@@ -1,5 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { IUser, TaskDialogCreateData } from 'src/app/core/models/board.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BoardService } from 'src/app/core/services/board.service';
@@ -24,8 +30,19 @@ export class DialogTaskComponent implements OnInit {
     ]),
     user: new FormControl({ name: this.data.userName, id: this.data.userId }, [
       Validators.required,
+      this.checkUser(),
     ]),
   });
+
+  checkUser() {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+
+      if (value.name) return null;
+
+      return value ? { userExists: true } : null;
+    };
+  }
 
   constructor(
     public dialog: MatDialogRef<DialogTaskComponent>,

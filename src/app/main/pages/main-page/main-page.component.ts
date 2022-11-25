@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import {
-  IBoard,
   BoardDialogDeleteData,
   BoardDialogOptions,
   BoardDialogCreateData,
@@ -17,14 +16,14 @@ import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dia
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent {
-  public boards: IBoard[] | undefined;
-
   constructor(
-    private boardService: BoardService,
+    public boardService: BoardService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: BoardDialogDeleteData | BoardDialogCreateData,
   ) {
-    this.boardService.getAllBoards().subscribe((allBoards) => (this.boards = allBoards));
+    this.boardService
+      .getAllBoards()
+      .subscribe((allBoards) => (this.boardService.boards = allBoards));
   }
 
   public openDialog(event: string, id?: string): void {
@@ -48,13 +47,13 @@ export class MainPageComponent {
 
   private createBoard(data: BoardDialogCreateData): void {
     this.boardService.createBoard(data.title, data.description).subscribe((boards) => {
-      this.boards?.push(boards);
+      this.boardService.boards?.push(boards);
     });
   }
 
   private deleteBoard(data: BoardDialogDeleteData): void {
     this.boardService.deleteBoard(data.id!).subscribe(() => {
-      this.boards = this.boards?.filter((item) => item.id !== data.id);
+      this.boardService.boards = this.boardService.boards?.filter((item) => item.id !== data.id);
     });
   }
 
@@ -65,9 +64,9 @@ export class MainPageComponent {
         description: data.description,
       })
       .subscribe((board) => {
-        const idx = this.boards?.findIndex((item) => item.id === board.id);
-        if (idx !== undefined && this.boards) {
-          this.boards[idx] = board;
+        const idx = this.boardService.boards?.findIndex((item) => item.id === board.id);
+        if (idx !== undefined && this.boardService.boards) {
+          this.boardService.boards[idx] = board;
         }
       });
   }
