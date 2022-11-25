@@ -106,6 +106,7 @@
     "user": "user",
     "column": {
       "tooltip": {
+        "back": "to previous page",
         "create": "create column",
         "edit": "edit column",
         "accept": "accept changes",
