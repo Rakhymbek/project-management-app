@@ -1,7 +1,7 @@
 <div class="text-left mb-5">
   <ng-content></ng-content>
 </div>
-<div class="flex justify-between items-start w-full">
+<div class="column flex justify-between items-start w-full">
   <h4
     class="text-ellipsis text-body h-[24px] w-[150px] truncate"
     *ngIf="!editing"
@@ -9,8 +9,15 @@
   >
     {{ columnTitle }}
   </h4>
-  <mat-form-field *ngIf="editing" appearance="legacy" class="column w-[150px]">
-    <input type="text" [formControl]="title" matInput class="text-body mat-h4" required />
+  <mat-form-field *ngIf="editing" appearance="legacy" class="w-[150px]">
+    <input
+      type="text"
+      [formControl]="title"
+      matInput
+      class="text-body mat-h4"
+      (keyup.enter)="title.valid && (editing = false); editColumnTitle()"
+      required
+    />
   </mat-form-field>
   <div class="flex gap-x-3 justify-start items-baseline">
     <button
