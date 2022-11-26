@@ -41,7 +41,7 @@ module.exports = {
         main: '350px',
         board: '600px',
         boardLaptop: '500px',
-        mainMobile: '300',
+        mainMobile: '500px',
         boardMobile: '500px',
       },
       height: {
