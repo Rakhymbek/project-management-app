@@ -4,7 +4,8 @@
     "boards": "boards",
     "signUp": "sign up",
     "board": "board",
-    "edit": "edit"
+    "edit": "edit",
+    "search": "search"
   },
   "auth": {
     "signUp": "Sign-up",
