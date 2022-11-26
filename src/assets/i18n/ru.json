@@ -47,18 +47,18 @@
     "sliderTitle": "Наша команда",
     "yevgenii": {
       "name": "Евгений",
-      "role": "frontend разработчик",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "второй team-Lead",
+      "activity": "Любимая группа - \"::NG-Deep Purple\""
     },
     "rakhymbek": {
       "name": "Рахымбек",
-      "role": "team-lead, frontend разработчик",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "team-lead",
+      "activity": "Ни разу не слышал свое полное имя вслух"
     },
     "ramir": {
       "name": "Рамир",
-      "role": "frontend разработчик",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "третий team-lead",
+      "activity": "Коллекционер коммитов"
     }
   },
   "main": {

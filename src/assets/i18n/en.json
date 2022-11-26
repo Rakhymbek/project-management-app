@@ -47,18 +47,18 @@
     "sliderTitle": "our team",
     "yevgenii": {
       "name": "Yevgenii",
-      "role": "frontend developer",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "second team-lead",
+      "activity": "Favorive band \"::NG-Deep Purple\""
     },
     "rakhymbek": {
       "name": "Rakhymbek",
-      "role": "team-lead, frontend developer",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "first team lead",
+      "activity": "Never heard my full name out loud"
     },
     "ramir": {
       "name": "Ramir",
-      "role": "frontend developer",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "third team lead",
+      "activity": "Commit Collector"
     }
   },
   "main": {
