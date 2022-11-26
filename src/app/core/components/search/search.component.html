@@ -1,4 +1,4 @@
-<form *ngIf="auth.isAuthorized()">
+<form *ngIf="auth.isAuthorized()" (ngSubmit)="onSearchSubmit()">
   <mat-form-field class="search-input">
     <input type="text" [formControl]="searchField" matInput [matAutocomplete]="auto" />
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -12,4 +12,12 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+  <button
+    type="submit"
+    mat-button
+    matTooltip="{{ 'header.search' | translate | uppercase }}"
+    matTooltipClass="tooltip"
+  >
+    <mat-icon class="text-teal">search</mat-icon>
+  </button>
 </form>

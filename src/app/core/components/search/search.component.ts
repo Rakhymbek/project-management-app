@@ -28,6 +28,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         switchMap((value) => of(this.getTasks(value || ''))),
       );
     }
+    this.$filteredOptions?.subscribe((value) => {
+      this.search.filteredTasks = value;
+      localStorage.setItem('filteredTasks', JSON.stringify(this.search.filteredTasks));
+    });
   }
 
   private filter(value: string, tasks: ITaskData[]): ITaskData[] | undefined {
@@ -50,5 +54,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       return this.filter(value, tasks);
     }
     return tasks;
+  }
+
+  public onSearchSubmit() {
+    this.router.navigate(['main', 'search']);
   }
 }

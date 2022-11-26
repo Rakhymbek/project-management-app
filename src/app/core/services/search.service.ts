@@ -9,6 +9,8 @@ import { BoardService } from './board.service';
 export class SearchService {
   public tasks: ITaskData[] | undefined;
 
+  public filteredTasks: ITaskData[] | undefined;
+
   public users: IUser[] | undefined;
 
   constructor(private boardService: BoardService) {
@@ -19,6 +21,7 @@ export class SearchService {
     this.getTasks().subscribe((tasks) => {
       this.tasks = tasks;
     });
+    this.filteredTasks = JSON.parse(localStorage.getItem('filteredTasks')!);
   }
 
   private getUsers(tasks: ITaskData[]): Observable<ITaskData[]> {
