@@ -13,6 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -31,6 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatTooltipModule,
   ],
   exports: [
     DragDropModule,
@@ -47,6 +49,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSelectModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatTooltipModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },

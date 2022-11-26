@@ -6,9 +6,16 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { DialogCreateComponent } from './components/dialog-create/dialog-create.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { BoardModule } from '../board/board.module';
 
 @NgModule({
-  declarations: [BoardsItemComponent, MainPageComponent, DialogCreateComponent],
-  imports: [CommonModule, MainRoutingModule, SharedModule, MatTooltipModule],
+  declarations: [
+    BoardsItemComponent,
+    MainPageComponent,
+    DialogCreateComponent,
+    SearchPageComponent,
+  ],
+  imports: [CommonModule, MainRoutingModule, SharedModule, MatTooltipModule, BoardModule],
 })
 export class MainModule {}

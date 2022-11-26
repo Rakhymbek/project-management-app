@@ -17,5 +17,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ColumnComponent,
   ],
   imports: [BoardRoutingModule, SharedModule, MatTooltipModule],
+  exports: [TaskComponent],
 })
 export class BoardModule {}
