@@ -1,18 +1,33 @@
 ::ng-deep {
-  .mat-form-field-appearance-fill .mat-form-field-flex {
-    background: transparent;
-    padding: 0 0.75em 0 0.75em!important;
-  }
+  .form {
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+      background: transparent;
+      padding: 0 0.75em 0 0.75em !important;
+    }
 
-  .mat-form-field-underline {
-    bottom: 0;
-  }
+    .mat-form-field-appearance-fill .mat-form-field-subscript-wrapper {
+      position: relative;
+      order: 5;
+    }
 
-  .mat-form-field-wrapper {
-    padding-bottom: 0;
-  }
+    .mat-form-field-underline {
+      position: relative;
+      bottom: 0;
+    }
 
-  .mat-typography p {
-    margin: 0 0 20px;
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-typography p {
+      margin: 0 0 20px;
+    }
+
+    .features {
+      .mat-icon {
+        opacity: 1 !important;
+        background-color: transparent !important;
+      }
+    }
   }
 }

@@ -1,0 +1,25 @@
+<div class="relative max-w-main my-0 mx-auto px-6 py-6 md:px-10 flex flex-col items-center">
+  <button
+    mat-button
+    class="md:absolute md:left-[52px] mb-3 md:mb-"
+    (click)="openDialog('create')"
+    matTooltip="{{ 'main.tooltip.create' | translate | uppercase }}"
+    matTooltipClass="tooltip"
+  >
+    <mat-icon class="text-5xl w-[50px] h-[50px] text-teal">note_add</mat-icon>
+  </button>
+  <h1 class="uppercase text-center">{{ 'main.header' | translate }}</h1>
+  <div
+    class="flex flex-wrap gap-y-4 gap-x-4 px-3 md:px-8 py-5 max-h-mainMobile md:max-h-main h-mainMobile md:h-main overflow-scroll overflow-y-auto overflow-x-hidden justify-center lg:justify-start"
+  >
+    <mat-spinner *ngIf="!boards" color="text-teal" class="my-0 mx-auto"></mat-spinner>
+    <ng-container *ngFor="let board of boards">
+      <app-boards-item
+        class="h-[145px] w-[260px]"
+        [board]="board"
+        (deleteBoard)="openDialog('delete', $event)"
+        (editBoard)="openDialog('edit', $event)"
+      ></app-boards-item>
+    </ng-container>
+  </div>
+</div>

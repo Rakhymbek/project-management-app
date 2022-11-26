@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAEI,SAFK,CACP,YAAY,CACV,+BAA+B,CAAC,iCAAiC,AAAC,CAChE,QAAQ,CAAE,QAAQ,CAClB,KAAK,CAAE,CAAC,CACT,AALL,AAMI,SANK,CACP,YAAY,CAKV,yBAAyB,AAAC,CACxB,QAAQ,CAAE,QAAQ,CAClB,MAAM,CAAE,CAAC,CACV",
+    "sources": [
+        "../sign-up/sign-up.component.scss"
+    ],
+    "names": [],
+    "file": "sign-up.component.min.css"
+}

@@ -1,0 +1,137 @@
+{
+  "header": {
+    "main": "main",
+    "boards": "boards",
+    "signUp": "sign up",
+    "board": "board"
+  },
+  "auth": {
+    "signUp": "Sign-up",
+    "signIn": "Login",
+    "logout": "logout",
+    "authorize": "Authorize",
+    "createAccount": "Create account",
+    "name": "Name",
+    "login": "Login",
+    "password": "Enter your password",
+    "confirmPassword": "Confirm your password",
+    "nameError": "Name is required",
+    "loginError": "Login is required",
+    "minLengthError": "Min length must be 4",
+    "passwordMatchError": "Password is not matching",
+    "leastEightCharacters$": "At least 8 characters.",
+    "upperLowerCaseError$": "A mixture of both uppercase and lowercase letters.",
+    "mixNumsLettersError$": "A mixture of letters and numbers.",
+    "specialSymbolError$": "Inclusion of at least one special character.",
+    "editUser": {
+      "edit": "Edit-user",
+      "saveChanges": "Save changes",
+      "cancel": "Cancel",
+      "deleteUser": "Delete Account"
+    }
+  },
+  "welcome": {
+    "header": "the project management app",
+    "about": "This application helps to track the progress of tasks and distribute the workload among employees",
+    "signUp": "Sign Up",
+    "features": {
+      "title": "application features",
+      "boards": "Create boards",
+      "columns": "Create columns",
+      "tasks": "Create and delete tasks",
+      "assignees": "Select assignees",
+      "search": "Search for a task using number, name or an assignee",
+      "dnd": "Move tasks and columns using Drag-n-Drop"
+    },
+    "sliderTitle": "our team",
+    "yevgenii": {
+      "name": "Yevgenii",
+      "role": "frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
+    },
+    "rakhymbek": {
+      "name": "Rakhymbek",
+      "role": "team-lead, frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
+    },
+    "ramir": {
+      "name": "Ramir",
+      "role": "frontend developer",
+      "activity": "Lorem ipsum dolor sit amet"
+    }
+  },
+  "main": {
+    "header": "boards",
+    "tooltip": {
+      "create": "create board",
+      "edit": "edit board",
+      "delete": "delete board"
+    },
+    "dialog": {
+      "title": "Title",
+      "description": "Description",
+      "cancel": "Cancel",
+      "delete": {
+        "message": "Are you sure you want to delete",
+        "board": " board?",
+        "column": " column?",
+        "task": " task?",
+        "account": " account?"
+      }
+    }
+  },
+  "error": {
+    "close": "Close",
+    "0": "Unknown Error",
+    "400": "Bad Request",
+    "401": "Not Authorized",
+    "403": "User not found",
+    "404": "Not Found",
+    "409": "User login already exists!",
+    "500": "Internal Server Error",
+    "502": "Bad Gateway",
+    "503": "Service Temporarily Unavailable",
+    "505": "HTTP Version Not Supported"
+  },
+  "success": {
+    "signIn": "Successful login",
+    "signUp": "Registration was successful"
+  },
+  "confirmationModal": {
+    "yes": "yes",
+    "no": "no"
+  },
+  "board": {
+    "user": "user",
+    "column": {
+      "tooltip": {
+        "create": "create column",
+        "edit": "edit column",
+        "accept": "accept changes",
+        "cancel": "cancel changes",
+        "delete": "delete column"
+      },
+      "dialog": {
+        "title": "Title",
+        "cancel": "Cancel"
+      }
+    },
+    "task": {
+      "tooltip": {
+        "create": "create task",
+        "delete": "delete task"
+      },
+      "dialog": {
+        "title": "Title",
+        "description": "Description",
+        "user": "User",
+        "cancel": "Cancel"
+      }
+    }
+  },
+  "not-found": {
+    "title": "404 - Page not found",
+    "text": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
+    "home": "home page"
+  }
+}

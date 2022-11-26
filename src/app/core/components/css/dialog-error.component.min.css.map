@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACE,SADO,CACP,mBAAmB,AAAC,CAClB,eAAe,CAAE,MAAM,CACxB,AAHH,AAIE,SAJO,CAIP,mBAAmB,AAAC,CAClB,QAAQ,CAAE,MAAM,CACjB",
+    "sources": [
+        "../dialog-error/dialog-error.component.scss"
+    ],
+    "names": [],
+    "file": "dialog-error.component.min.css"
+}

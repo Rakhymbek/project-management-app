@@ -1,11 +1,14 @@
-<div *ngIf="team && team.length > 0" 
-  class="carousel m-auto text-center w-52 rounded-2xl">
-  <h2>{{title}}</h2>
+<div
+  *ngIf="team && team.length > 0"
+  class="carousel m-auto text-center w-64 max-sm:w-56 rounded-2xl"
+>
+  <h2 class="text-charcoal uppercase">{{ 'welcome.sliderTitle' | translate }}</h2>
   <div class="carousel__item relative">
-    <img *ngFor="let person of team; let i = index" 
-    [src]="person.imageSrc"
-    [alt]="person.imageAlt"
-    class="fade mb-4 rounded-2xl {{selectedIndex === i ? 'block' : 'hidden'}}"
+    <img
+      *ngFor="let person of team; let i = index"
+      [src]="person.imageSrc"
+      [alt]="person.imageAlt"
+      class="fade mb-4 rounded-2xl {{ selectedIndex === i ? 'block' : 'hidden' }}"
     />
     <div class="carousel-btn -left-10">
       <mat-icon (click)="onPrevClick()">keyboard_arrow_left</mat-icon>
@@ -14,12 +17,16 @@
       <mat-icon (click)="onNextClick()">keyboard_arrow_right</mat-icon>
     </div>
   </div>
-  <div class="carousel__description" 
+  <div
+    class="carousel__description"
     *ngFor="let person of team; let i = index"
-    class="{{selectedIndex === i ? 'block': 'hidden'}}"
-    >
-    <h4>{{person.name}} - {{person.role}}</h4>
-    <span>{{person.activity}}</span>
+    class="{{ selectedIndex === i ? 'block' : 'hidden' }}"
+  >
+    <h4 class="uppercase text-xl">
+      <span class="text-teal font-bold">{{ 'welcome.' + person.name + '.name' | translate }}</span>
+      -
+      <span class="text-body font-bold">{{ 'welcome.' + person.name + '.role' | translate }}</span>
+    </h4>
+    <span class="text-body text-lg">{{ 'welcome.' + person.name + '.activity' | translate }}</span>
   </div>
 </div>
-
