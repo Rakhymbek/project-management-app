@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -18,7 +18,7 @@ import { ToasterService } from '../../../core/services/toaster.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnDestroy {
   hidePassword = true;
 
   hideConfirmPassword = true;
@@ -83,5 +83,9 @@ export class SignUpComponent {
           });
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.authService.authErrorStatus = '';
   }
 }

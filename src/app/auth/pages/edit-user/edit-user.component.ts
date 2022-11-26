@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
@@ -13,7 +13,7 @@ import { EDialogEvents, UserEdit } from '../../../core/models/enums';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss'],
 })
-export class EditUserComponent {
+export class EditUserComponent implements OnDestroy {
   hidePassword = true;
 
   constructor(
@@ -76,5 +76,9 @@ export class EditUserComponent {
 
   private getDialogRef(options: DialogOptions): MatDialogRef<DialogDeleteComponent> {
     return this.dialog.open(DialogDeleteComponent, options);
+  }
+
+  ngOnDestroy(): void {
+    this.authService.authErrorStatus = '';
   }
 }
