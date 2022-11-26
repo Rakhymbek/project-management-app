@@ -4,11 +4,13 @@
       <mat-label>{{ 'board.column.dialog.title' | translate }}</mat-label>
       <input matInput formControlName="title" required />
     </mat-form-field>
+    <div>
+      <button color="primary" mat-raised-button [disabled]="form.invalid" (click)="getData()">
+        OK
+      </button>
+      <button mat-button (click)="cancel()" mat-dialog-close>
+        {{ 'board.column.dialog.cancel' | translate }}
+      </button>
+    </div>
   </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button [disabled]="form.invalid" (click)="getData()">OK</button>
-  <button mat-button (click)="cancel()" mat-dialog-close>
-    {{ 'board.column.dialog.cancel' | translate }}
-  </button>
 </div>

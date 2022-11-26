@@ -17,6 +17,7 @@ import { DialogTaskComponent } from '../../components/dialog-task/dialog-task.co
 import { BoardElements, EDialogEvents } from 'src/app/core/models/enums';
 import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dialog-delete.component';
 import { DialogColumnComponent } from '../../components/dialog-column/dialog-column.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-board-page',
@@ -38,6 +39,7 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private location: Location,
     private boardService: BoardService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogTaskComponent,
@@ -172,5 +174,9 @@ export class BoardPageComponent implements OnInit, OnDestroy {
         this.board.columns = this.board?.columns.filter((item) => item.id !== data.id);
       }
     });
+  }
+
+  protected toPreviousPage(): void {
+    this.location.back();
   }
 }

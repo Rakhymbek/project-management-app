@@ -3,7 +3,8 @@
     "main": "main",
     "boards": "boards",
     "signUp": "sign up",
-    "board": "board"
+    "board": "board",
+    "edit": "edit"
   },
   "auth": {
     "signUp": "Sign-up",
@@ -105,6 +106,7 @@
     "user": "user",
     "column": {
       "tooltip": {
+        "back": "to previous page",
         "create": "create column",
         "edit": "edit column",
         "accept": "accept changes",

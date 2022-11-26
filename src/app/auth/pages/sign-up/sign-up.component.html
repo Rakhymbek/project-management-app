@@ -47,6 +47,7 @@
         (click)="hidePassword = !hidePassword"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hidePassword"
+        type="button"
       >
         <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
@@ -74,6 +75,7 @@
         (click)="hideConfirmPassword = !hideConfirmPassword"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hideConfirmPassword"
+        type="button"
       >
         <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>

@@ -8,9 +8,11 @@
       <mat-label>{{ 'main.dialog.description' | translate }}</mat-label>
       <input matInput formControlName="description" required />
     </mat-form-field>
+    <div class="flex gap-5">
+      <button (click)="getData()" [disabled]="form.invalid" color="primary" mat-raised-button>
+        OK
+      </button>
+      <button mat-button (click)="cancel()">{{ 'main.dialog.cancel' | translate }}</button>
+    </div>
   </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="getData()" [disabled]="form.invalid">OK</button>
-  <button mat-button (click)="cancel()">{{ 'main.dialog.cancel' | translate }}</button>
 </div>

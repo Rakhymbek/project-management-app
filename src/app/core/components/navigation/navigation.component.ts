@@ -48,9 +48,8 @@ export class NavigationComponent {
     };
     const dialogRef = this.getDialogRef(options);
     dialogRef.afterClosed().subscribe((value) => {
-      if (value.event === EDialogEvents.create) {
+      if (value?.event === EDialogEvents.create) {
         this.createBoard(value);
-        this.onCloseNavigation();
         this.router.navigate(['/main']);
       }
     });
@@ -61,7 +60,9 @@ export class NavigationComponent {
   }
 
   private createBoard(data: DialogCreateData): void {
-    this.boardService.createBoard(data.title, data.description).subscribe();
+    this.boardService.createBoard(data.title, data.description).subscribe((board) => {
+      this.boardService.boards?.push(board);
+    });
   }
 
   toLogOut() {
