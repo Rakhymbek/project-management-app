@@ -4,7 +4,8 @@
     "boards": "boards",
     "signUp": "sign up",
     "board": "board",
-    "edit": "edit"
+    "edit": "edit",
+    "search": "search"
   },
   "auth": {
     "signUp": "Sign-up",
@@ -135,5 +136,8 @@
     "title": "404 - Page not found",
     "text": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
     "home": "home page"
+  },
+  "search": {
+    "results": "результаты"
   }
 }
