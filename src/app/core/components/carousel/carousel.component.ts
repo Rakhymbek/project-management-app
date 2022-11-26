@@ -15,18 +15,17 @@ export class CarouselComponent implements OnInit {
   public team: Person[] = [
     {
       name: 'rakhymbek',
-      imageSrc: 'https://cdn-icons-png.flaticon.com/512/147/147133.png',
+      imageSrc: 'https://avatars.githubusercontent.com/u/85493256?v=4',
       imageAlt: 'rakhymbek',
     },
     {
       name: 'yevgenii',
-      imageSrc:
-        'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
+      imageSrc: 'https://avatars.githubusercontent.com/u/79139639?v=4',
       imageAlt: 'Yevgenii',
     },
     {
       name: 'ramir',
-      imageSrc: 'https://cdn-icons-png.flaticon.com/512/147/147142.png',
+      imageSrc: 'https://avatars.githubusercontent.com/u/61286850?v=4',
       imageAlt: 'Ramir',
     },
   ];

@@ -8,7 +8,7 @@
       *ngFor="let person of team; let i = index"
       [src]="person.imageSrc"
       [alt]="person.imageAlt"
-      class="fade mb-4 rounded-2xl {{ selectedIndex === i ? 'block' : 'hidden' }}"
+      class="fade mb-4 {{ selectedIndex === i ? 'block' : 'hidden' }} rounded-full"
     />
     <div class="carousel-btn -left-10">
       <mat-icon (click)="onPrevClick()">keyboard_arrow_left</mat-icon>
