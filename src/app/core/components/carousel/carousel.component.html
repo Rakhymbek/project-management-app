@@ -20,7 +20,7 @@
   <div
     class="carousel__description"
     *ngFor="let person of team; let i = index"
-    class="{{ selectedIndex === i ? 'block' : 'hidden' }} h-44"
+    class="{{ selectedIndex === i ? 'block' : 'hidden' }} sm:h-44"
   >
     <h4 class="uppercase text-xl">
       <span class="text-teal font-bold">{{ 'welcome.' + person.name + '.name' | translate }}</span>
