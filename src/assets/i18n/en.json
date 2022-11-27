@@ -97,7 +97,8 @@
   },
   "success": {
     "signIn": "Successful login",
-    "signUp": "Registration was successful"
+    "signUp": "Registration was successful",
+    "edit": "User data has been changed"
   },
   "confirmationModal": {
     "yes": "yes",

@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { DialogDeleteData, DialogOptions } from '../../../core/models/common.model';
 import { DialogDeleteComponent } from '../../../core/components/dialog-delete/dialog-delete.component';
 import { EDialogEvents, UserEdit } from '../../../core/models/enums';
+import { ToasterService } from '../../../core/services/toaster.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -22,6 +23,7 @@ export class EditUserComponent implements OnDestroy {
     private userDataService: UserDataService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public userId: string,
+    private toaster: ToasterService,
   ) {}
 
   editUserForm = new FormGroup({
@@ -51,6 +53,7 @@ export class EditUserComponent implements OnDestroy {
       password: this.password?.value!,
     };
     this.authService.updateUser(userData, userId).subscribe((data) => {
+      this.toaster.openSuccessfulToaster('success.edit');
       return this.userDataService.storeUserData(data.login, token as string);
     });
   }
