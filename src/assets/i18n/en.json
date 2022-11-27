@@ -4,7 +4,8 @@
     "boards": "boards",
     "signUp": "sign up",
     "board": "board",
-    "edit": "edit"
+    "edit": "edit",
+    "search": "search"
   },
   "auth": {
     "signUp": "Sign-up",
@@ -96,7 +97,8 @@
   },
   "success": {
     "signIn": "Successful login",
-    "signUp": "Registration was successful"
+    "signUp": "Registration was successful",
+    "edit": "User data has been changed"
   },
   "confirmationModal": {
     "yes": "yes",
@@ -111,7 +113,8 @@
         "edit": "edit column",
         "accept": "accept changes",
         "cancel": "cancel changes",
-        "delete": "delete column"
+        "delete": "delete column",
+        "toExcel": "export to excel"
       },
       "dialog": {
         "title": "Title",

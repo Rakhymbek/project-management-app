@@ -45,7 +45,7 @@
       matTooltip="{{ 'board.column.tooltip.cancel' | translate | uppercase }}"
       matTooltipClass="tooltip"
       class="min-w-0 p-0 leading-none items-baseline h-[24px]"
-      (click)="editing = false"
+      (click)="editing = false; title.setValue(column?.title!)"
       *ngIf="editing"
     >
       <mat-icon class="text-teal">cancel</mat-icon>

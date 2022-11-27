@@ -10,6 +10,7 @@ module.exports = {
           epic: '#E9E6FD',
           red: '#DE350B',
           label: '#D3D3D3',
+          form: '#FFFFFFa8',
         },
         checkbox: {
           main: '#E3FCEF',
@@ -41,7 +42,7 @@ module.exports = {
         main: '350px',
         board: '600px',
         boardLaptop: '500px',
-        mainMobile: '300',
+        mainMobile: '500px',
         boardMobile: '500px',
       },
       height: {

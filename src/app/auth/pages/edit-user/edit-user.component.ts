@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
@@ -7,13 +7,14 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { DialogDeleteData, DialogOptions } from '../../../core/models/common.model';
 import { DialogDeleteComponent } from '../../../core/components/dialog-delete/dialog-delete.component';
 import { EDialogEvents, UserEdit } from '../../../core/models/enums';
+import { ToasterService } from '../../../core/services/toaster.service';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss'],
 })
-export class EditUserComponent {
+export class EditUserComponent implements OnDestroy {
   hidePassword = true;
 
   constructor(
@@ -22,6 +23,7 @@ export class EditUserComponent {
     private userDataService: UserDataService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public userId: string,
+    private toaster: ToasterService,
   ) {}
 
   editUserForm = new FormGroup({
@@ -51,6 +53,7 @@ export class EditUserComponent {
       password: this.password?.value!,
     };
     this.authService.updateUser(userData, userId).subscribe((data) => {
+      this.toaster.openSuccessfulToaster('success.edit');
       return this.userDataService.storeUserData(data.login, token as string);
     });
   }
@@ -76,5 +79,9 @@ export class EditUserComponent {
 
   private getDialogRef(options: DialogOptions): MatDialogRef<DialogDeleteComponent> {
     return this.dialog.open(DialogDeleteComponent, options);
+  }
+
+  ngOnDestroy(): void {
+    this.authService.authErrorStatus = '';
   }
 }

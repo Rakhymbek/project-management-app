@@ -35,7 +35,8 @@ export class AuthService {
   }
 
   getAuthToken(): string | null {
-    return localStorage.getItem(EStorage.token);
+    const user = localStorage.getItem(EStorage.userData);
+    return user ? JSON.parse(user!).token : '';
   }
 
   isAuthorized(): boolean {

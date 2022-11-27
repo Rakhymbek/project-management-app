@@ -7,6 +7,7 @@ import { DialogErrorComponent } from '../components/dialog-error/dialog-error.co
 import { DialogErrorData } from '../models/board.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { ToasterService } from '../services/toaster.service';
+import { UserDataService } from '../../auth/services/user-data.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -15,6 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
     @Inject(MAT_DIALOG_DATA) public data: DialogErrorComponent,
     private authService: AuthService,
     private toaster: ToasterService,
+    private userDataService: UserDataService,
   ) {}
 
   intercept(req: HttpRequest<string>, next: HttpHandler) {
@@ -26,7 +28,9 @@ export class TokenInterceptor implements HttpInterceptor {
     if (req.url.includes('./assets/')) options.url = req.url;
     return next.handle(req.clone(options)).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log(error);
+        if (error.status === 401) {
+          this.userDataService.removeUserData();
+        }
         this.authService.authErrorStatus = error.status;
         const data: DialogErrorData = {
           code: error.status,

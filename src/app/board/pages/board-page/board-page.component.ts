@@ -18,6 +18,7 @@ import { BoardElements, EDialogEvents } from 'src/app/core/models/enums';
 import { DialogDeleteComponent } from 'src/app/core/components/dialog-delete/dialog-delete.component';
 import { DialogColumnComponent } from '../../components/dialog-column/dialog-column.component';
 import { Location } from '@angular/common';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-board-page',
@@ -178,5 +179,37 @@ export class BoardPageComponent implements OnInit, OnDestroy {
 
   protected toPreviousPage(): void {
     this.location.back();
+  }
+
+  public exportToExcel() {
+    const fileName: string = this.boardData?.title + '.xlsx';
+    const bookSheetName: string | undefined = this.boardData?.title;
+    const newArray: string[][] = [];
+    const ColumnsTitleRow: string[] = [];
+    const boardData = this.boardData?.columns;
+    const Tasks: number[] = [];
+    let TasksLength: number;
+    boardData?.forEach((column) => {
+      ColumnsTitleRow.push(column.title);
+      Tasks.push(column.tasks.length);
+    });
+    TasksLength = Math.max(...Tasks);
+    newArray.push(ColumnsTitleRow);
+    for (let i = 0; i < TasksLength; i++) {
+      newArray.push(
+        boardData!.map((column) => {
+          let taskTitle = column.tasks[i]?.title;
+          let TaskAssignee = column.tasks[i]?.userName;
+          if (TaskAssignee) {
+            taskTitle += ` (${TaskAssignee})\n`;
+          }
+          return taskTitle;
+        }),
+      );
+    }
+    const ws = XLSX.utils.aoa_to_sheet(newArray);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, bookSheetName);
+    XLSX.writeFile(wb, fileName);
   }
 }

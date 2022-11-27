@@ -13,7 +13,6 @@ export interface ISignInUserData {
 export interface IUserData {
   id: string;
   name: string;
-  login?: string;
-  password?: string;
-  isAuthorized?: boolean;
+  login: string;
+  token?: string;
 }
