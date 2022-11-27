@@ -48,18 +48,18 @@
     "sliderTitle": "our team",
     "yevgenii": {
       "name": "Yevgenii",
-      "role": "frontend developer",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "second team-lead",
+      "activity": "Thanks to RS School I fell in love with JavaScript and realized that Angular is not so complicated as it is told. I plan not to stop there and continue to improve my knowledge and skills."
     },
     "rakhymbek": {
       "name": "Rakhymbek",
-      "role": "team-lead, frontend developer",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "first team lead",
+      "activity": "My interest in programming is only growing.Thanks to the RS-School community. I still want to become the best Frontend developer and learn how to create attractive, interactive applications using the latest technology."
     },
     "ramir": {
       "name": "Ramir",
-      "role": "frontend developer",
-      "activity": "Lorem ipsum dolor sit amet"
+      "role": "third team lead",
+      "activity": "I managed to get acquainted with many languages and settled on JS. I'm trying to expand my knowledge stack. I've decided to study Angular, in addition to the already studied React."
     }
   },
   "main": {
