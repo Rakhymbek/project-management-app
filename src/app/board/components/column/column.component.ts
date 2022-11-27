@@ -177,6 +177,7 @@ export class ColumnComponent implements OnInit {
     };
     this.boardService.updateTask(data.boardId, data.columnId, data.id, body).subscribe((task) => {
       const tasks = this.column?.tasks;
+      task.userName = data.userName;
       const idx = tasks?.findIndex((item) => item.id === task.id);
       if (idx !== undefined && tasks) {
         tasks[idx] = task;
