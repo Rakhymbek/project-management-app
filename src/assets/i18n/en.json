@@ -112,7 +112,8 @@
         "edit": "edit column",
         "accept": "accept changes",
         "cancel": "cancel changes",
-        "delete": "delete column"
+        "delete": "delete column",
+        "toExcel": "export to excel"
       },
       "dialog": {
         "title": "Title",

@@ -30,6 +30,16 @@
     >
       <mat-icon class="text-5xl w-[50px] h-[50px] text-teal">view_column</mat-icon>
     </button>
+    <button
+      mat-raised-button
+      class="flex items-center"
+      color="primary"
+      matTooltip="{{ 'board.column.tooltip.toExcel' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      (click)="exportToExcel()"
+    >
+      <mat-icon class="w-[30px]" fontIcon="save_as"></mat-icon>
+    </button>
   </div>
   <div cdkDropListGroup class="flex gap-x-6 overflow-x-auto">
     <div
