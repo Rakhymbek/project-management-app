@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../services/validation.service';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +11,7 @@ import { ToasterService } from '../../../core/services/toaster.service';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnDestroy {
   hide = true;
 
   constructor(
@@ -45,5 +45,9 @@ export class LoginPageComponent {
         return this.userDataService.storeUserData(userData.login, token as string);
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.authService.authErrorStatus = '';
   }
 }

@@ -10,6 +10,7 @@ module.exports = {
           epic: '#E9E6FD',
           red: '#DE350B',
           label: '#D3D3D3',
+          form: '#FFFFFFa8',
         },
         checkbox: {
           main: '#E3FCEF',
