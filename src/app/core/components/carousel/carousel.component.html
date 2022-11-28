@@ -1,6 +1,6 @@
 <div
   *ngIf="team && team.length > 0"
-  class="carousel m-auto text-center w-80 max-sm:w-56 rounded-2xl"
+  class="carousel h-[600px] m-auto text-center w-80 max-sm:w-56 rounded-2xl"
 >
   <h2 class="text-charcoal uppercase">{{ 'welcome.sliderTitle' | translate }}</h2>
   <div class="carousel__item relative flex justify-center">
@@ -20,7 +20,7 @@
   <div
     class="carousel__description"
     *ngFor="let person of team; let i = index"
-    class="{{ selectedIndex === i ? 'block' : 'hidden' }} sm:h-44"
+    class="{{ selectedIndex === i ? 'block' : 'hidden' }}"
   >
     <h4 class="uppercase text-xl">
       <span class="text-teal font-bold">{{ 'welcome.' + person.name + '.name' | translate }}</span>
