@@ -1,5 +1,13 @@
 @import './../../../../styles/mixins.scss';
 
+.board-page-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0 auto 16px;
+  max-width: calc(100% - 130px);
+}
+
 ::ng-deep {
   .mat-spinner {
     height: 300px!important;
