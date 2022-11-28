@@ -36,7 +36,9 @@
         formControlName="login"
         (input)="authService.authErrorStatus = ''"
       />
-      <mat-error *ngIf="login?.hasError('required')"> Login is required </mat-error>
+      <mat-error *ngIf="login?.hasError('required')">
+        {{ 'auth.loginError' | translate }}
+      </mat-error>
       <mat-error *ngIf="login?.errors?.['minlength'] && !login?.hasError('required')">
         {{ 'auth.minLengthError' | translate }}
       </mat-error>
