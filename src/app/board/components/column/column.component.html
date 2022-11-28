@@ -3,7 +3,7 @@
 </div>
 <div class="column flex justify-between items-start w-full">
   <h4
-    class="text-ellipsis text-body h-[24px] w-[150px] truncate"
+    class="text-ellipsis text-body h-[24px] w-[150px] truncate dark:text-grey-4"
     *ngIf="!editing"
     (click)="editing = true"
   >
@@ -14,7 +14,7 @@
       type="text"
       [formControl]="title"
       matInput
-      class="text-body mat-h4"
+      class="text-body mat-h4 dark:text-white"
       (keyup.enter)="title.valid && (editing = false); editColumnTitle()"
       required
     />
@@ -28,7 +28,7 @@
       *ngIf="!editing"
       (click)="editing = true"
     >
-      <mat-icon class="text-teal">edit</mat-icon>
+      <mat-icon class="text-teal dark:text-golden">edit</mat-icon>
     </button>
     <button
       mat-button
@@ -38,7 +38,7 @@
       (click)="title.valid && (editing = false); editColumnTitle()"
       *ngIf="editing"
     >
-      <mat-icon class="text-teal">check</mat-icon>
+      <mat-icon class="text-teal dark:text-golden">check</mat-icon>
     </button>
     <button
       mat-button
@@ -48,7 +48,7 @@
       (click)="editing = false; title.setValue(column?.title!)"
       *ngIf="editing"
     >
-      <mat-icon class="text-teal">cancel</mat-icon>
+      <mat-icon class="text-teal dark:text-golden">cancel</mat-icon>
     </button>
     <button
       mat-button
@@ -57,7 +57,7 @@
       class="min-w-0 p-0 leading-none items-baseline h-[24px]"
       (click)="deleteColumn.emit(column?.id)"
     >
-      <mat-icon class="text-teal cursor-pointer">delete</mat-icon>
+      <mat-icon class="text-teal cursor-pointer dark:text-golden">delete</mat-icon>
     </button>
   </div>
 </div>
@@ -88,6 +88,6 @@
     matTooltip="{{ 'board.task.tooltip.create' | translate | uppercase }}"
     matTooltipClass="tooltip"
   >
-    <mat-icon class="text-teal">note_add</mat-icon>
+    <mat-icon class="text-teal dark:text-golden">note_add</mat-icon>
   </button>
 </div>
