@@ -20,6 +20,7 @@ module.exports = {
           'dark-epic': '#a4a3a3',
           'dark-label': '#626161',
           'dark-form': 'rgba(0,0,0,0.29)',
+          'dark-footer': '#022541',
         },
         checkbox: {
           main: '#E3FCEF',
