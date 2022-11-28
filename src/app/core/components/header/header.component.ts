@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HeaderComponent {
   @Output() public navigationToggle = new EventEmitter();
+
+  constructor(public themeService: ThemeService) {}
 
   onToggleNavigation() {
     this.navigationToggle.emit();

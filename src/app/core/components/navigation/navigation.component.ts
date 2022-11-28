@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { BoardService } from '../../services/board.service';
 import { DialogCreateComponent } from '../../../main/components/dialog-create/dialog-create.component';
 import { Router } from '@angular/router';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-navigation',
@@ -27,6 +28,7 @@ export class NavigationComponent {
     private router: Router,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogCreateData,
+    public themeService: ThemeService,
   ) {
     this.translate.use(this.currentLang);
   }
@@ -39,6 +41,11 @@ export class NavigationComponent {
     this.currentLang = this.isChecked ? ELang.en : ELang.ru;
     localStorage.setItem(EStorage.language, this.currentLang);
     this.translate.use(this.currentLang);
+  }
+
+  switchTheme() {
+    this.themeService.isDarkEnable = !this.themeService.isDarkEnable;
+    localStorage.setItem(EStorage.isDarkMode, JSON.stringify(this.themeService.isDarkEnable));
   }
 
   public openDialog(event: string, id?: string): void {
