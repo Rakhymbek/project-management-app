@@ -47,8 +47,9 @@ module.exports = {
       },
       height: {
         main: 'calc(100vh - 320px)',
-        mainMobile: 'calc(100vh - 400px)',
+        mainMobile: 'calc(100vh - 500px)',
         board: 'calc(100vh - 500px)',
+        boardMobile: 'calc(100vh - 550px)',
       },
     },
   },

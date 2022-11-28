@@ -67,7 +67,7 @@
   [cdkDropListData]="column?.tasks"
   [cdkDropListConnectedTo]="[taskList]"
   [id]="column?.id || ''"
-  class="bg-transparent rounded pb-10 sm:pb-40 flex flex-col gap-y-2 w-[270px] h-board max-h-boardMobile xl:max-h-board overflow-scroll overflow-y-auto overflow-x-hidden"
+  class="bg-transparent rounded pb-10 sm:pb-40 flex flex-col gap-y-2 w-[270px] h-boardMobile sm:h-board max-h-boardMobile xl:max-h-board overflow-scroll overflow-y-auto overflow-x-hidden"
   (cdkDropListDropped)="dropTask($event)"
 >
   <app-task
