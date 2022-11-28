@@ -1,0 +1,93 @@
+<div class="text-left mb-5">
+  <ng-content></ng-content>
+</div>
+<div class="column flex justify-between items-start w-full">
+  <h4
+    class="text-ellipsis text-body h-[24px] w-[150px] truncate dark:text-grey-4"
+    *ngIf="!editing"
+    (click)="editing = true"
+  >
+    {{ columnTitle }}
+  </h4>
+  <mat-form-field *ngIf="editing" appearance="legacy" class="w-[150px]">
+    <input
+      type="text"
+      [formControl]="title"
+      matInput
+      class="text-body mat-h4 dark:text-white"
+      (keyup.enter)="title.valid && (editing = false); editColumnTitle()"
+      required
+    />
+  </mat-form-field>
+  <div class="flex gap-x-3 justify-start items-baseline">
+    <button
+      mat-button
+      matTooltip="{{ 'board.column.tooltip.edit' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      class="min-w-0 p-0 leading-none items-baseline h-[24px]"
+      *ngIf="!editing"
+      (click)="editing = true"
+    >
+      <mat-icon class="text-teal dark:text-golden">edit</mat-icon>
+    </button>
+    <button
+      mat-button
+      matTooltip="{{ 'board.column.tooltip.accept' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      class="min-w-0 p-0 leading-none items-baseline h-[24px]"
+      (click)="title.valid && (editing = false); editColumnTitle()"
+      *ngIf="editing"
+    >
+      <mat-icon class="text-teal dark:text-golden">check</mat-icon>
+    </button>
+    <button
+      mat-button
+      matTooltip="{{ 'board.column.tooltip.cancel' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      class="min-w-0 p-0 leading-none items-baseline h-[24px]"
+      (click)="editing = false; title.setValue(column?.title!)"
+      *ngIf="editing"
+    >
+      <mat-icon class="text-teal dark:text-golden">cancel</mat-icon>
+    </button>
+    <button
+      mat-button
+      matTooltip="{{ 'board.column.tooltip.delete' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      class="min-w-0 p-0 leading-none items-baseline h-[24px]"
+      (click)="deleteColumn.emit(column?.id)"
+    >
+      <mat-icon class="text-teal cursor-pointer dark:text-golden">delete</mat-icon>
+    </button>
+  </div>
+</div>
+<div
+  cdkDropList
+  #taskList="cdkDropList"
+  [cdkDropListData]="column?.tasks"
+  [cdkDropListConnectedTo]="[taskList]"
+  [id]="column?.id || ''"
+  class="bg-transparent rounded pb-10 sm:pb-40 flex flex-col gap-y-2 w-[270px] h-boardMobile sm:h-board xl:max-h-board overflow-scroll overflow-y-auto overflow-x-hidden"
+  (cdkDropListDropped)="dropTask($event)"
+>
+  <app-task
+    *ngFor="let task of column?.tasks"
+    cdkDrag
+    [task]="task"
+    [column]="column"
+    (deleteTask)="openDialog('delete', $event)"
+    (editTask)="openDialog('edit', $event)"
+  >
+  </app-task>
+</div>
+<div class="text-center">
+  <button
+    mat-button
+    class="min-w-0 p-0 leading-none items-baseline h-[24px] my-5"
+    (click)="openDialog('create')"
+    matTooltip="{{ 'board.task.tooltip.create' | translate | uppercase }}"
+    matTooltipClass="tooltip"
+  >
+    <mat-icon class="text-teal dark:text-golden">note_add</mat-icon>
+  </button>
+</div>

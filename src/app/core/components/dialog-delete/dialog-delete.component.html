@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  {{ ('main.dialog.delete.message' | translate) + (element | translate) }}
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="getData()" color="warn">OK</button>
+  <button mat-button (click)="cancel()">{{ 'main.dialog.cancel' | translate }}</button>
+</div>

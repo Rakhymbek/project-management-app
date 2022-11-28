@@ -1,0 +1,119 @@
+<form
+  class="form-signUp max-w-xs m-auto text-center p-5 shadow-md mt-10 max-md:mt-5 bg-card-form dark:bg-card-transparent"
+  [formGroup]="signUpForm"
+  (ngSubmit)="register()"
+>
+  <h2 class="text-teal max-sm:pt-1 dark:text-tealLight">{{ 'auth.signUp' | translate }}</h2>
+  <mat-card-content>
+    <mat-form-field
+      [appearance]="themeService.isDarkEnable ? 'outline' : 'standard'"
+      class="w-full mb-1"
+    >
+      <mat-label class="px-3 dark:text-white">{{ 'auth.name' | translate }}</mat-label>
+      <input
+        autofocus
+        class="dark:text-white"
+        type="text"
+        matInput
+        formControlName="name"
+        (input)="authService.authErrorStatus = ''"
+      />
+      <mat-error *ngIf="name?.hasError('required')">{{ 'auth.nameError' | translate }}</mat-error>
+      <mat-error *ngIf="name?.errors?.['minlength'] && !name?.hasError('required')">
+        {{ 'auth.minLengthError' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field
+      [appearance]="themeService.isDarkEnable ? 'outline' : 'standard'"
+      class="w-full mb-1"
+    >
+      <mat-label class="px-3 dark:text-white">{{ 'auth.login' | translate }}</mat-label>
+      <input
+        autofocus
+        class="dark:text-white"
+        type="text"
+        matInput
+        formControlName="login"
+        (input)="authService.authErrorStatus = ''"
+      />
+      <mat-error *ngIf="login?.hasError('required')">
+        {{ 'auth.loginError' | translate }}
+      </mat-error>
+      <mat-error *ngIf="login?.errors?.['minlength'] && !login?.hasError('required')">
+        {{ 'auth.minLengthError' | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field [appearance]="themeService.isDarkEnable ? 'outline' : 'fill'" class="w-full">
+      <mat-label class="dark:text-white">{{ 'auth.password' | translate }}</mat-label>
+      <input
+        class="dark:text-white"
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password"
+        (input)="authService.authErrorStatus = ''"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePassword"
+        type="button"
+      >
+        <mat-icon class="dark:text-white">{{
+          hidePassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+      <mat-error *ngIf="(password?.errors?.['passwordStrength'])">
+        <ul>
+          <ng-template ngFor let-e [ngForOf]="password?.errors?.['errorMessage'].split('.')">
+            <li *ngIf="e.length > 0">
+              {{ 'auth.' + e + '$' | translate }}
+            </li>
+          </ng-template>
+        </ul>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field [appearance]="themeService.isDarkEnable ? 'outline' : 'fill'" class="w-full">
+      <mat-label class="dark:text-white">{{ 'auth.confirmPassword' | translate }}</mat-label>
+      <input
+        class="dark:text-white"
+        matInput
+        [type]="hideConfirmPassword ? 'password' : 'text'"
+        formControlName="confirmPassword"
+        (input)="authService.authErrorStatus = ''"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hideConfirmPassword = !hideConfirmPassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideConfirmPassword"
+        type="button"
+      >
+        <mat-icon class="dark:text-white">{{
+          hideConfirmPassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+      <mat-error *ngIf="confirmPassword?.hasError('confirmPassword')">
+        {{ 'auth.passwordMatchError' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-error class="mb-2" *ngIf="authService.authErrorStatus">{{
+    'error.' + authService.authErrorStatus | translate
+  }}</mat-error>
+  <div class="flex justify-evenly">
+    <button class="signIn-btn" mat-raised-button routerLink="/auth/login" type="button">
+      {{ 'auth.signIn' | translate }}
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="signUpForm.invalid || authService.authErrorStatus !== ''"
+    >
+      {{ 'auth.createAccount' | translate }}
+    </button>
+  </div>
+</form>

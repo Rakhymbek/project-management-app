@@ -1,0 +1,18 @@
+<div mat-dialog-content class="creation-dialog">
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'main.dialog.title' | translate }}</mat-label>
+      <input matInput formControlName="title" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'main.dialog.description' | translate }}</mat-label>
+      <input matInput formControlName="description" required />
+    </mat-form-field>
+    <div class="flex gap-5">
+      <button (click)="getData()" [disabled]="form.invalid" color="primary" mat-raised-button>
+        OK
+      </button>
+      <button mat-button (click)="cancel()">{{ 'main.dialog.cancel' | translate }}</button>
+    </div>
+  </form>
+</div>

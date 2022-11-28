@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACE,SADO,CACP,OAAO,AAAC,CACN,MAAM,CAAE,CAAC,CAAC,CAAC,CAAC,IAAI,CAAA,UAAU,CAC3B,AAHH,AAKE,SALO,CAKP,iBAAiB,AAAC,CAChB,aAAa,CAAE,IAAI,CAAA,UAAU,CAC9B",
+    "sources": [
+        "../boards-item/boards-item.component.scss"
+    ],
+    "names": [],
+    "file": "boards-item.component.min.css"
+}

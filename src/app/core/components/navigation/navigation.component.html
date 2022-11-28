@@ -1,0 +1,128 @@
+<ul
+  class="flex max-md:flex-col lg:flex-row list-none max-lg:items-center max-md:pt-5 dark:text-white"
+>
+  <li
+    *ngIf="!userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug"
+  >
+    <a routerLink="/welcome" (click)="onCloseNavigation()"> {{ 'header.main' | translate }} </a>
+  </li>
+  <li class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug max-md:order-5">
+    <a
+      *ngIf="!themeService.isDarkEnable"
+      class="cursor-pointer flex items-center"
+      (click)="switchTheme()"
+    >
+      <mat-icon fontIcon="light_mode" class="mr-1"></mat-icon> light
+    </a>
+    <a
+      *ngIf="themeService.isDarkEnable"
+      class="cursor-pointer flex items-center"
+      (click)="switchTheme()"
+    >
+      <mat-icon fontIcon="dark_mode" class="mr-1"></mat-icon> dark
+    </a>
+  </li>
+  <li
+    *ngIf="userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug"
+  >
+    <a routerLink="/main" (click)="onCloseNavigation()"> {{ 'header.boards' | translate }} </a>
+  </li>
+  <li
+    *ngIf="userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug"
+  >
+    <app-search></app-search>
+  </li>
+  <li
+    class="px-3 py-2 text-base uppercase font-bold flex items-center md:ml-auto max-md:order-last"
+  >
+    <mat-slide-toggle
+      class="language-switcher"
+      [(ngModel)]="isChecked"
+      (change)="switchLanguage()"
+      >{{ currentLang | uppercase }}</mat-slide-toggle
+    >
+  </li>
+
+  <li
+    *ngIf="userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug md:hidden"
+  >
+    <mat-icon fontIcon="edit" class="m-0"></mat-icon>
+    <a
+      class="flex uppercase font-bold justify-left"
+      routerLink="/auth/edit-user"
+      (click)="onCloseNavigation()"
+    >
+      {{ 'header.edit' | translate }}
+    </a>
+  </li>
+  <li
+    *ngIf="userDataService.userName"
+    class="py-2 text-base flex items-center text-center uppercase font-bold leading-snug"
+  >
+    <button class="flex items-center uppercase text-base" (click)="openDialog('create')">
+      <mat-icon fontIcon="add_circle"></mat-icon> {{ 'header.board' | translate }}
+    </button>
+  </li>
+  <li
+    *ngIf="userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug max-md:hidden mat-menu"
+  >
+    <button
+      class="text-teal text-base flex items-center uppercase font-bold dark:text-golden"
+      [matMenuTriggerFor]="menu"
+    >
+      {{ userDataService.userName }}
+    </button>
+    <mat-menu #menu="matMenu">
+      <a
+        class="flex uppercase font-bold justify-center dark:text-white"
+        routerLink="/auth/edit-user"
+        (click)="onCloseNavigation()"
+        mat-menu-item
+      >
+        <mat-icon
+          fontIcon="edit"
+          class="m-0 justify-self-center self-center dark:text-white"
+        ></mat-icon>
+        {{ 'header.edit' | translate }}
+      </a>
+      <button
+        mat-menu-item
+        class="flex items-center p-0 min-w-[25px] justify-center"
+        (click)="toLogOut()"
+      >
+        <mat-icon fontIcon="logout" class="m-0 dark:text-white"></mat-icon>
+        <span class="text-base font-bold leading-snug uppercase dark:text-white">{{
+          'auth.logout' | translate
+        }}</span>
+      </button>
+    </mat-menu>
+  </li>
+  <li
+    *ngIf="!userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug max-w-[145px] max-lg:justify-center"
+  >
+    <a routerLink="/auth/login" (click)="onCloseNavigation()"> {{ 'auth.signIn' | translate }} </a>
+  </li>
+  <li
+    *ngIf="!userDataService.userName"
+    class="px-3 py-2 text-base flex items-center uppercase font-bold leading-snug min-w-[90px] max-lg:justify-center"
+  >
+    <a routerLink="/auth" (click)="onCloseNavigation()"> {{ 'header.signUp' | translate }} </a>
+  </li>
+  <li
+    *ngIf="userDataService.userName"
+    class="px-3 py-2 text-base flex items-center font-bold leading-snug max-w-[145px] max-lg:justify-center md:hidden"
+  >
+    <button mat-button class="flex items-center p-0 min-w-[25px]" (click)="toLogOut()">
+      <mat-icon fontIcon="logout"></mat-icon>
+      <span class="text-base font-bold leading-snug uppercase md:hidden">{{
+        'auth.logout' | translate
+      }}</span>
+    </button>
+  </li>
+</ul>

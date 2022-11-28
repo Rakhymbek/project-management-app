@@ -1,0 +1,40 @@
+:host {
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--white-color);
+  border-radius: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--teal-color);
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gumbo-color);
+}
+
+::ng-deep {
+  .mat-spinner {
+    height: 300px!important;
+    width: 300px!important;
+    svg {
+      height: 300px!important;
+      width: 300px!important;
+    }
+  }
+
+  .tooltip {
+    background: var(--teal-color);
+    font-size: 12px;
+  }
+}

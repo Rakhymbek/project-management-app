@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../navigation/navigation.component.scss"
+    ],
+    "names": [],
+    "file": "navigation.component.min.css"
+}

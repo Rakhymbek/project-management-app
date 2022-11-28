@@ -1,0 +1,18 @@
+@import './../styles/variables.scss';
+@import './../styles/mixins.scss';
+
+.main-wrapper {
+    display: flex;
+    height: calc(100vh - 180px);
+    flex-direction: column;
+    @include media-tablet {
+      height: calc(100vh - 216px);
+    }
+  }
+
+
+::ng-deep {
+  .mat-sidenav-container {
+    background: linear-gradient(116.7deg, rgba(70, 129, 137, 0.1) 9.51%, rgba(7, 87, 98, 0.1) 95.18%), #FFFFFF;
+  }
+}

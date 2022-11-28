@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../dialog-task/dialog-task.component.scss"
+    ],
+    "names": [],
+    "file": "dialog-task.component.min.css"
+}

@@ -1,0 +1,16 @@
+<form *ngIf="auth.isAuthorized()">
+  <mat-form-field class="search-input">
+    <mat-label class="text-xs">{{ 'header.search' | translate }}</mat-label>
+    <input type="text" [formControl]="searchField" matInput [matAutocomplete]="auto" />
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option
+        (click)="toBoard(task)"
+        *ngFor="let task of $filteredOptions | async"
+        [value]="task.title"
+      >
+        <span class="mat-body">{{ task.userName }}</span> |
+        <span class="mat-body">{{ task.title }}</span> |
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

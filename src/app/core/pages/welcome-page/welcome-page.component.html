@@ -1,0 +1,64 @@
+<main class="max-w-4xl w-full my-0 mx-auto px-10 py-0 sm:py-14 max-sm:px-5">
+  <h1 class="text-center text-charcoal font-bold uppercase my-8 max-sm:text-4xl dark:text-white">
+    the project management app
+  </h1>
+  <section class="flex mt-36 max-sm:mt-16 min-h-[25rem] flex-wrap md:flex-nowrap">
+    <div class="max-w-2xl w-full my-0 mx-auto mb-10 max-sm:text-center">
+      <p class="text-xl text-body min-h-[90px] dark:text-grey-4">
+        {{ 'welcome.about' | translate }}
+      </p>
+      <form
+        class="form flex flex-wrap flex-row gap-x-2.5 max-sm:justify-center"
+        (ngSubmit)="signUp()"
+      >
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label class="dark:text-grey-4">{{ 'auth.name' | translate }}</mat-label>
+          <input class="dark:text-white" type="text" matInput [formControl]="signUpForm" />
+          <mat-error *ngIf="signUpForm?.hasError('required')">{{
+            'auth.nameError' | translate
+          }}</mat-error>
+          <mat-error *ngIf="signUpForm?.errors?.['minlength'] && !signUpForm?.hasError('required')">
+            {{ 'auth.minLengthError' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="h-12" type="submit">
+          {{ 'welcome.signUp' | translate }}
+        </button>
+      </form>
+    </div>
+    <div class="features pb-8 my-0 mx-auto max-w-sm w-full self-center">
+      <h2 class="text-center uppercase text-charcoal dark:text-white">
+        {{ 'welcome.features.title' | translate }}
+      </h2>
+      <ul class="features__list text-body text-base">
+        <li class="dark:text-grey-4">
+          <mat-icon class="text-teal">done_outline</mat-icon
+          >{{ 'welcome.features.boards' | translate }}
+        </li>
+        <li class="dark:text-grey-4">
+          <mat-icon class="text-teal">done_outline</mat-icon
+          >{{ 'welcome.features.columns' | translate }}
+        </li>
+        <li class="dark:text-grey-4">
+          <mat-icon class="text-teal">done_outline</mat-icon
+          >{{ 'welcome.features.tasks' | translate }}
+        </li>
+        <li class="dark:text-grey-4">
+          <mat-icon class="text-teal">done_outline</mat-icon
+          >{{ 'welcome.features.assignees' | translate }}
+        </li>
+        <li class="dark:text-grey-4">
+          <mat-icon class="text-teal">done_outline</mat-icon
+          >{{ 'welcome.features.search' | translate }}
+        </li>
+        <li class="dark:text-grey-4">
+          <mat-icon class="text-teal">done_outline</mat-icon
+          >{{ 'welcome.features.dnd' | translate }}
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section>
+    <app-carousel [autoplay]="true" [interval]="10000"></app-carousel>
+  </section>
+</main>

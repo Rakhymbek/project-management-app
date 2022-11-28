@@ -1,0 +1,136 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --epic-color: '#3E368F';
+  --grey-color-s: #9a9a9a;
+  --grey-color-m: #d3d3d3;
+  --grey-color-l: #eeeeee;
+  --white-color: #ffffff;
+  --charcoal-color: #333333;
+  --body-color: #676767;
+  --teal-color: #468189;
+  --black-color: #000;
+  --mercury-color: #e5e5e5;
+  --gumbo-color: #7ea7ac;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+app-welcome-page {
+  overflow: auto;
+}
+app-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+}
+
+.mat-drawer-content {
+  overflow: unset!important;
+}
+
+// Switcher styles
+.mat-slide-toggle-thumb {
+  background-color: #468189;
+}
+
+// // Styles for sidenav
+.mat-drawer-container {
+  background-color: white;
+}
+
+.mat-sidenav-container {
+  height: 100%;
+}
+
+// styles for toaster
+.green-snackbar {
+  background: rgb(0, 199, 72);
+  color: white;
+}
+
+.red-snackbar {
+  background: #F44336;
+  color: white;
+}
+
+.snackbar {
+  margin-bottom: 180px !important;
+  text-align: center;
+  min-width: 220px !important;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 6px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--teal-color);
+  border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gumbo-color);
+}
+
+.dark {
+  .nav, .form-login {
+    backdrop-filter: blur(8px);
+  }
+  .mat-form-field-appearance-fill .mat-form-field-underline::before,
+  .mat-form-field-appearance-standard .mat-form-field-underline,
+  .mat-form-field-appearance-legacy .mat-form-field-underline{
+    background-color: #FFFFFF;
+  }
+  .mat-form-field-label,
+  .mat-form-field-appearance-outline .mat-form-field-outline{
+    color: #FFFFFF;
+  }
+  .mat-button-disabled {
+    color: #ffffff42!important;
+  }
+  .form-login {
+    .signUp-btn {
+      background-color: #FFFFFF!important;
+    }
+  }
+  .form-signUp {
+    .signIn-btn {
+      background-color: #FFFFFF!important;
+    }
+  }
+  .form-editUser {
+    .saveChanges-btn {
+      background-color: #FFFFFF!important;
+    }
+  }
+
+  .footer-logo {
+    filter: brightness(2.5);
+  }
+  .column-lists {
+    .mat-flat-button.mat-primary,
+    .mat-raised-button.mat-primary{
+      background-color: #F5DEB3FF;
+    }
+  }
+}

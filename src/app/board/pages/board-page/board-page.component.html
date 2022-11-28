@@ -1,0 +1,64 @@
+<mat-spinner *ngIf="!board" color="text-teal" class="absolute my-0 mx-auto"></mat-spinner>
+
+<div
+  cdkDropList
+  #columnList="cdkDropList"
+  cdkDropListOrientation="horizontal"
+  [cdkDropListData]="board?.columns"
+  [cdkDropListConnectedTo]="[columnList]"
+  (cdkDropListDropped)="dropColumn($event)"
+  class="relative max-w-board my-0 mx-auto py-6 px-6 md:px-10 column-lists"
+>
+  <div class="relative mb-2 md:mb-5" *ngIf="board">
+    <button
+      mat-flat-button
+      (click)="toPreviousPage()"
+      matTooltip="{{ 'board.column.tooltip.back' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      color="primary"
+      class="absolute top-0 left-0"
+    >
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <h2 class="text-center uppercase text-charcoal board-page-title dark:text-white">
+      {{ board.title }}
+    </h2>
+    <button
+      mat-button
+      matTooltip="{{ 'board.column.tooltip.create' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      class="absolute -top-2 right-0 min-w-0 p-0 leading-none items-baseline"
+      (click)="openDialog('create')"
+    >
+      <mat-icon class="text-5xl w-[50px] h-[50px] text-teal dark:text-golden">view_column</mat-icon>
+    </button>
+    <button
+      mat-raised-button
+      class="flex items-center"
+      color="primary"
+      matTooltip="{{ 'board.column.tooltip.toExcel' | translate | uppercase }}"
+      matTooltipClass="tooltip"
+      (click)="exportToExcel()"
+    >
+      <mat-icon class="w-[30px]" fontIcon="save_as"></mat-icon>
+    </button>
+  </div>
+  <div cdkDropListGroup class="flex gap-x-6 overflow-x-auto">
+    <div
+      *ngFor="let column of board?.columns"
+      cdkDrag
+      class="w-[270px] flex flex-col justify-start"
+    >
+      <app-column
+        [column]="column"
+        [boardId]="id"
+        (deleteColumn)="openDialog('delete', $event)"
+        (editColumn)="openDialog('edit', $event)"
+      >
+        <mat-icon cdkDragHandle class="text-teal cursor-move text-left dark:text-golden">
+          open_with
+        </mat-icon>
+      </app-column>
+    </div>
+  </div>
+</div>

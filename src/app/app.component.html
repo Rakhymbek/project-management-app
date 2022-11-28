@@ -1,0 +1,12 @@
+<mat-sidenav-container [ngClass]="{ dark: themeService.isDarkEnable }">
+  <mat-sidenav #navigation class="w-64 dark:bg-card-dark-main"
+    ><app-navigation (closeNavigation)="navigation.close()"></app-navigation>
+  </mat-sidenav>
+  <mat-sidenav-container class="dark:bg-card-dark-main">
+    <app-header class="sticky top-0 z-50" (navigationToggle)="navigation.toggle()"></app-header>
+    <div class="main-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer class="dark:bg-card-dark-footer"></app-footer>
+  </mat-sidenav-container>
+</mat-sidenav-container>

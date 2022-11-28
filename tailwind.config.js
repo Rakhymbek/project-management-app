@@ -1,0 +1,71 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: 'class',
+  content: ['./src/**/*.{html,ts}'],
+  theme: {
+    extend: {
+      colors: {
+        // Light theme colors
+        //for background-color property
+        card: {
+          main: '#FFFFFF',
+          epic: '#E9E6FD',
+          red: '#DE350B',
+          label: '#D3D3D3',
+          form: '#FFFFFFa8',
+          // Dark theme colors
+          transparent: 'rgba(15,23,42,0)',
+          'dark-main': '#001e3c',
+          'dark-board': '#5f747629',
+          'dark-epic': '#a4a3a3',
+          'dark-label': '#626161',
+          'dark-form': 'rgba(0,0,0,0.29)',
+          'dark-footer': '#022541',
+        },
+        checkbox: {
+          main: '#E3FCEF',
+          arrow: '#006644',
+        },
+      },
+      textColor: {
+        epic: '#3E368F',
+        grey: {
+          1: '#9A9A9A',
+          2: '#D3D3D3',
+          3: '#EEEEEE',
+          4: '#b2bac2',
+        },
+        white: '#FFFFFF',
+        charcoal: '#333333',
+        body: '#676767',
+        teal: '#468189',
+        golden: '#f5deb3',
+        tealLight: '#99ced5',
+      },
+      backgroundImage: {
+        mainGradient:
+          'linear-gradient(116.7deg, rgba(70, 129, 137, 0.1) 9.51%, rgba(7, 87, 98, 0.1) 95.18%)',
+        coverGradient: 'linear-gradient(116.7deg, #468189 9.51%, #075762 95.18%)',
+      },
+      maxWidth: {
+        main: '1275px',
+        board: '1245px',
+      },
+      maxHeight: {
+        main: '350px',
+        board: '600px',
+        boardLaptop: '500px',
+        mainMobile: '500px',
+        boardMobile: '500px',
+      },
+      height: {
+        main: 'calc(100vh - 320px)',
+        mainMobile: 'calc(100vh - 550px)',
+        board: 'calc(100vh - 500px)',
+        boardMobile: 'calc(100vh - 500px)',
+      },
+    },
+  },
+  plugins: [],
+  important: true,
+};
