@@ -1,6 +1,7 @@
 export enum EStorage {
   language = 'language',
   userData = 'userData',
+  isDarkMode = 'isDarkMode',
 }
 
 export enum ELang {

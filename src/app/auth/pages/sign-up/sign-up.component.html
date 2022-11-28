@@ -1,14 +1,18 @@
 <form
-  class="form-signUp max-w-xs m-auto text-center p-5 shadow-md mt-10 max-md:mt-5 bg-card-form"
+  class="form-signUp max-w-xs m-auto text-center p-5 shadow-md mt-10 max-md:mt-5 bg-card-form dark:bg-card-transparent"
   [formGroup]="signUpForm"
   (ngSubmit)="register()"
 >
-  <h2 class="text-teal max-sm:pt-1">{{ 'auth.signUp' | translate }}</h2>
+  <h2 class="text-teal max-sm:pt-1 dark:text-tealLight">{{ 'auth.signUp' | translate }}</h2>
   <mat-card-content>
-    <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">{{ 'auth.name' | translate }}</mat-label>
+    <mat-form-field
+      [appearance]="themeService.isDarkEnable ? 'outline' : 'standard'"
+      class="w-full mb-1"
+    >
+      <mat-label class="px-3 dark:text-white">{{ 'auth.name' | translate }}</mat-label>
       <input
         autofocus
+        class="dark:text-white"
         type="text"
         matInput
         formControlName="name"
@@ -19,10 +23,14 @@
         {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">{{ 'auth.login' | translate }}</mat-label>
+    <mat-form-field
+      [appearance]="themeService.isDarkEnable ? 'outline' : 'standard'"
+      class="w-full mb-1"
+    >
+      <mat-label class="px-3 dark:text-white">{{ 'auth.login' | translate }}</mat-label>
       <input
         autofocus
+        class="dark:text-white"
         type="text"
         matInput
         formControlName="login"
@@ -33,9 +41,10 @@
         {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>{{ 'auth.password' | translate }}</mat-label>
+    <mat-form-field [appearance]="themeService.isDarkEnable ? 'outline' : 'fill'" class="w-full">
+      <mat-label class="dark:text-white">{{ 'auth.password' | translate }}</mat-label>
       <input
+        class="dark:text-white"
         matInput
         [type]="hidePassword ? 'password' : 'text'"
         formControlName="password"
@@ -49,7 +58,9 @@
         [attr.aria-pressed]="hidePassword"
         type="button"
       >
-        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <mat-icon class="dark:text-white">{{
+          hidePassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
       </button>
       <mat-error *ngIf="(password?.errors?.['passwordStrength'])">
         <ul>
@@ -61,9 +72,10 @@
         </ul>
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>{{ 'auth.confirmPassword' | translate }}</mat-label>
+    <mat-form-field [appearance]="themeService.isDarkEnable ? 'outline' : 'fill'" class="w-full">
+      <mat-label class="dark:text-white">{{ 'auth.confirmPassword' | translate }}</mat-label>
       <input
+        class="dark:text-white"
         matInput
         [type]="hideConfirmPassword ? 'password' : 'text'"
         formControlName="confirmPassword"
@@ -77,7 +89,9 @@
         [attr.aria-pressed]="hideConfirmPassword"
         type="button"
       >
-        <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <mat-icon class="dark:text-white">{{
+          hideConfirmPassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
       </button>
       <mat-error *ngIf="confirmPassword?.hasError('confirmPassword')">
         {{ 'auth.passwordMatchError' | translate }}
@@ -88,7 +102,7 @@
     'error.' + authService.authErrorStatus | translate
   }}</mat-error>
   <div class="flex justify-evenly">
-    <button mat-raised-button routerLink="/auth/login" type="button">
+    <button class="signIn-btn" mat-raised-button routerLink="/auth/login" type="button">
       {{ 'auth.signIn' | translate }}
     </button>
     <button

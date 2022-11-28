@@ -91,3 +91,46 @@ app-footer {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gumbo-color);
 }
+
+.dark {
+  .nav, .form-login {
+    backdrop-filter: blur(8px);
+  }
+  .mat-form-field-appearance-fill .mat-form-field-underline::before,
+  .mat-form-field-appearance-standard .mat-form-field-underline,
+  .mat-form-field-appearance-legacy .mat-form-field-underline{
+    background-color: #FFFFFF;
+  }
+  .mat-form-field-label,
+  .mat-form-field-appearance-outline .mat-form-field-outline{
+    color: #FFFFFF;
+  }
+  .mat-button-disabled {
+    color: #ffffff42!important;
+  }
+  .form-login {
+    .signUp-btn {
+      background-color: #FFFFFF!important;
+    }
+  }
+  .form-signUp {
+    .signIn-btn {
+      background-color: #FFFFFF!important;
+    }
+  }
+  .form-editUser {
+    .saveChanges-btn {
+      background-color: #FFFFFF!important;
+    }
+  }
+
+  .footer-logo {
+    filter: brightness(2.5);
+  }
+  .column-lists {
+    .mat-flat-button.mat-primary,
+    .mat-raised-button.mat-primary{
+      background-color: #F5DEB3FF;
+    }
+  }
+}

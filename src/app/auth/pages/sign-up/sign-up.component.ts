@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 import { ISignInUserData, ISignUpUserData } from '../../models/user.model';
 import { UserDataService } from '../../services/user-data.service';
 import { ToasterService } from '../../../core/services/toaster.service';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -28,6 +29,7 @@ export class SignUpComponent implements OnDestroy {
     public authService: AuthService,
     private userDataService: UserDataService,
     private toaster: ToasterService,
+    public themeService: ThemeService,
   ) {}
 
   signUpForm = new FormGroup({

@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
       colors: {
+        // Light theme colors
         //for background-color property
         card: {
           main: '#FFFFFF',
@@ -11,6 +13,13 @@ module.exports = {
           red: '#DE350B',
           label: '#D3D3D3',
           form: '#FFFFFFa8',
+          // Dark theme colors
+          transparent: 'rgba(15,23,42,0)',
+          'dark-main': '#001e3c',
+          'dark-board': '#5f747629',
+          'dark-epic': '#a4a3a3',
+          'dark-label': '#626161',
+          'dark-form': 'rgba(0,0,0,0.29)',
         },
         checkbox: {
           main: '#E3FCEF',
@@ -23,11 +32,14 @@ module.exports = {
           1: '#9A9A9A',
           2: '#D3D3D3',
           3: '#EEEEEE',
+          4: '#b2bac2',
         },
         white: '#FFFFFF',
         charcoal: '#333333',
         body: '#676767',
         teal: '#468189',
+        golden: '#f5deb3',
+        tealLight: '#99ced5',
       },
       backgroundImage: {
         mainGradient:
