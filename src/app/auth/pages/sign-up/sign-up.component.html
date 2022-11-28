@@ -1,9 +1,9 @@
 <form
-  class="form-signUp max-w-xs m-auto text-center p-5 shadow-md mt-10 bg-card-form"
+  class="form-signUp max-w-xs m-auto text-center p-5 shadow-md mt-10 max-md:mt-5 bg-card-form"
   [formGroup]="signUpForm"
   (ngSubmit)="register()"
 >
-  <h2 class="text-teal">{{ 'auth.signUp' | translate }}</h2>
+  <h2 class="text-teal max-sm:pt-1">{{ 'auth.signUp' | translate }}</h2>
   <mat-card-content>
     <mat-form-field appearance="standard" class="w-full mb-1">
       <mat-label class="px-3">{{ 'auth.name' | translate }}</mat-label>
