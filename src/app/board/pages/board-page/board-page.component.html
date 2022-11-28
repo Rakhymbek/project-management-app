@@ -7,7 +7,7 @@
   [cdkDropListData]="board?.columns"
   [cdkDropListConnectedTo]="[columnList]"
   (cdkDropListDropped)="dropColumn($event)"
-  class="relative max-w-board my-0 mx-auto py-6 px-6 md:px-10"
+  class="relative max-w-board my-0 mx-auto py-6 px-6 md:px-10 column-lists"
 >
   <div class="relative mb-2 md:mb-5" *ngIf="board">
     <button
@@ -20,7 +20,9 @@
     >
       <mat-icon>keyboard_backspace</mat-icon>
     </button>
-    <h2 class="text-center uppercase text-charcoal board-page-title">{{ board.title }}</h2>
+    <h2 class="text-center uppercase text-charcoal board-page-title dark:text-white">
+      {{ board.title }}
+    </h2>
     <button
       mat-button
       matTooltip="{{ 'board.column.tooltip.create' | translate | uppercase }}"
@@ -28,7 +30,7 @@
       class="absolute -top-2 right-0 min-w-0 p-0 leading-none items-baseline"
       (click)="openDialog('create')"
     >
-      <mat-icon class="text-5xl w-[50px] h-[50px] text-teal">view_column</mat-icon>
+      <mat-icon class="text-5xl w-[50px] h-[50px] text-teal dark:text-golden">view_column</mat-icon>
     </button>
     <button
       mat-raised-button
@@ -53,7 +55,9 @@
         (deleteColumn)="openDialog('delete', $event)"
         (editColumn)="openDialog('edit', $event)"
       >
-        <mat-icon cdkDragHandle class="text-teal cursor-move text-left">open_with</mat-icon>
+        <mat-icon cdkDragHandle class="text-teal cursor-move text-left dark:text-golden">
+          open_with
+        </mat-icon>
       </app-column>
     </div>
   </div>

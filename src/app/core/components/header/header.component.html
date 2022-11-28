@@ -1,19 +1,25 @@
 <nav
-  class="relative flex flex-wrap items-center justify-between shadow-lg text-body bg-card-main nav"
+  class="relative flex flex-wrap items-center justify-between shadow-lg text-body bg-card-main dark:bg-card-transparent nav"
 >
   <div class="container px-4 mx-auto flex items-center justify-between">
     <div
-      class="w-full relative flex justify-between md:w-auto px-4 lg:static lg:block lg:justify-start"
+      class="w-full relative flex justify-between md:w-auto px-1 lg:static lg:block lg:justify-start"
     >
       <a
         class="flex text-2xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-teal"
         routerLink="/welcome"
       >
-        <img src="./assets/icons/logo.svg" alt="Logo" class="mr-4" />
-        <p class="m-0 self-center">PMA</p>
+        <img
+          [src]="
+            themeService.isDarkEnable ? './assets/icons/logo_white.svg' : './assets/icons/logo.svg'
+          "
+          alt="Logo"
+          class="mr-4"
+        />
+        <p class="m-0 self-center dark:text-white">PMA</p>
       </a>
       <button
-        class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none"
+        class="cursor-pointer text-xl dark:text-white leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none"
         type="button"
         (click)="onToggleNavigation()"
       >
@@ -33,7 +39,7 @@
         </svg>
       </button>
     </div>
-    <div class="flex flex-grow items-center bg-card-main">
+    <div class="flex flex-grow items-center bg-card-main dark:bg-card-transparent">
       <app-navigation class="max-md:hidden w-full"></app-navigation>
     </div>
   </div>

@@ -1,15 +1,19 @@
 <form
-  class="form-editUser max-w-xs max-md:mt-5 m-auto text-center p-5 shadow-md mt-10 bg-card-form"
+  class="form-editUser max-w-xs max-md:mt-5 m-auto text-center p-5 shadow-md mt-10 bg-card-form dark:bg-card-transparent"
   [formGroup]="editUserForm"
   (ngSubmit)="saveChanges()"
 >
-  <h2 class="text-teal">{{ 'auth.editUser.edit' | translate }}</h2>
+  <h2 class="text-teal dark:text-tealLight">{{ 'auth.editUser.edit' | translate }}</h2>
   <mat-card-content>
-    <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">{{ 'auth.name' | translate }}</mat-label>
+    <mat-form-field
+      [appearance]="themeService.isDarkEnable ? 'outline' : 'standard'"
+      class="w-full mb-1"
+    >
+      <mat-label class="px-3 dark:text-white">{{ 'auth.name' | translate }}</mat-label>
       <input
         autofocus
         type="text"
+        class="dark:text-white"
         matInput
         formControlName="name"
         (input)="authService.authErrorStatus = ''"
@@ -19,11 +23,15 @@
         {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">{{ 'auth.login' | translate }}</mat-label>
+    <mat-form-field
+      [appearance]="themeService.isDarkEnable ? 'outline' : 'standard'"
+      class="w-full mb-1"
+    >
+      <mat-label class="px-3 dark:text-white">{{ 'auth.login' | translate }}</mat-label>
       <input
         autofocus
         type="text"
+        class="dark:text-white"
         matInput
         formControlName="login"
         (input)="authService.authErrorStatus = ''"
@@ -35,10 +43,11 @@
         {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="w-full">
+    <mat-form-field [appearance]="themeService.isDarkEnable ? 'outline' : 'fill'" class="w-full">
       <mat-label>{{ 'auth.password' | translate }}</mat-label>
       <input
         matInput
+        class="dark:text-white"
         [type]="hidePassword ? 'password' : 'text'"
         formControlName="password"
         (input)="authService.authErrorStatus = ''"
@@ -51,7 +60,9 @@
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hidePassword"
       >
-        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <mat-icon class="dark:text-white">{{
+          hidePassword ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
       </button>
       <mat-error *ngIf="(password?.errors?.['passwordStrength'])">
         <ul>
@@ -68,7 +79,7 @@
     'error.' + authService.authErrorStatus | translate
   }}</mat-error>
   <div class="flex justify-evenly mb-3">
-    <button mat-raised-button routerLink="/" type="button">
+    <button mat-raised-button routerLink="/" class="saveChanges-btn" type="button">
       {{ 'auth.editUser.cancel' | translate }}
     </button>
     <button

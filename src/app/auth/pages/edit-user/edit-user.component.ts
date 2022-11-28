@@ -8,6 +8,7 @@ import { DialogDeleteData, DialogOptions } from '../../../core/models/common.mod
 import { DialogDeleteComponent } from '../../../core/components/dialog-delete/dialog-delete.component';
 import { EDialogEvents, UserEdit } from '../../../core/models/enums';
 import { ToasterService } from '../../../core/services/toaster.service';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -24,6 +25,7 @@ export class EditUserComponent implements OnDestroy {
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public userId: string,
     private toaster: ToasterService,
+    public themeService: ThemeService,
   ) {}
 
   editUserForm = new FormGroup({

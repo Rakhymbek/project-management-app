@@ -2,7 +2,7 @@
   *ngIf="team && team.length > 0"
   class="carousel h-[600px] m-auto text-center w-80 max-sm:w-56 rounded-2xl"
 >
-  <h2 class="text-charcoal uppercase">{{ 'welcome.sliderTitle' | translate }}</h2>
+  <h2 class="text-charcoal uppercase dark:text-white">{{ 'welcome.sliderTitle' | translate }}</h2>
   <div class="carousel__item relative flex justify-center">
     <img
       *ngFor="let person of team; let i = index"
@@ -24,9 +24,13 @@
   >
     <h4 class="uppercase text-xl">
       <span class="text-teal font-bold">{{ 'welcome.' + person.name + '.name' | translate }}</span>
-      -
-      <span class="text-body font-bold">{{ 'welcome.' + person.name + '.role' | translate }}</span>
+      <span class="dark:text-body">-</span>
+      <span class="text-body font-bold dark:text-golden">{{
+        'welcome.' + person.name + '.role' | translate
+      }}</span>
     </h4>
-    <span class="text-body text-sm">{{ 'welcome.' + person.name + '.activity' | translate }}</span>
+    <span class="text-body text-sm dark:text-grey-4">{{
+      'welcome.' + person.name + '.activity' | translate
+    }}</span>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { ISignInUserData } from '../../models/user.model';
 import { UserDataService } from '../../services/user-data.service';
 import { ToasterService } from '../../../core/services/toaster.service';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-login-page',
@@ -19,6 +20,7 @@ export class LoginPageComponent implements OnDestroy {
     public authService: AuthService,
     private userDataService: UserDataService,
     private toaster: ToasterService,
+    public themeService: ThemeService,
   ) {}
 
   loginForm = new FormGroup({

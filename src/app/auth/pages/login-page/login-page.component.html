@@ -1,15 +1,19 @@
 <form
-  class="form-login max-w-xs m-auto text-center p-5 shadow-md mt-10 max-md:mt-5 bg-card-form"
+  class="form-login max-w-xs m-auto text-center p-5 shadow-md mt-10 max-md:mt-5 bg-card-form dark:bg-card-transparent"
   [formGroup]="loginForm"
   (ngSubmit)="toSignIn()"
 >
-  <h2 class="text-teal">{{ 'auth.authorize' | translate }}</h2>
+  <h2 class="text-teal dark:text-tealLight">{{ 'auth.authorize' | translate }}</h2>
   <mat-card-content>
-    <mat-form-field appearance="standard" class="w-full mb-1">
-      <mat-label class="px-3">{{ 'auth.login' | translate }}</mat-label>
+    <mat-form-field
+      [appearance]="themeService.isDarkEnable ? 'outline' : 'standard'"
+      class="w-full mb-1"
+    >
+      <mat-label class="px-3 dark:text-white">{{ 'auth.login' | translate }}</mat-label>
       <input
         autofocus
         type="text"
+        class="dark:text-white"
         matInput
         formControlName="login"
         (input)="authService.authErrorStatus = ''"
@@ -21,9 +25,10 @@
         {{ 'auth.minLengthError' | translate }}
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>{{ 'auth.password' | translate }}</mat-label>
+    <mat-form-field [appearance]="themeService.isDarkEnable ? 'outline' : 'fill'" class="w-full">
+      <mat-label class="dark:text-white">{{ 'auth.password' | translate }}</mat-label>
       <input
+        class="dark:text-white"
         matInput
         [type]="hide ? 'password' : 'text'"
         formControlName="password"
@@ -37,7 +42,7 @@
         [attr.aria-pressed]="hide"
         type="button"
       >
-        <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <mat-icon class="dark:text-white">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
       </button>
       <mat-error *ngIf="(password?.errors?.['passwordStrength'])">
         <ul>
@@ -63,7 +68,7 @@
     >
       {{ 'auth.signIn' | translate }}
     </button>
-    <button mat-raised-button routerLink="/auth" type="button">
+    <button mat-raised-button routerLink="/auth" class="signUp-btn" type="button">
       {{ 'auth.signUp' | translate }}
     </button>
   </div>
